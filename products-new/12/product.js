@@ -3,30 +3,30 @@ const product = {
   name: "شنطة AMO #12",
   price: 10,
 
-  image: "1000145532.png",
+  image: "file_000000009a3081f4913722fbd4814540.png",
 
   gallery: [
-    "1000145532.png",
-    "1000145533.png",
-    "1000145534.png",
-    "1000132507.png"
+    "file_000000009a3081f4913722fbd4814540.png",
+    "file_000000000a09c820a8a62628710fcd48a.png",
+    "file_00000000930481f4bcb1bcb506f4aa8a.png",
+    "file_00000000689071fdad670ed4ac30728c.png"
   ],
 
   colors: [
     {
       name: "أسود",
       value: "#111111",
-      image: "1000145532.png"
+      image: "file_000000009a3081f4913722fbd4814540.png"
+    },
+    {
+      name: "بيج",
+      value: "#d8cfc1",
+      image: "file_000000000a09c820a8a62628710fcd48a.png"
     },
     {
       name: "أبيض",
       value: "#f5f5f0",
-      image: "1000145533.png"
-    },
-    {
-      name: "بيج",
-      value: "#d8d0c2",
-      image: "1000145534.png"
+      image: "file_00000000930481f4bcb1bcb506f4aa8a.png"
     }
   ]
 };
