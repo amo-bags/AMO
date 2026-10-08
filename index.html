@@ -46,8 +46,6 @@ nav a{
   font-size:14px;
 }
 
-/* CART BUTTON */
-
 .cart-button{
   background:#fff;
   color:#111;
@@ -122,8 +120,6 @@ nav a{
   margin:auto;
 }
 
-/* PRODUCT CARD */
-
 .card{
   background:#fff;
   border-radius:20px;
@@ -138,8 +134,6 @@ nav a{
   object-fit:cover;
   display:block;
 }
-
-/* GALLERY */
 
 .gallery{
   display:flex;
@@ -161,8 +155,6 @@ nav a{
 .gallery img.active{
   border-color:#111;
 }
-
-/* PRODUCT INFO */
 
 .info{
   padding:20px;
@@ -202,7 +194,7 @@ nav a{
   width:100%;
 }
 
-/* CART OVERLAY */
+/* OVERLAY */
 
 .cart-overlay{
   display:none;
@@ -219,7 +211,7 @@ nav a{
   top:0;
   right:0;
   width:100%;
-  max-width:430px;
+  max-width:450px;
   height:100vh;
   background:#fff;
   z-index:9999;
@@ -227,8 +219,6 @@ nav a{
   overflow-y:auto;
   box-shadow:-5px 0 25px #0004;
 }
-
-/* CART HEADER */
 
 .cart-header{
   display:flex;
@@ -258,6 +248,24 @@ nav a{
 .cart-item{
   border-bottom:1px solid #ddd;
   padding:18px 0;
+}
+
+.cart-product{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.cart-product-image{
+  width:80px;
+  height:80px;
+  object-fit:cover;
+  border-radius:12px;
+  flex-shrink:0;
+}
+
+.cart-product-info{
+  flex:1;
 }
 
 .cart-item h3{
@@ -294,8 +302,6 @@ nav a{
   text-align:center;
 }
 
-/* DELETE */
-
 .delete{
   margin-right:auto;
   border:0;
@@ -303,6 +309,46 @@ nav a{
   padding:8px 12px;
   border-radius:20px;
   cursor:pointer;
+}
+
+/* CUSTOMER FORM */
+
+.customer-form{
+  margin-top:25px;
+  padding-top:20px;
+  border-top:2px solid #111;
+}
+
+.customer-form h3{
+  font-size:21px;
+  margin-bottom:18px;
+}
+
+.form-group{
+  margin-bottom:14px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+  padding:13px;
+  border:1px solid #ccc;
+  border-radius:12px;
+  font-size:15px;
+  font-family:Arial;
+  background:white;
+}
+
+.form-group textarea{
+  min-height:90px;
+  resize:vertical;
 }
 
 /* TOTAL */
@@ -317,8 +363,6 @@ nav a{
   font-size:22px;
 }
 
-/* WHATSAPP */
-
 .whatsapp-button{
   width:100%;
   margin-top:18px;
@@ -331,7 +375,7 @@ nav a{
   cursor:pointer;
 }
 
-/* EMPTY CART */
+/* EMPTY */
 
 .empty-cart{
   text-align:center;
@@ -410,7 +454,6 @@ footer{
     </a>
 
   </nav>
-
 
   <button
     class="cart-button"
@@ -509,14 +552,152 @@ footer{
   </div>
 
 
+  <!-- CUSTOMER INFORMATION -->
+
+  <div
+    id="customerForm"
+    class="customer-form">
+
+    <h3>
+      معلومات التوصيل 📦
+    </h3>
+
+
+    <div class="form-group">
+
+      <label>
+        الاسم الكامل *
+      </label>
+
+      <input
+        id="customerName"
+        type="text"
+        placeholder="اكتبي اسمك الكامل">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        رقم الهاتف *
+      </label>
+
+      <input
+        id="customerPhone"
+        type="tel"
+        placeholder="مثال: 0790000000">
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        المحافظة *
+      </label>
+
+      <select id="customerCity">
+
+        <option value="">
+          اختاري المحافظة
+        </option>
+
+        <option>
+          عمّان
+        </option>
+
+        <option>
+          الزرقاء
+        </option>
+
+        <option>
+          إربد
+        </option>
+
+        <option>
+          البلقاء
+        </option>
+
+        <option>
+          مادبا
+        </option>
+
+        <option>
+          جرش
+        </option>
+
+        <option>
+          عجلون
+        </option>
+
+        <option>
+          المفرق
+        </option>
+
+        <option>
+          الكرك
+        </option>
+
+        <option>
+          الطفيلة
+        </option>
+
+        <option>
+          معان
+        </option>
+
+        <option>
+          العقبة
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        العنوان بالتفصيل *
+      </label>
+
+      <textarea
+        id="customerAddress"
+        placeholder="المنطقة، الشارع، رقم البناء، أقرب معلم..."></textarea>
+
+    </div>
+
+
+    <div class="form-group">
+
+      <label>
+        ملاحظات إضافية
+      </label>
+
+      <textarea
+        id="customerNotes"
+        placeholder="مثلاً: الاتصال قبل التوصيل"></textarea>
+
+    </div>
+
+  </div>
+
+
+  <!-- TOTAL -->
+
   <div class="cart-total">
 
     <h3>
+
       المجموع:
+
       <span id="cartTotal">
         0
       </span>
+
       دينار
+
     </h3>
 
 
@@ -548,7 +729,7 @@ footer{
 </footer>
 
 
-<!-- PRODUCTS -->
+<!-- PRODUCTS DATA -->
 
 <script src="products.js"></script>
 
@@ -560,7 +741,9 @@ footer{
 ========================= */
 
 const grid =
-  document.getElementById("productsGrid");
+  document.getElementById(
+    "productsGrid"
+  );
 
 
 /* =========================
@@ -569,7 +752,9 @@ const grid =
 
 let cart =
   JSON.parse(
-    localStorage.getItem("amoCart") || "[]"
+    localStorage.getItem(
+      "amoCart"
+    ) || "[]"
   );
 
 
@@ -580,27 +765,32 @@ let cart =
 products.forEach(product => {
 
 
-  /* الصور */
+  /* صور المنتج */
 
   let images = [
     ...(product.gallery || [])
   ];
 
 
-  (product.colors || []).forEach(color => {
+  (product.colors || [])
+    .forEach(color => {
 
-    if(color.image){
+      if(color.image){
 
-      images.push(color.image);
+        images.push(
+          color.image
+        );
 
-    }
+      }
 
-  });
+    });
 
 
   if(product.image){
 
-    images.push(product.image);
+    images.push(
+      product.image
+    );
 
   }
 
@@ -610,7 +800,7 @@ products.forEach(product => {
   ];
 
 
-  /* الصورة الأولى */
+  /* الصورة الرئيسية */
 
   const firstImage =
     product.colors?.[0]?.image ||
@@ -618,69 +808,95 @@ products.forEach(product => {
     "";
 
 
-  /* الكارد */
+  /* إنشاء البطاقة */
 
   const card =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
 
   card.className =
     "card";
 
 
-  /* المعرض */
+  /* صور المعرض */
 
   const galleryHTML =
-    images.map((image,index) => {
+    images
+      .map(
+        (image,index) => {
 
-      return `
+          return `
 
-        <img
-          src="${image}"
-          class="${index === 0 ? "active" : ""}"
-          alt="${product.name}"
-          onclick="changeImage(
-            this,
-            '${image}'
-          )">
+            <img
+              src="${image}"
+              class="${
+                index === 0
+                  ? "active"
+                  : ""
+              }"
+              alt="${product.name}"
+              onclick="
+                changeImage(
+                  this,
+                  '${image}'
+                )
+              ">
 
-      `;
+          `;
 
-    }).join("");
+        }
+      )
+      .join("");
 
 
   /* الألوان */
 
   const colorsHTML =
     (product.colors || [])
-      .map((color,index) => {
+      .map(
+        (color,index) => {
 
-        return `
+          return `
 
-          <button
-            class="color ${index === 0 ? "selected" : ""}"
-            style="background:${color.value}"
-            title="${color.name}"
-            onclick="selectColor(
-              this,
-              '${color.name}',
-              '${color.image || ""}'
-            )">
-          </button>
+            <button
+              class="
+                color
+                ${
+                  index === 0
+                    ? "selected"
+                    : ""
+                }
+              "
+              style="
+                background:${color.value}
+              "
+              title="${color.name}"
+              onclick="
+                selectColor(
+                  this,
+                  '${color.name}',
+                  '${color.image || ""}'
+                )
+              ">
+            </button>
 
-        `;
+          `;
 
-      }).join("");
+        }
+      )
+      .join("");
 
 
-  /* اللون الافتراضي */
+  /* اللون الأول */
 
   const firstColor =
     product.colors?.[0]?.name ||
     "";
 
 
-  /* محتوى الكارد */
+  /* HTML البطاقة */
 
   card.innerHTML = `
 
@@ -718,8 +934,7 @@ products.forEach(product => {
 
 
       <div
-        class="colors"
-        data-color="${firstColor}">
+        class="colors">
 
         ${colorsHTML}
 
@@ -746,15 +961,23 @@ products.forEach(product => {
   `;
 
 
-  /* حفظ اللون الافتراضي */
+  /* اللون الافتراضي */
 
   card.dataset.color =
     firstColor;
 
 
-  /* إضافة الكارد */
+  /* الصورة الرئيسية */
 
-  grid.appendChild(card);
+  card.dataset.image =
+    firstImage;
+
+
+  /* إضافة المنتج */
+
+  grid.appendChild(
+    card
+  );
 
 });
 
@@ -769,26 +992,29 @@ function changeImage(
 ){
 
   const card =
-    button.closest(".card");
+    button.closest(
+      ".card"
+    );
 
 
-  const main =
-    card.querySelector(".main");
-
-
-  main.src =
-    image;
+  card.querySelector(
+    ".main"
+  ).src = image;
 
 
   card
-    .querySelectorAll(".gallery img")
-    .forEach(img => {
+    .querySelectorAll(
+      ".gallery img"
+    )
+    .forEach(
+      img => {
 
-      img.classList.remove(
-        "active"
-      );
+        img.classList.remove(
+          "active"
+        );
 
-    });
+      }
+    );
 
 
   button.classList.add(
@@ -809,18 +1035,24 @@ function selectColor(
 ){
 
   const card =
-    button.closest(".card");
+    button.closest(
+      ".card"
+    );
 
 
   card
-    .querySelectorAll(".color")
-    .forEach(item => {
+    .querySelectorAll(
+      ".color"
+    )
+    .forEach(
+      item => {
 
-      item.classList.remove(
-        "selected"
-      );
+        item.classList.remove(
+          "selected"
+        );
 
-    });
+      }
+    );
 
 
   button.classList.add(
@@ -837,6 +1069,9 @@ function selectColor(
     card.querySelector(
       ".main"
     ).src = image;
+
+    card.dataset.image =
+      image;
 
   }
 
@@ -855,17 +1090,28 @@ function addProductToCart(
 ){
 
   const card =
-    button.closest(".card");
+    button.closest(
+      ".card"
+    );
 
 
   const color =
-    card.dataset.color || "";
+    card.dataset.color ||
+    "";
+
+
+  const image =
+    card.dataset.image ||
+    card.querySelector(
+      ".main"
+    ).src;
 
 
   const existing =
-    cart.find(item =>
-      item.id === id &&
-      item.color === color
+    cart.find(
+      item =>
+        item.id === id &&
+        item.color === color
     );
 
 
@@ -885,6 +1131,8 @@ function addProductToCart(
 
       color:color,
 
+      image:image,
+
       quantity:1
 
     });
@@ -893,7 +1141,6 @@ function addProductToCart(
 
 
   saveCart();
-
 
   openCart();
 
@@ -908,7 +1155,9 @@ function saveCart(){
 
   localStorage.setItem(
     "amoCart",
-    JSON.stringify(cart)
+    JSON.stringify(
+      cart
+    )
   );
 
 
@@ -926,7 +1175,8 @@ function updateCartCount(){
   const count =
     cart.reduce(
       (total,item) =>
-        total + item.quantity,
+        total +
+        item.quantity,
       0
     );
 
@@ -1048,28 +1298,41 @@ function renderCart(){
 
         <div class="cart-item">
 
-          <h3>
-            ${item.name}
-          </h3>
+          <div class="cart-product">
 
 
-          <p>
-            رقم المنتج:
-            #${item.id}
-          </p>
+            <img
+              class="cart-product-image"
+              src="${item.image || ""}"
+              alt="${item.name}">
 
 
-          <p>
-            اللون:
-            ${item.color}
-          </p>
+            <div
+              class="cart-product-info">
 
+              <h3>
+                ${item.name}
+              </h3>
 
-          <p>
-            السعر:
-            ${item.price}
-            دينار
-          </p>
+              <p>
+                رقم المنتج:
+                #${item.id}
+              </p>
+
+              <p>
+                اللون:
+                ${item.color}
+              </p>
+
+              <p>
+                السعر:
+                ${item.price}
+                دينار
+              </p>
+
+            </div>
+
+          </div>
 
 
           <div class="quantity">
@@ -1120,13 +1383,16 @@ function renderCart(){
           </div>
 
 
-          <p style="
-            margin-top:12px;
-            font-weight:bold;
-          ">
+          <p
+            style="
+              margin-top:12px;
+              font-weight:bold;
+            ">
 
             المجموع:
+
             ${itemTotal}
+
             دينار
 
           </p>
@@ -1202,7 +1468,7 @@ function removeFromCart(
 
 
 /* =========================
-   WHATSAPP
+   WHATSAPP ORDER
 ========================= */
 
 function sendCartToWhatsApp(){
@@ -1218,27 +1484,138 @@ function sendCartToWhatsApp(){
   }
 
 
+  /* بيانات العميل */
+
+  const name =
+    document.getElementById(
+      "customerName"
+    ).value.trim();
+
+
+  const phone =
+    document.getElementById(
+      "customerPhone"
+    ).value.trim();
+
+
+  const city =
+    document.getElementById(
+      "customerCity"
+    ).value;
+
+
+  const address =
+    document.getElementById(
+      "customerAddress"
+    ).value.trim();
+
+
+  const notes =
+    document.getElementById(
+      "customerNotes"
+    ).value.trim();
+
+
+  /* التحقق */
+
+  if(!name){
+
+    alert(
+      "يرجى كتابة الاسم الكامل"
+    );
+
+    return;
+
+  }
+
+
+  if(!phone){
+
+    alert(
+      "يرجى كتابة رقم الهاتف"
+    );
+
+    return;
+
+  }
+
+
+  if(!city){
+
+    alert(
+      "يرجى اختيار المحافظة"
+    );
+
+    return;
+
+  }
+
+
+  if(!address){
+
+    alert(
+      "يرجى كتابة العنوان بالتفصيل"
+    );
+
+    return;
+
+  }
+
+
+  /* إنشاء الرسالة */
+
   let message =
-    "مرحباً AMO 👋\n\n" +
-    "أرغب بطلب:\n\n";
+`🛍️ طلب جديد من AMO
+
+👤 اسم العميل:
+${name}
+
+📞 رقم الهاتف:
+${phone}
+
+📍 المحافظة:
+${city}
+
+🏠 العنوان:
+${address}`;
+
+
+  if(notes){
+
+    message += `
+
+📝 ملاحظات:
+${notes}`;
+
+  }
+
+
+  message += `
+
+----------------
+
+المنتجات:
+
+`;
 
 
   let total = 0;
 
 
-  cart.forEach(item => {
+  cart.forEach(
+    item => {
 
 
-    const itemTotal =
-      item.price *
-      item.quantity;
+      const itemTotal =
+        item.price *
+        item.quantity;
 
 
-    total +=
-      itemTotal;
+      total +=
+        itemTotal;
 
 
-    message +=
+      message +=
 `👜 ${item.name}
 رقم المنتج: #${item.id}
 اللون: ${item.color}
@@ -1248,13 +1625,18 @@ function sendCartToWhatsApp(){
 
 `;
 
-  });
+    }
+  );
 
 
   message +=
 `----------------
-المجموع الكلي: ${total} دينار`;
 
+💰 المجموع الكلي:
+${total} دينار`;
+
+
+  /* واتساب */
 
   const url =
     "https://wa.me/" +
