@@ -2,142 +2,201 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>AMO | متجر الحقائب</title>
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial;background:#f8f6f1;color:#171717}
+header{background:#111;color:#fff;padding:18px 6%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:28px;font-weight:bold;letter-spacing:4px}
+nav a{color:#fff;text-decoration:none;margin-right:18px}
+.hero{text-align:center;padding:65px 20px;background:#eee9df}
+.hero h1{font-size:40px;margin-bottom:18px}
+.hero p{font-size:18px;color:#555;margin-bottom:25px}
+.btn{background:#111;color:#fff;border:0;padding:14px 25px;border-radius:30px;font-size:15px;cursor:pointer;text-decoration:none}
+.products{padding:50px 5%}
+.title{text-align:center;font-size:30px;margin-bottom:35px}
+.grid{max-width:700px;margin:auto}
+.card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 5px 25px #0001}
+.main{width:100%;height:430px;object-fit:cover;display:block}
+.gallery{display:flex;gap:8px;padding:12px;overflow-x:auto}
+.gallery img{width:65px;height:65px;min-width:65px;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer}
+.gallery img.active{border-color:#111}
+.info{padding:20px}
+.info h2{font-size:24px;margin-bottom:12px}
+.price{font-size:24px;font-weight:bold;margin-bottom:18px}
+.colors{display:flex;gap:12px;margin:12px 0 20px}
+.color{width:42px;height:42px;border-radius:50%;border:3px solid white;box-shadow:0 0 0 1px #aaa;cursor:pointer}
+.color.selected{box-shadow:0 0 0 2px #111}
+.order{width:100%}
+footer{background:#111;color:#fff;text-align:center;padding:35px;margin-top:40px}
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@media(max-width:600px){
+.hero h1{font-size:32px}
+nav{display:none}
+.main{height:420px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">AMO</div>
+<nav>
+<a href="#home">الرئيسية</a>
+<a href="#products">الحقائب</a>
+<a href="#contact">تواصل معنا</a>
+</nav>
+</header>
+
+<section class="hero" id="home">
+<h1>اختاري شنطتك بستايلك الخاص</h1>
+<p>حقائب أنيقة تناسب كل إطلالة ✨</p>
+<a href="#products" class="btn">اكتشفي الحقائب</a>
+</section>
+
+<section class="products" id="products">
+<h2 class="title">أحدث الحقائب</h2>
+<div class="grid" id="productsGrid"></div>
+</section>
+
+<footer id="contact">
+<div class="logo">AMO</div>
+<p>متجر الحقائب</p>
+</footer>
+
+<script src="products.js"></script>
+
+<script>
+
+const grid=document.getElementById("productsGrid");
+
+products.forEach(product=>{
+
+let images=[...(product.gallery||[])];
+
+(product.colors||[]).forEach(c=>{
+if(c.image) images.push(c.image);
+});
+
+if(product.image) images.push(product.image);
+
+images=[...new Set(images)];
+
+const first=product.colors?.[0]?.image||product.image;
+
+const card=document.createElement("div");
+card.className="card";
+
+card.innerHTML=`
+
+<img class="main" src="${first}" alt="${product.name}">
+
+<div class="gallery">
+${images.map((img,i)=>`
+<img
+src="${img}"
+class="${i===0?"active":""}"
+onclick="changeImage(this,'${img}')">
+`).join("")}
+</div>
+
+<div class="info">
+
+<h2>${product.name}</h2>
+
+<div class="price">
+${product.price} دينار
+</div>
+
+<p>اختاري اللون:</p>
+
+<div class="colors">
+${(product.colors||[]).map((c,i)=>`
+<button
+class="color ${i===0?"selected":""}"
+style="background:${c.value}"
+title="${c.name}"
+onclick="selectColor(this,'${c.name}','${c.image||""}')">
+</button>
+`).join("")}
+</div>
+
+<button
+class="btn order"
+onclick="orderProduct(this,'${product.id}','${product.name}',${product.price})">
+اطلب عبر واتساب
+</button>
+
+</div>
+`;
+
+grid.appendChild(card);
+
+});
+
+
+function changeImage(btn,image){
+
+const card=btn.closest(".card");
+
+card.querySelector(".main").src=image;
+
+card.querySelectorAll(".gallery img").forEach(img=>{
+img.classList.remove("active");
+});
+
+btn.classList.add("active");
+
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background: #f8f6f1;
-  color: #171717;
+
+function selectColor(btn,color,image){
+
+const card=btn.closest(".card");
+
+card.querySelectorAll(".color").forEach(b=>{
+b.classList.remove("selected");
+});
+
+btn.classList.add("selected");
+
+card.dataset.color=color;
+
+if(image){
+card.querySelector(".main").src=image;
 }
 
-header {
-  background: #111;
-  color: white;
-  padding: 18px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
-.logo {
-  font-size: 28px;
-  font-weight: bold;
-  letter-spacing: 4px;
+
+function orderProduct(btn,id,name,price){
+
+const card=btn.closest(".card");
+
+const color=card.dataset.color||"";
+
+const message=
+`مرحباً AMO 👋
+
+أرغب بطلب:
+
+المنتج: ${name}
+رقم المنتج: #${id}
+اللون: ${color}
+السعر: ${price} دينار`;
+
+const url=
+"https://wa.me/"+whatsappNumber+
+"?text="+encodeURIComponent(message);
+
+window.location.href=url;
+
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-right: 20px;
-}
+</script>
 
-.hero {
-  padding: 70px 20px;
-  text-align: center;
-  background: #eee9df;
-}
-
-.hero h1 {
-  font-size: 42px;
-  margin-bottom: 18px;
-}
-
-.hero p {
-  font-size: 18px;
-  color: #555;
-  margin-bottom: 28px;
-}
-
-.btn {
-  display: inline-block;
-  background: #111;
-  color: white;
-  padding: 14px 28px;
-  border-radius: 30px;
-  border: 0;
-  cursor: pointer;
-  font-size: 15px;
-  text-decoration: none;
-}
-
-.products {
-  padding: 55px 5%;
-}
-
-.section-title {
-  text-align: center;
-  font-size: 30px;
-  margin-bottom: 40px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.card {
-  background: white;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 5px 25px rgba(0,0,0,.08);
-}
-
-.product-image {
-  width: 100%;
-  height: 430px;
-  background: #eee;
-  overflow: hidden;
-}
-
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.gallery {
-  display: flex;
-  gap: 8px;
-  padding: 12px 18px;
-  overflow-x: auto;
-}
-
-.gallery img {
-  width: 65px;
-  height: 65px;
-  min-width: 65px;
-  object-fit: cover;
-  border-radius: 9px;
-  cursor: pointer;
-  border: 2px solid transparent;
-}
-
-.gallery img.active {
-  border-color: #111;
-}
-
-.product-info {
-  padding: 20px;
-}
-
-.product-info h3 {
-  font-size: 24px;
-  margin-bottom: 14px;
-}
-
-.price {
-  font-size: 25px;
-  font-weight:
+</body>
+</html>
