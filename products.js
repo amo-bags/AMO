@@ -31,7 +31,7 @@ const products = [
     ],
 
     // صور الشنطة
-    gallery: [
+        gallery: [
       "images/1688_image_share_06d2714073a954bcc58e7de15d2754dc.jpg",
       "images/1688_image_share_18bdce7cfd3f8fdd826c6c9c8bb32356.jpg",
       "images/1688_image_share_270063e8306d597e0b21b566abc944c3.jpg",
@@ -41,6 +41,10 @@ const products = [
       "images/1788351382640.jpg",
       "images/1788351384778.jpg",
       "images/1788351386844.jpg"
-    ]
+    ],
+
+    size: "وسط",
+    dimensions: "31 سم عرض × 21 سم ارتفاع"
+
   }
 ];
