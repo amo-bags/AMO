@@ -26,7 +26,7 @@ const product = {
 
     {
       name: "عسلي",
-      value: "#6B3E2E",
+      value: "#B98245",
       image: "https://llvll0.github.io/AMO/products-new/10/1688_image_share_303bec7ba326dffca71c4ec70e524663.jpg"
     }
   ],
