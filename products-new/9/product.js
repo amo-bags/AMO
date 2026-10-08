@@ -17,7 +17,7 @@ const product = {
     {
       name: "أسود",
       value: "#111111",
-      image: "1787572435412.jpg"
+      image: "1787572456670.jpg"
     },
     {
       name: "أبيض",
