@@ -302,13 +302,16 @@ nav a{
   text-align:center;
 }
 
+/* DELETE */
+
 .delete{
   margin-right:auto;
   border:0;
   background:#eee;
-  padding:8px 12px;
+  padding:7px 11px;
   border-radius:20px;
   cursor:pointer;
+  font-size:13px;
 }
 
 /* CUSTOMER FORM */
@@ -730,9 +733,7 @@ footer{
 
 <script>
 
-/* =========================
-   PRODUCTS
-========================= */
+/* PRODUCTS */
 
 const grid =
   document.getElementById(
@@ -740,9 +741,7 @@ const grid =
   );
 
 
-/* =========================
-   CART
-========================= */
+/* CART */
 
 let cart =
   JSON.parse(
@@ -752,12 +751,9 @@ let cart =
   );
 
 
-/* =========================
-   DISPLAY PRODUCTS
-========================= */
+/* DISPLAY PRODUCTS */
 
 products.forEach(product => {
-
 
   let images = [
     ...(product.gallery || [])
@@ -955,9 +951,7 @@ products.forEach(product => {
 });
 
 
-/* =========================
-   CHANGE IMAGE
-========================= */
+/* CHANGE IMAGE */
 
 function changeImage(
   button,
@@ -997,9 +991,7 @@ function changeImage(
 }
 
 
-/* =========================
-   SELECT COLOR
-========================= */
+/* SELECT COLOR */
 
 function selectColor(
   button,
@@ -1052,9 +1044,7 @@ function selectColor(
 }
 
 
-/* =========================
-   ADD TO CART
-========================= */
+/* ADD TO CART */
 
 function addProductToCart(
   button,
@@ -1124,9 +1114,7 @@ function addProductToCart(
 }
 
 
-/* =========================
-   SAVE CART
-========================= */
+/* SAVE CART */
 
 function saveCart(){
 
@@ -1143,9 +1131,7 @@ function saveCart(){
 }
 
 
-/* =========================
-   CART COUNT
-========================= */
+/* CART COUNT */
 
 function updateCartCount(){
 
@@ -1166,9 +1152,7 @@ function updateCartCount(){
 }
 
 
-/* =========================
-   OPEN CART
-========================= */
+/* OPEN CART */
 
 function openCart(){
 
@@ -1189,9 +1173,7 @@ function openCart(){
 }
 
 
-/* =========================
-   CLOSE CART
-========================= */
+/* CLOSE CART */
 
 function closeCart(){
 
@@ -1209,9 +1191,7 @@ function closeCart(){
 }
 
 
-/* =========================
-   ADD MORE PRODUCTS
-========================= */
+/* ADD MORE PRODUCTS */
 
 function addMoreProducts(){
 
@@ -1230,9 +1210,7 @@ function addMoreProducts(){
 }
 
 
-/* =========================
-   RENDER CART
-========================= */
+/* RENDER CART */
 
 function renderCart(){
 
@@ -1412,9 +1390,7 @@ function renderCart(){
 }
 
 
-/* =========================
-   CHANGE QUANTITY
-========================= */
+/* CHANGE QUANTITY */
 
 function changeQuantity(
   index,
@@ -1444,9 +1420,7 @@ function changeQuantity(
 }
 
 
-/* =========================
-   REMOVE ITEM
-========================= */
+/* REMOVE ITEM */
 
 function removeFromCart(
   index
@@ -1465,9 +1439,7 @@ function removeFromCart(
 }
 
 
-/* =========================
-   WHATSAPP
-========================= */
+/* WHATSAPP */
 
 function sendCartToWhatsApp(){
 
@@ -1643,14 +1615,11 @@ ${total} دينار`;
 }
 
 
-/* =========================
-   START
-========================= */
+/* START */
 
 updateCartCount();
 
 </script>
-
 
 </body>
 </html>
