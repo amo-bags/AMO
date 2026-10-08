@@ -363,9 +363,25 @@ nav a{
   font-size:22px;
 }
 
+/* MORE PRODUCTS */
+
+.more-products-button{
+  width:100%;
+  margin-top:12px;
+  background:#eee;
+  color:#111;
+  border:0;
+  padding:14px;
+  border-radius:30px;
+  font-size:15px;
+  cursor:pointer;
+}
+
+/* WHATSAPP */
+
 .whatsapp-button{
   width:100%;
-  margin-top:18px;
+  margin-top:12px;
   background:#111;
   color:white;
   border:0;
@@ -603,53 +619,18 @@ footer{
           اختاري المحافظة
         </option>
 
-        <option>
-          عمّان
-        </option>
-
-        <option>
-          الزرقاء
-        </option>
-
-        <option>
-          إربد
-        </option>
-
-        <option>
-          البلقاء
-        </option>
-
-        <option>
-          مادبا
-        </option>
-
-        <option>
-          جرش
-        </option>
-
-        <option>
-          عجلون
-        </option>
-
-        <option>
-          المفرق
-        </option>
-
-        <option>
-          الكرك
-        </option>
-
-        <option>
-          الطفيلة
-        </option>
-
-        <option>
-          معان
-        </option>
-
-        <option>
-          العقبة
-        </option>
+        <option>عمّان</option>
+        <option>الزرقاء</option>
+        <option>إربد</option>
+        <option>البلقاء</option>
+        <option>مادبا</option>
+        <option>جرش</option>
+        <option>عجلون</option>
+        <option>المفرق</option>
+        <option>الكرك</option>
+        <option>الطفيلة</option>
+        <option>معان</option>
+        <option>العقبة</option>
 
       </select>
 
@@ -700,6 +681,19 @@ footer{
 
     </h3>
 
+
+    <!-- ADD MORE -->
+
+    <button
+      class="more-products-button"
+      onclick="addMoreProducts()">
+
+      🛍️ إضافة المزيد من المنتجات
+
+    </button>
+
+
+    <!-- WHATSAPP -->
 
     <button
       class="whatsapp-button"
@@ -765,8 +759,6 @@ let cart =
 products.forEach(product => {
 
 
-  /* صور المنتج */
-
   let images = [
     ...(product.gallery || [])
   ];
@@ -800,15 +792,11 @@ products.forEach(product => {
   ];
 
 
-  /* الصورة الرئيسية */
-
   const firstImage =
     product.colors?.[0]?.image ||
     product.image ||
     "";
 
-
-  /* إنشاء البطاقة */
 
   const card =
     document.createElement(
@@ -819,8 +807,6 @@ products.forEach(product => {
   card.className =
     "card";
 
-
-  /* صور المعرض */
 
   const galleryHTML =
     images
@@ -850,8 +836,6 @@ products.forEach(product => {
       )
       .join("");
 
-
-  /* الألوان */
 
   const colorsHTML =
     (product.colors || [])
@@ -889,14 +873,10 @@ products.forEach(product => {
       .join("");
 
 
-  /* اللون الأول */
-
   const firstColor =
     product.colors?.[0]?.name ||
     "";
 
-
-  /* HTML البطاقة */
 
   card.innerHTML = `
 
@@ -933,8 +913,7 @@ products.forEach(product => {
       </p>
 
 
-      <div
-        class="colors">
+      <div class="colors">
 
         ${colorsHTML}
 
@@ -961,19 +940,13 @@ products.forEach(product => {
   `;
 
 
-  /* اللون الافتراضي */
-
   card.dataset.color =
     firstColor;
 
 
-  /* الصورة الرئيسية */
-
   card.dataset.image =
     firstImage;
 
-
-  /* إضافة المنتج */
 
   grid.appendChild(
     card
@@ -1068,7 +1041,8 @@ function selectColor(
 
     card.querySelector(
       ".main"
-    ).src = image;
+    ).src =
+      image;
 
     card.dataset.image =
       image;
@@ -1118,6 +1092,9 @@ function addProductToCart(
   if(existing){
 
     existing.quantity += 1;
+
+    existing.image =
+      image;
 
   }else{
 
@@ -1228,6 +1205,27 @@ function closeCart(){
     "cartOverlay"
   ).style.display =
     "none";
+
+}
+
+
+/* =========================
+   ADD MORE PRODUCTS
+========================= */
+
+function addMoreProducts(){
+
+  closeCart();
+
+  setTimeout(() => {
+
+    document
+      .getElementById("products")
+      .scrollIntoView({
+        behavior:"smooth"
+      });
+
+  },100);
 
 }
 
@@ -1468,7 +1466,7 @@ function removeFromCart(
 
 
 /* =========================
-   WHATSAPP ORDER
+   WHATSAPP
 ========================= */
 
 function sendCartToWhatsApp(){
@@ -1483,8 +1481,6 @@ function sendCartToWhatsApp(){
 
   }
 
-
-  /* بيانات العميل */
 
   const name =
     document.getElementById(
@@ -1515,8 +1511,6 @@ function sendCartToWhatsApp(){
       "customerNotes"
     ).value.trim();
 
-
-  /* التحقق */
 
   if(!name){
 
@@ -1562,8 +1556,6 @@ function sendCartToWhatsApp(){
   }
 
 
-  /* إنشاء الرسالة */
-
   let message =
 `🛍️ طلب جديد من AMO
 
@@ -1594,7 +1586,7 @@ ${notes}`;
 
 ----------------
 
-المنتجات:
+🛍️ المنتجات:
 
 `;
 
@@ -1635,8 +1627,6 @@ ${notes}`;
 💰 المجموع الكلي:
 ${total} دينار`;
 
-
-  /* واتساب */
 
   const url =
     "https://wa.me/" +
