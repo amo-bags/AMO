@@ -1,6 +1,6 @@
 const product = {
-  id: "12",
-  name: "شنطة AMO #12",
+  id: "2",
+  name: "شنطة AMO #2",
   price: 10,
 
   image: "file_000000009a3081f4913722fbd4814540.png",
