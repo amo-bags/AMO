@@ -21,7 +21,9 @@ body{
   color:#171717;
 }
 
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header{
   background:#111;
@@ -71,7 +73,9 @@ nav a{
   font-size:12px;
 }
 
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
   text-align:center;
@@ -90,7 +94,9 @@ nav a{
   margin-bottom:25px;
 }
 
-/* BUTTON */
+/* =========================
+   BUTTON
+========================= */
 
 .btn{
   background:#111;
@@ -103,7 +109,9 @@ nav a{
   text-decoration:none;
 }
 
-/* PRODUCTS */
+/* =========================
+   PRODUCTS
+========================= */
 
 .products{
   padding:50px 5%;
@@ -194,7 +202,9 @@ nav a{
   width:100%;
 }
 
-/* OVERLAY */
+/* =========================
+   OVERLAY
+========================= */
 
 .cart-overlay{
   display:none;
@@ -204,7 +214,9 @@ nav a{
   z-index:9998;
 }
 
-/* CART */
+/* =========================
+   CART
+========================= */
 
 .cart{
   position:fixed;
@@ -243,7 +255,9 @@ nav a{
   cursor:pointer;
 }
 
-/* CART ITEM */
+/* =========================
+   CART ITEM
+========================= */
 
 .cart-item{
   border-bottom:1px solid #ddd;
@@ -278,7 +292,9 @@ nav a{
   color:#555;
 }
 
-/* QUANTITY */
+/* =========================
+   QUANTITY
+========================= */
 
 .quantity{
   display:flex;
@@ -302,7 +318,9 @@ nav a{
   text-align:center;
 }
 
-/* DELETE */
+/* =========================
+   DELETE
+========================= */
 
 .delete{
   margin-right:auto !important;
@@ -319,7 +337,9 @@ nav a{
   font-weight:normal !important;
 }
 
-/* CUSTOMER FORM */
+/* =========================
+   CUSTOMER FORM
+========================= */
 
 .customer-form{
   margin-top:25px;
@@ -359,7 +379,9 @@ nav a{
   resize:vertical;
 }
 
-/* TOTAL */
+/* =========================
+   TOTAL
+========================= */
 
 .cart-total{
   border-top:2px solid #111;
@@ -371,7 +393,23 @@ nav a{
   font-size:22px;
 }
 
-/* MORE PRODUCTS */
+/* =========================
+   DELIVERY INFO
+========================= */
+
+.delivery-info{
+  margin-top:12px;
+  padding:12px;
+  background:#f4f1ea;
+  border-radius:12px;
+  text-align:center;
+  font-size:14px;
+  color:#444;
+}
+
+/* =========================
+   MORE PRODUCTS
+========================= */
 
 .more-products-button{
   width:100%;
@@ -385,7 +423,9 @@ nav a{
   cursor:pointer;
 }
 
-/* WHATSAPP */
+/* =========================
+   WHATSAPP
+========================= */
 
 .whatsapp-button{
   width:100%;
@@ -399,7 +439,9 @@ nav a{
   cursor:pointer;
 }
 
-/* EMPTY */
+/* =========================
+   EMPTY
+========================= */
 
 .empty-cart{
   text-align:center;
@@ -408,7 +450,9 @@ nav a{
   font-size:18px;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
   background:#111;
@@ -418,7 +462,9 @@ footer{
   margin-top:40px;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
 
@@ -455,7 +501,9 @@ footer{
 <body>
 
 
-<!-- HEADER -->
+<!-- =========================
+     HEADER
+========================= -->
 
 <header>
 
@@ -496,7 +544,9 @@ footer{
 </header>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
 
 <section
   class="hero"
@@ -521,7 +571,9 @@ footer{
 </section>
 
 
-<!-- PRODUCTS -->
+<!-- =========================
+     PRODUCTS
+========================= -->
 
 <section
   class="products"
@@ -539,7 +591,9 @@ footer{
 </section>
 
 
-<!-- CART OVERLAY -->
+<!-- =========================
+     CART OVERLAY
+========================= -->
 
 <div
   id="cartOverlay"
@@ -548,7 +602,9 @@ footer{
 </div>
 
 
-<!-- CART -->
+<!-- =========================
+     CART
+========================= -->
 
 <div
   id="cartBox"
@@ -576,7 +632,9 @@ footer{
   </div>
 
 
-  <!-- CUSTOMER INFORMATION -->
+  <!-- =========================
+       CUSTOMER INFORMATION
+  ========================= -->
 
   <div
     id="customerForm"
@@ -673,7 +731,9 @@ footer{
   </div>
 
 
-  <!-- TOTAL -->
+  <!-- =========================
+       TOTAL
+  ========================= -->
 
   <div class="cart-total">
 
@@ -688,6 +748,16 @@ footer{
       دينار
 
     </h3>
+
+
+    <div
+      id="deliveryInfo"
+      class="delivery-info">
+
+      🚚 التوصيل 2 دينار
+      للطلبات الأقل من 49 دينار
+
+    </div>
 
 
     <!-- ADD MORE -->
@@ -716,7 +786,9 @@ footer{
 </div>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
 <footer id="contact">
 
@@ -731,14 +803,18 @@ footer{
 </footer>
 
 
-<!-- PRODUCTS DATA -->
+<!-- =========================
+     PRODUCTS DATA
+========================= -->
 
 <script src="products.js"></script>
 
 
 <script>
 
-/* PRODUCTS */
+/* =========================
+   PRODUCTS
+========================= */
 
 const grid =
   document.getElementById(
@@ -746,7 +822,9 @@ const grid =
   );
 
 
-/* CART */
+/* =========================
+   CART
+========================= */
 
 let cart =
   JSON.parse(
@@ -756,7 +834,9 @@ let cart =
   );
 
 
-/* DISPLAY PRODUCTS */
+/* =========================
+   DISPLAY PRODUCTS
+========================= */
 
 products.forEach(product => {
 
@@ -809,6 +889,8 @@ products.forEach(product => {
     "card";
 
 
+  /* GALLERY */
+
   const galleryHTML =
     images
       .map(
@@ -837,6 +919,8 @@ products.forEach(product => {
       )
       .join("");
 
+
+  /* COLORS */
 
   const colorsHTML =
     (product.colors || [])
@@ -878,6 +962,8 @@ products.forEach(product => {
     product.colors?.[0]?.name ||
     "";
 
+
+  /* CARD */
 
   card.innerHTML = `
 
@@ -956,7 +1042,9 @@ products.forEach(product => {
 });
 
 
-/* CHANGE IMAGE */
+/* =========================
+   CHANGE IMAGE
+========================= */
 
 function changeImage(
   button,
@@ -971,7 +1059,8 @@ function changeImage(
 
   card.querySelector(
     ".main"
-  ).src = image;
+  ).src =
+    image;
 
 
   card
@@ -996,7 +1085,9 @@ function changeImage(
 }
 
 
-/* SELECT COLOR */
+/* =========================
+   SELECT COLOR
+========================= */
 
 function selectColor(
   button,
@@ -1041,6 +1132,7 @@ function selectColor(
     ).src =
       image;
 
+
     card.dataset.image =
       image;
 
@@ -1049,7 +1141,9 @@ function selectColor(
 }
 
 
-/* ADD TO CART */
+/* =========================
+   ADD TO CART
+========================= */
 
 function addProductToCart(
   button,
@@ -1119,7 +1213,9 @@ function addProductToCart(
 }
 
 
-/* SAVE CART */
+/* =========================
+   SAVE CART
+========================= */
 
 function saveCart(){
 
@@ -1136,7 +1232,9 @@ function saveCart(){
 }
 
 
-/* CART COUNT */
+/* =========================
+   CART COUNT
+========================= */
 
 function updateCartCount(){
 
@@ -1157,7 +1255,9 @@ function updateCartCount(){
 }
 
 
-/* OPEN CART */
+/* =========================
+   OPEN CART
+========================= */
 
 function openCart(){
 
@@ -1178,7 +1278,9 @@ function openCart(){
 }
 
 
-/* CLOSE CART */
+/* =========================
+   CLOSE CART
+========================= */
 
 function closeCart(){
 
@@ -1196,11 +1298,14 @@ function closeCart(){
 }
 
 
-/* ADD MORE PRODUCTS */
+/* =========================
+   ADD MORE PRODUCTS
+========================= */
 
 function addMoreProducts(){
 
   closeCart();
+
 
   setTimeout(() => {
 
@@ -1215,7 +1320,50 @@ function addMoreProducts(){
 }
 
 
-/* RENDER CART */
+/* =========================
+   GET PRODUCTS TOTAL
+========================= */
+
+function getProductsTotal(){
+
+  return cart.reduce(
+    (total,item) => {
+
+      return total +
+        (item.price * item.quantity);
+
+    },
+    0
+  );
+
+}
+
+
+/* =========================
+   DELIVERY
+========================= */
+
+function getDeliveryFee(){
+
+  const productsTotal =
+    getProductsTotal();
+
+
+  if(productsTotal >= 49){
+
+    return 0;
+
+  }
+
+
+  return 2;
+
+}
+
+
+/* =========================
+   RENDER CART
+========================= */
 
 function renderCart(){
 
@@ -1228,6 +1376,12 @@ function renderCart(){
   const totalElement =
     document.getElementById(
       "cartTotal"
+    );
+
+
+  const deliveryInfo =
+    document.getElementById(
+      "deliveryInfo"
     );
 
 
@@ -1246,6 +1400,10 @@ function renderCart(){
 
     totalElement.textContent =
       "0";
+
+
+    deliveryInfo.innerHTML =
+      "🚚 التوصيل 2 دينار للطلبات الأقل من 49 دينار";
 
 
     updateCartCount();
@@ -1280,7 +1438,6 @@ function renderCart(){
         <div class="cart-item">
 
           <div class="cart-product">
-
 
             <img
               class="cart-product-image"
@@ -1386,8 +1543,33 @@ function renderCart(){
   );
 
 
+  const deliveryFee =
+    getDeliveryFee();
+
+
+  const finalTotal =
+    total + deliveryFee;
+
+
+  /* المجموع المعروض */
+
   totalElement.textContent =
-    total;
+    finalTotal;
+
+
+  /* معلومات التوصيل */
+
+  if(total >= 49){
+
+    deliveryInfo.innerHTML =
+      "🎉 مبروك! التوصيل مجاني لطلبك";
+
+  }else{
+
+    deliveryInfo.innerHTML =
+      "🚚 التوصيل 2 دينار — يصبح مجانيًا عند 49 دينار فأكثر";
+
+  }
 
 
   updateCartCount();
@@ -1395,7 +1577,9 @@ function renderCart(){
 }
 
 
-/* CHANGE QUANTITY */
+/* =========================
+   CHANGE QUANTITY
+========================= */
 
 function changeQuantity(
   index,
@@ -1425,7 +1609,9 @@ function changeQuantity(
 }
 
 
-/* REMOVE ITEM */
+/* =========================
+   REMOVE ITEM
+========================= */
 
 function removeFromCart(
   index
@@ -1444,7 +1630,9 @@ function removeFromCart(
 }
 
 
-/* WHATSAPP */
+/* =========================
+   WHATSAPP ORDER
+========================= */
 
 function sendCartToWhatsApp(){
 
@@ -1458,6 +1646,8 @@ function sendCartToWhatsApp(){
 
   }
 
+
+  /* CUSTOMER DATA */
 
   const name =
     document.getElementById(
@@ -1488,6 +1678,8 @@ function sendCartToWhatsApp(){
       "customerNotes"
     ).value.trim();
 
+
+  /* VALIDATION */
 
   if(!name){
 
@@ -1533,46 +1725,77 @@ function sendCartToWhatsApp(){
   }
 
 
-  let message =
-`🛍️ طلب جديد من AMO
+  /* PRODUCTS TOTAL */
 
-👤 اسم العميل:
-${name}
+  let productsTotal = 0;
 
-📞 رقم الهاتف:
-${phone}
-
-📍 المحافظة:
-${city}
-
-🏠 العنوان:
-${address}`;
-
-
-  if(notes){
-
-    message += `
-
-📝 ملاحظات:
-${notes}`;
-
-  }
-
-
-  message += `
-
-----------------
-
-🛍️ المنتجات:
-
-`;
-
-
-  let total = 0;
+  let totalQuantity = 0;
 
 
   cart.forEach(
     item => {
+
+      productsTotal +=
+        item.price *
+        item.quantity;
+
+
+      totalQuantity +=
+        item.quantity;
+
+    }
+  );
+
+
+  /* DELIVERY */
+
+  let deliveryFee = 2;
+
+  let deliveryText =
+    "2 د.أ";
+
+
+  if(productsTotal >= 49){
+
+    deliveryFee = 0;
+
+    deliveryText =
+      "مجاني 🎉";
+
+  }
+
+
+  /* FINAL TOTAL */
+
+  const finalTotal =
+    productsTotal +
+    deliveryFee;
+
+
+  /* MESSAGE */
+
+  let message =
+`🛍️ *طلب جديد من AMO*
+━━━━━━━━━━━━━━━━
+
+👤 *بيانات العميل*
+
+الاسم: ${name}
+📞 الهاتف: ${phone}
+📍 المحافظة: ${city}
+🏠 العنوان: ${address}
+
+━━━━━━━━━━━━━━━━
+
+🛒 *تفاصيل الطلب*
+
+`;
+
+
+  /* PRODUCTS */
+
+  cart.forEach(
+    (item,index) => {
 
 
       const itemTotal =
@@ -1580,17 +1803,13 @@ ${notes}`;
         item.quantity;
 
 
-      total +=
-        itemTotal;
-
-
       message +=
-`👜 ${item.name}
-رقم المنتج: #${item.id}
-اللون: ${item.color}
-الكمية: ${item.quantity}
-السعر: ${item.price} دينار
-المجموع: ${itemTotal} دينار
+`${index + 1}️⃣ 👜 *${item.name}*
+
+🎨 اللون: ${item.color}
+🔢 الكمية: ${item.quantity}
+💵 سعر القطعة: ${item.price} د.أ
+💰 الإجمالي: ${itemTotal} د.أ
 
 `;
 
@@ -1598,12 +1817,54 @@ ${notes}`;
   );
 
 
+  /* TOTALS */
+
   message +=
-`----------------
+`━━━━━━━━━━━━━━━━
 
-💰 المجموع الكلي:
-${total} دينار`;
+📦 عدد القطع:
+${totalQuantity}
 
+🛍️ مجموع المنتجات:
+${productsTotal} د.أ
+
+🚚 التوصيل:
+${deliveryText}
+
+💰 *الإجمالي النهائي:
+${finalTotal} د.أ*
+
+`;
+
+
+  /* NOTES */
+
+  if(notes){
+
+    message +=
+`📝 *ملاحظات:*
+${notes}
+
+`;
+
+  }else{
+
+    message +=
+`📝 *ملاحظات:*
+لا يوجد
+
+`;
+
+  }
+
+
+  message +=
+`━━━━━━━━━━━━━━━━
+
+🎉 شكراً لاختياركم AMO ❤️`;
+
+
+  /* WHATSAPP */
 
   const url =
     "https://wa.me/" +
@@ -1620,7 +1881,9 @@ ${total} دينار`;
 }
 
 
-/* START */
+/* =========================
+   START
+========================= */
 
 updateCartCount();
 
