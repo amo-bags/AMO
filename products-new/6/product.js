@@ -9,30 +9,29 @@ const product = {
 
   dimensions: "28 سم عرض × 21 سم ارتفاع",
 
-  image: "products-new/6/1000151165.jpg",
+  image: "products-new/6/1688_image_share_351e8c6dc97f518eb11ac59e16735a5f.jpg",
 
   colors: [
     {
       name: "بني",
       value: "#6B3E2E",
-      image: "products-new/6/1000151165.jpg"
+      image: "products-new/6/1688_image_share_351e8c6dc97f518eb11ac59e16735a5f.jpg"
     },
-
     {
       name: "أوفوايت مع أزرق",
-      value: "#1E3A5F",
-      image: "products-new/6/1000151164.jpg"
+      value: "#243A63",
+      image: "products-new/6/1688_image_share_bc7ab2942c614cc4cfbf0d851ba1bb42.jpg"
     }
   ],
 
   gallery: [
-    "products-new/6/1000151165.jpg",
-    "products-new/6/1000151164.jpg",
-    "products-new/6/1000151168.jpg",
-    "products-new/6/1000151169.jpg",
-    "products-new/6/1000151172.jpg",
-    "products-new/6/1000151173.jpg",
-    "products-new/6/1000151166.jpg",
-    "products-new/6/1000151171.jpg"
+    "products-new/6/1688_image_share_351e8c6dc97f518eb11ac59e16735a5f.jpg",
+    "products-new/6/1688_image_share_a8b9461876322b8b4b1c169459e54da2.jpg",
+    "products-new/6/1688_image_share_bc7ab2942c614cc4cfbf0d851ba1bb42.jpg",
+    "products-new/6/1788350215039.jpg",
+    "products-new/6/1788350216948.jpg",
+    "products-new/6/1788350221759.jpg",
+    "products-new/6/1788350228634.jpg",
+    "products-new/6/1788350230678.jpg"
   ]
 };
