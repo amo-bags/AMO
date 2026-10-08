@@ -21,7 +21,7 @@ const product = {
     {
       name: "بيج",
       value: "#d8cfc1",
-      image: "file_000000000a09c820a8a62628710fcd48a.png"
+      image: "file_00000000a09c820a8a62628710fcd48a.png"
     },
     {
       name: "أبيض",
