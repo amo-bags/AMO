@@ -14,7 +14,7 @@ const product = {
   colors: [
     {
       name: "بني",
-      value: "#9A5A2A",
+      value: "#B98245",
       image: "https://llvll0.github.io/AMO/products-new/10/1688_image_share_79b13c01df27d6a1d57898b666d4201f.jpg"
     },
 
@@ -26,7 +26,7 @@ const product = {
 
     {
       name: "عسلي",
-      value: "#B98245",
+      value: "#9A5A2A",
       image: "https://llvll0.github.io/AMO/products-new/10/1688_image_share_303bec7ba326dffca71c4ec70e524663.jpg"
     }
   ],
