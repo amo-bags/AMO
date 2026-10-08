@@ -45,17 +45,13 @@
     }
 
     .hero {
-      min-height: 430px;
-      padding: 80px 8%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 85px 20px;
       text-align: center;
       background: #eee9df;
     }
 
     .hero h1 {
-      font-size: 45px;
+      font-size: 44px;
       margin-bottom: 18px;
     }
 
@@ -69,10 +65,10 @@
       display: inline-block;
       background: #111;
       color: white;
-      padding: 14px 30px;
+      padding: 14px 28px;
       border-radius: 30px;
       text-decoration: none;
-      border: none;
+      border: 0;
       cursor: pointer;
       font-size: 15px;
     }
@@ -103,13 +99,20 @@
     }
 
     .product-image {
-      height: 300px;
+      width: 100%;
+      height: 320px;
       background: #e9e6df;
       display: flex;
       align-items: center;
       justify-content: center;
       color: #888;
-      font-size: 15px;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .product-info {
@@ -121,35 +124,36 @@
     }
 
     .price {
-      font-size: 20px;
+      font-size: 21px;
       font-weight: bold;
       margin-bottom: 15px;
     }
 
     .colors {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       margin-bottom: 18px;
+      flex-wrap: wrap;
     }
 
     .color {
-      width: 24px;
-      height: 24px;
+      width: 30px;
+      height: 30px;
       border-radius: 50%;
       border: 2px solid white;
-      box-shadow: 0 0 0 1px #bbb;
+      box-shadow: 0 0 0 1px #aaa;
       cursor: pointer;
     }
 
-    .black { background: #111; }
-    .beige { background: #d8c7a7; }
-    .brown { background: #795548; }
+    .selected {
+      box-shadow: 0 0 0 2px #111;
+    }
 
     footer {
       background: #111;
       color: white;
       text-align: center;
-      padding: 30px;
+      padding: 35px;
       margin-top: 30px;
     }
 
@@ -163,7 +167,11 @@
       }
 
       .products {
-        padding: 40px 5%;
+        padding: 45px 5%;
+      }
+
+      .product-image {
+        height: 330px;
       }
     }
   </style>
@@ -182,95 +190,148 @@
 </header>
 
 <section class="hero" id="home">
-  <div>
-    <h1>اختاري شنطتك بستايلك الخاص</h1>
+  <h1>اختاري شنطتك بستايلك الخاص</h1>
 
-    <p>
-      حقائب أنيقة تناسب كل إطلالة ✨
-    </p>
+  <p>
+    حقائب أنيقة تناسب كل إطلالة ✨
+  </p>
 
-    <a href="#products" class="btn">
-      اكتشفي الحقائب
-    </a>
-  </div>
+  <a href="#products" class="btn">
+    اكتشفي الحقائب
+  </a>
 </section>
 
 <section class="products" id="products">
 
-  <h2 class="section-title">أحدث الحقائب</h2>
+  <h2 class="section-title">
+    أحدث الحقائب
+  </h2>
 
-  <div class="grid">
-
-    <div class="card">
-
-      <div class="product-image">
-        صورة الشنطة #664
-      </div>
-
-      <div class="product-info">
-
-        <h3>شنطة AMO #664</h3>
-
-        <div class="price">
-          15 دينار
-        </div>
-
-        <p style="margin-bottom:10px;">اختاري اللون:</p>
-
-        <div class="colors">
-          <button class="color black"
-            onclick="orderWhatsApp('أسود')"></button>
-
-          <button class="color beige"
-            onclick="orderWhatsApp('بيج')"></button>
-
-          <button class="color brown"
-            onclick="orderWhatsApp('بني')"></button>
-        </div>
-
-        <button class="btn"
-          onclick="orderWhatsApp('أسود')">
-          اطلب عبر واتساب
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
+  <div class="grid" id="productsGrid"></div>
 
 </section>
 
 <footer id="contact">
+
   <div class="logo">AMO</div>
+
   <p style="margin-top:10px;">
     متجر الحقائب
   </p>
+
 </footer>
+
+<script src="products.js"></script>
 
 <script>
 
-  /*
-    ضعي رقم واتساب المتجر هنا لاحقًا
-    مثال:
-    9627XXXXXXXX
-  */
+  const grid = document.getElementById("productsGrid");
 
-  const whatsappNumber = "9627XXXXXXXX";
+  products.forEach(product => {
 
-  function orderWhatsApp(color) {
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+    let imageHTML = "";
+
+    if (product.image) {
+      imageHTML =
+        `<img src="${product.image}" alt="${product.name}">`;
+    } else {
+      imageHTML =
+        `<span>صورة الشنطة #${product.id}</span>`;
+    }
+
+    const colorsHTML = product.colors.map((color, index) => {
+
+      return `
+        <button
+          class="color ${index === 0 ? "selected" : ""}"
+          style="background:${color.value}"
+          title="${color.name}"
+          onclick="selectColor(this, '${color.name}')">
+        </button>
+      `;
+
+    }).join("");
+
+    const firstColor = product.colors[0]?.name || "";
+
+    card.innerHTML = `
+
+      <div class="product-image">
+        ${imageHTML}
+      </div>
+
+      <div class="product-info">
+
+        <h3>${product.name}</h3>
+
+        <div class="price">
+          ${product.price} دينار
+        </div>
+
+        <p style="margin-bottom:10px;">
+          اختاري اللون:
+        </p>
+
+        <div class="colors">
+          ${colorsHTML}
+        </div>
+
+        <button
+          class="btn"
+          onclick="orderProduct('${product.id}', '${product.name}', ${product.price}, '${firstColor}')">
+
+          اطلب عبر واتساب
+
+        </button>
+
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+
+
+  function selectColor(button, color) {
+
+    const parent = button.parentElement;
+
+    parent.querySelectorAll(".color")
+      .forEach(item => item.classList.remove("selected"));
+
+    button.classList.add("selected");
+
+    parent.dataset.selectedColor = color;
+  }
+
+
+  function orderProduct(id, name, price, defaultColor) {
+
+    const card = event.target.closest(".card");
+
+    const colorsBox = card.querySelector(".colors");
+
+    const selectedColor =
+      colorsBox.dataset.selectedColor || defaultColor;
 
     const message =
-      "مرحباً AMO 👋%0A%0A" +
-      "أرغب بطلب:%0A" +
-      "المنتج: شنطة AMO #664%0A" +
-      "اللون: " + color + "%0A" +
-      "السعر: 15 دينار";
+      "مرحباً AMO 👋\n\n" +
+      "أرغب بطلب:\n" +
+      "المنتج: " + name + "\n" +
+      "رقم المنتج: #" + id + "\n" +
+      "اللون: " + selectedColor + "\n" +
+      "السعر: " + price + " دينار";
 
-    window.open(
-      "https://wa.me/" + whatsappNumber + "?text=" + message,
-      "_blank"
-    );
+    const url =
+      "https://wa.me/" +
+      whatsappNumber +
+      "?text=" +
+      encodeURIComponent(message);
+
+    window.open(url, "_blank");
   }
 
 </script>
