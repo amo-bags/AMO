@@ -1,537 +1,143 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>AMO | متجر الحقائب</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f6f1;
-      color: #171717;
-    }
-
-    header {
-      background: #111;
-      color: white;
-      padding: 18px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-      letter-spacing: 4px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-right: 20px;
-      font-size: 14px;
-    }
-
-    .hero {
-      padding: 70px 20px;
-      text-align: center;
-      background: #eee9df;
-    }
-
-    .hero h1 {
-      font-size: 42px;
-      margin-bottom: 18px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      color: #555;
-      margin-bottom: 28px;
-    }
-
-    .btn {
-      display: inline-block;
-      background: #111;
-      color: white;
-      padding: 14px 28px;
-      border-radius: 30px;
-      text-decoration: none;
-      border: 0;
-      cursor: pointer;
-      font-size: 15px;
-    }
-
-    .products {
-      padding: 55px 5%;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 30px;
-      margin-bottom: 40px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .card {
-      background: white;
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-    }
-
-    .product-image {
-      width: 100%;
-      height: 430px;
-      background: #eee;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      cursor: pointer;
-    }
-
-    .gallery {
-      display: flex;
-      gap: 8px;
-      padding: 12px 18px 4px;
-      overflow-x: auto;
-      scrollbar-width: thin;
-    }
-
-    .gallery img {
-      width: 62px;
-      height: 62px;
-      min-width: 62px;
-      object-fit: cover;
-      border-radius: 9px;
-      cursor: pointer;
-      border: 2px solid transparent;
-    }
-
-    .gallery img.active {
-      border-color: #111;
-    }
-
-    .product-info {
-      padding: 20px;
-    }
-
-    .product-info h3 {
-      font-size: 24px;
-      margin-bottom: 14px;
-    }
-
-    .price {
-      font-size: 25px;
-      font-weight: bold;
-      margin-bottom: 22px;
-    }
-
-    .colors-title {
-      margin-bottom: 10px;
-    }
-
-    .colors {
-      display: flex;
-      gap: 12px;
-      margin: 12px 0 22px;
-    }
-
-    .color {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      border: 3px solid white;
-      box-shadow: 0 0 0 1px #aaa;
-      cursor: pointer;
-    }
-
-    .color.selected {
-      box-shadow: 0 0 0 2px #111;
-    }
-
-    .order-btn {
-      width: 100%;
-    }
-
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 40px;
-      margin-top: 30px;
-    }
-
-    @media (max-width: 600px) {
-
-      nav a {
-        display: none;
-      }
-
-      .hero {
-        padding: 55px 18px;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-
-      .products {
-        padding: 45px 5%;
-      }
-
-      .product-image {
-        height: 420px;
-      }
-
-      .product-info h3 {
-        font-size: 22px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <!-- Header -->
-  <header>
-    <div class="logo">AMO</div>
-
-    <nav>
-      <a href="#home">الرئيسية</a>
-      <a href="#products">الحقائب</a>
-      <a href="#contact">تواصل معنا</a>
-    </nav>
-  </header>
-
-
-  <!-- Hero -->
-  <section class="hero" id="home">
-
-    <h1>اختاري شنطتك بستايلك الخاص</h1>
-
-    <p>
-      حقائب أنيقة تناسب كل إطلالة ✨
-    </p>
-
-    <a href="#products" class="btn">
-      اكتشفي الحقائب
-    </a>
-
-  </section>
-
-
-  <!-- Products -->
-  <section class="products" id="products">
-
-    <h2 class="section-title">
-      أحدث الحقائب
-    </h2>
-
-    <div class="grid" id="productsGrid"></div>
-
-  </section>
-
-
-  <!-- Footer -->
-  <footer id="contact">
-
-    <div class="logo">
-      AMO
-    </div>
-
-    <p style="margin-top:10px;">
-      متجر الحقائب
-    </p>
-
-  </footer>
-
-
-  <!-- Products Data -->
-  <script src="products.js"></script>
-
-
-  <!-- Website JavaScript -->
-  <script>
-
-    const grid = document.getElementById("productsGrid");
-
-
-    /*
-      إنشاء المنتجات
-    */
-    products.forEach(product => {
-
-      const card = document.createElement("div");
-
-      card.className = "card";
-
-
-      /*
-        الصورة الرئيسية
-      */
-      const firstImage =
-        product.colors?.[0]?.image ||
-        product.image ||
-        "";
-
-
-      /*
-        جمع صور المعرض
-
-        1. صور gallery
-        2. صور الألوان
-      */
-      const galleryImages = [
-
-        ...(product.gallery || []),
-
-        ...(product.colors || [])
-          .map(color => color.image)
-          .filter(Boolean)
-
-      ];
-
-
-      /*
-        إزالة الصور المكررة
-      */
-      const uniqueImages = [
-        ...new Set(
-          galleryImages.length
-            ? galleryImages
-            : [product.image]
-        )
-      ].filter(Boolean);
-
-
-      /*
-        إنشاء صور المعرض
-      */
-      const galleryHTML = uniqueImages
-        .map((image, index) => {
-
-          return `
-            <img
-              src="${image}"
-              class="${index === 0 ? "active" : ""}"
-              alt="${product.name}"
-              onclick="changeImage(this, '${image}')"
-            >
-          `;
-
-        })
-        .join("");
-
-
-      /*
-        إنشاء ألوان المنتج
-      */
-      const colorsHTML =
-        (product.colors || [])
-          .map((color, index) => {
-
-            return `
-              <button
-                class="color ${index === 0 ? "selected" : ""}"
-                style="background:${color.value}"
-                title="${color.name}"
-                onclick="selectColor(
-                  this,
-                  '${color.name}',
-                  '${color.image || ""}'
-                )">
-              </button>
-            `;
-
-          })
-          .join("");
-
-
-      /*
-        اللون الأول بشكل افتراضي
-      */
-      const firstColor =
-        product.colors?.[0]?.name || "";
-
-
-      /*
-        محتوى بطاقة المنتج
-      */
-      card.innerHTML = `
-
-        <div class="product-image">
-
-          <img
-            class="main-image"
-            src="${firstImage}"
-            alt="${product.name}"
-          >
-
-        </div>
-
-
-        <div class="gallery">
-
-          ${galleryHTML}
-
-        </div>
-
-
-        <div class="product-info">
-
-          <h3>
-            ${product.name}
-          </h3>
-
-
-          <div class="price">
-            ${product.price} دينار
-          </div>
-
-
-          <p class="colors-title">
-            اختاري اللون:
-          </p>
-
-
-          <div
-            class="colors"
-            data-selected-color="${firstColor}"
-          >
-
-            ${colorsHTML}
-
-          </div>
-
-
-          <button
-            class="btn order-btn"
-            onclick="
-              orderProduct(
-                this,
-                '${product.id}',
-                '${product.name}',
-                ${product.price}
-              )
-            "
-          >
-            اطلب عبر واتساب
-          </button>
-
-        </div>
-
-      `;
-
-
-      /*
-        إضافة البطاقة للموقع
-      */
-      grid.appendChild(card);
-
-    });
-
-
-    /*
-      تغيير الصورة الرئيسية
-      عند الضغط على صورة من المعرض
-    */
-    function changeImage(thumbnail, image) {
-
-      const card =
-        thumbnail.closest(".card");
-
-
-      const mainImage =
-        card.querySelector(".main-image");
-
-
-      mainImage.src = image;
-
-
-      /*
-        إزالة التحديد من جميع الصور
-      */
-      card
-        .querySelectorAll(".gallery img")
-        .forEach(img => {
-
-          img.classList.remove("active");
-
-        });
-
-
-      /*
-        تحديد الصورة الحالية
-      */
-      thumbnail.classList.add("active");
-
-    }
-
-
-    /*
-      تغيير لون المنتج
-    */
-    function selectColor(button, color, image) {
-
-      const card =
-        button.closest(".card");
-
-
-      /*
-        إزالة التحديد من الألوان
-      */
-      card
-        .querySelectorAll(".color")
-        .forEach(item => {
-
-          item.classList.remove("selected");
-
-        });
-
-
-      /*
-        تحديد اللون المختار
-      */
-      button.classList.add("selected");
-
-
-      /*
-        حفظ اللون المختار
-      */
-      const colorsBox =
-        button.parentElement;
-
-
-      colorsBox.dataset.selectedColor =
-        color;
-
-
-      /*
-        إذا كان للون صورة
-        ن
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AMO | متجر الحقائب</title>
+
+<style>
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f8f6f1;
+  color: #171717;
+}
+
+header {
+  background: #111;
+  color: white;
+  padding: 18px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  letter-spacing: 4px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 20px;
+}
+
+.hero {
+  padding: 70px 20px;
+  text-align: center;
+  background: #eee9df;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 18px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 28px;
+}
+
+.btn {
+  display: inline-block;
+  background: #111;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 30px;
+  border: 0;
+  cursor: pointer;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.products {
+  padding: 55px 5%;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 5px 25px rgba(0,0,0,.08);
+}
+
+.product-image {
+  width: 100%;
+  height: 430px;
+  background: #eee;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery {
+  display: flex;
+  gap: 8px;
+  padding: 12px 18px;
+  overflow-x: auto;
+}
+
+.gallery img {
+  width: 65px;
+  height: 65px;
+  min-width: 65px;
+  object-fit: cover;
+  border-radius: 9px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.gallery img.active {
+  border-color: #111;
+}
+
+.product-info {
+  padding: 20px;
+}
+
+.product-info h3 {
+  font-size: 24px;
+  margin-bottom: 14px;
+}
+
+.price {
+  font-size: 25px;
+  font-weight:
