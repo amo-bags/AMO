@@ -6,27 +6,27 @@ const product = {
   size: "وسط",
   dimensions: "28 سم عرض × 20 سم ارتفاع",
 
-  image: "1000133605.jpg",
+  image: "1688_image_share_2853785c15a208f0f60af06cb17988de.jpg",
 
   colors: [
     {
-      name: "أوفوايت مع كاكي",
-      value: "#8B8068",
-      image: "1000133613.jpg"
+      name: "أوفوايت مع عسلي",
+      value: "#A66A3F",
+      image: "1688_image_share_2853785c15a208f0f60af06cb17988de.jpg"
     },
     {
-      name: "أوفوايت مع عسلي",
-      value: "#B98252",
-      image: "1000133605.jpg"
+      name: "أوفوايت مع كاكي",
+      value: "#8B8068",
+      image: "1688_image_share_502a275829839416f8d2434dd4bac4de.jpg"
     }
   ],
 
   gallery: [
-    "1000133605.jpg",
-    "1000133606.jpg",
-    "1000133613.jpg",
-    "1000133614.jpg",
-    "1000133608.jpg",
-    "1000133616.jpg"
+    "1688_image_share_2853785c15a208f0f60af06cb17988de.jpg",
+    "1688_image_share_502a275829839416f8d2434dd4bac4de.jpg",
+    "1781456807425.jpg",
+    "1781456832203.jpg",
+    "178145684195.jpg",
+    "1781456841503.jpg"
   ]
 };
