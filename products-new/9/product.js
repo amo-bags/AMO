@@ -24,6 +24,16 @@ const product = {
       name: "أبيض",
       value: "#f3f1eb",
       image: "1000133620.jpg"
+    },
+    {
+      name: "عسلي",
+      value: "#b87545",
+      image: "1000133621.jpg"
+    },
+    {
+      name: "بني",
+      value: "#795548",
+      image: "1000133622.jpg"
     }
   ],
 
