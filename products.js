@@ -34,3 +34,5 @@ const products = [
     ]
   }
 ];
+size: "وسط",
+dimensions: "31 سم عرض × 21 سم ارتفاع",
