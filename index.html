@@ -402,8 +402,11 @@ const PRODUCT_FILES = [
   "products-new/12/product.js",
   "products-new/7/product.js",
   "products-new/8/product.js",
-  "products-new/9/product.js"
+  "products-new/9/product.js",
+  "products-new/3/product.js"
 ];
+
+window.AMO_PRODUCTS = window.AMO_PRODUCTS || [];
 
 const WHATSAPP = "962790780914";
 const CART_KEY = "amo_cart_v4";
@@ -474,11 +477,39 @@ async function loadProducts(){
 
         const source = await response.text();
 
-        // Each product.js is executed in its own Function scope,
-        // so its "const product" cannot conflict with another product.
-        const product = new Function(source + "\nreturn product;")();
+        // Supports both product formats:
+        // 1) const product = {...}
+        // 2) window.AMO_PRODUCTS.push({...})
+        const before = Array.isArray(window.AMO_PRODUCTS)
+          ? window.AMO_PRODUCTS.length
+          : 0;
 
-        return product && product.id ? normalizeProduct(product,file) : null;
+        let product = null;
+
+        try{
+          product = new Function(
+            source + "\nreturn (typeof product !== 'undefined' ? product : null);"
+          )();
+        }catch(e){
+          console.error("Product module error:", file, e);
+        }
+
+        if(product && product.id){
+          return normalizeProduct(product,file);
+        }
+
+        const list = Array.isArray(window.AMO_PRODUCTS)
+          ? window.AMO_PRODUCTS
+          : [];
+
+        if(list.length > before){
+          const added = list[list.length - 1];
+          return added && added.id
+            ? normalizeProduct(added,file)
+            : null;
+        }
+
+        return null;
       }catch(error){
         console.error("Product load error:", file, error);
         return null;
