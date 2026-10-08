@@ -279,14 +279,22 @@ products.forEach(product => {
 
 
   const galleryImages = [
+  ...(product.gallery || []),
+  ...(product.colors || [])
+    .map(color => color.image)
+    .filter(Boolean)
+];
 
-    ...(product.gallery || []),
+const uniqueImages = [...new Set(galleryImages)];
 
-    ...((product.colors || [])
-      .map(color => color.image)
-      .filter(Boolean))
-
-  ];
+const galleryHTML = uniqueImages.map((image, index) => `
+  <img
+    src="${image}"
+    class="${index === 0 ? "active" : ""}"
+    alt="${product.name}"
+    onclick="changeImage(this, '${image}')"
+  >
+`).join("");
 
 
   const uniqueImages =
