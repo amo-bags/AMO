@@ -28,7 +28,7 @@
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
     }
 
     .logo {
@@ -95,7 +95,7 @@
       background: white;
       border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 5px 25px rgba(0,0,0,.08);
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
     }
 
     .product-image {
@@ -120,6 +120,7 @@
       gap: 8px;
       padding: 12px 18px 4px;
       overflow-x: auto;
+      scrollbar-width: thin;
     }
 
     .gallery img {
@@ -149,6 +150,10 @@
       font-size: 25px;
       font-weight: bold;
       margin-bottom: 22px;
+    }
+
+    .colors-title {
+      margin-bottom: 10px;
     }
 
     .colors {
@@ -213,297 +218,320 @@
 
 <body>
 
-<header>
-  <div class="logo">AMO</div>
+  <!-- Header -->
+  <header>
+    <div class="logo">AMO</div>
 
-  <nav>
-    <a href="#home">الرئيسية</a>
-    <a href="#products">الحقائب</a>
-    <a href="#contact">تواصل معنا</a>
-  </nav>
-</header>
-
-
-<section class="hero" id="home">
-
-  <h1>اختاري شنطتك بستايلك الخاص</h1>
-
-  <p>حقائب أنيقة تناسب كل إطلالة ✨</p>
-
-  <a href="#products" class="btn">
-    اكتشفي الحقائب
-  </a>
-
-</section>
+    <nav>
+      <a href="#home">الرئيسية</a>
+      <a href="#products">الحقائب</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </header>
 
 
-<section class="products" id="products">
+  <!-- Hero -->
+  <section class="hero" id="home">
 
-  <h2 class="section-title">
-    أحدث الحقائب
-  </h2>
+    <h1>اختاري شنطتك بستايلك الخاص</h1>
 
-  <div class="grid" id="productsGrid"></div>
+    <p>
+      حقائب أنيقة تناسب كل إطلالة ✨
+    </p>
 
-</section>
+    <a href="#products" class="btn">
+      اكتشفي الحقائب
+    </a>
 
-
-<footer id="contact">
-
-  <div class="logo">AMO</div>
-
-  <p style="margin-top:10px;">
-    متجر الحقائب
-  </p>
-
-</footer>
+  </section>
 
 
-<script src="products.js"></script>
+  <!-- Products -->
+  <section class="products" id="products">
 
-<script>
+    <h2 class="section-title">
+      أحدث الحقائب
+    </h2>
 
-const grid = document.getElementById("productsGrid");
+    <div class="grid" id="productsGrid"></div>
 
-
-products.forEach(product => {
-
-  const card = document.createElement("div");
-
-  card.className = "card";
+  </section>
 
 
-  const firstImage =
-    product.colors?.[0]?.image ||
-    product.image;
+  <!-- Footer -->
+  <footer id="contact">
+
+    <div class="logo">
+      AMO
+    </div>
+
+    <p style="margin-top:10px;">
+      متجر الحقائب
+    </p>
+
+  </footer>
 
 
-  const galleryImages = [
-  ...(product.gallery || []),
-  ...(product.colors || [])
-    .map(color => color.image)
-    .filter(Boolean)
-];
-
-const uniqueImages = [...new Set(galleryImages)];
-
-const galleryHTML = uniqueImages.map((image, index) => `
-  <img
-    src="${image}"
-    class="${index === 0 ? "active" : ""}"
-    alt="${product.name}"
-    onclick="changeImage(this, '${image}')"
-  >
-`).join("");
+  <!-- Products Data -->
+  <script src="products.js"></script>
 
 
-  const uniqueImages =
-    [...new Set(
-      galleryImages.length
-        ? galleryImages
-        : [product.image]
-    )];
+  <!-- Website JavaScript -->
+  <script>
+
+    const grid = document.getElementById("productsGrid");
 
 
-  const galleryHTML =
-    uniqueImages.map((image, index) => {
+    /*
+      إنشاء المنتجات
+    */
+    products.forEach(product => {
 
-      return `
-        <img
-          src="${image}"
-          class="${index === 0 ? "active" : ""}"
-          onclick="changeImage(this, '${image}')"
-        >
+      const card = document.createElement("div");
+
+      card.className = "card";
+
+
+      /*
+        الصورة الرئيسية
+      */
+      const firstImage =
+        product.colors?.[0]?.image ||
+        product.image ||
+        "";
+
+
+      /*
+        جمع صور المعرض
+
+        1. صور gallery
+        2. صور الألوان
+      */
+      const galleryImages = [
+
+        ...(product.gallery || []),
+
+        ...(product.colors || [])
+          .map(color => color.image)
+          .filter(Boolean)
+
+      ];
+
+
+      /*
+        إزالة الصور المكررة
+      */
+      const uniqueImages = [
+        ...new Set(
+          galleryImages.length
+            ? galleryImages
+            : [product.image]
+        )
+      ].filter(Boolean);
+
+
+      /*
+        إنشاء صور المعرض
+      */
+      const galleryHTML = uniqueImages
+        .map((image, index) => {
+
+          return `
+            <img
+              src="${image}"
+              class="${index === 0 ? "active" : ""}"
+              alt="${product.name}"
+              onclick="changeImage(this, '${image}')"
+            >
+          `;
+
+        })
+        .join("");
+
+
+      /*
+        إنشاء ألوان المنتج
+      */
+      const colorsHTML =
+        (product.colors || [])
+          .map((color, index) => {
+
+            return `
+              <button
+                class="color ${index === 0 ? "selected" : ""}"
+                style="background:${color.value}"
+                title="${color.name}"
+                onclick="selectColor(
+                  this,
+                  '${color.name}',
+                  '${color.image || ""}'
+                )">
+              </button>
+            `;
+
+          })
+          .join("");
+
+
+      /*
+        اللون الأول بشكل افتراضي
+      */
+      const firstColor =
+        product.colors?.[0]?.name || "";
+
+
+      /*
+        محتوى بطاقة المنتج
+      */
+      card.innerHTML = `
+
+        <div class="product-image">
+
+          <img
+            class="main-image"
+            src="${firstImage}"
+            alt="${product.name}"
+          >
+
+        </div>
+
+
+        <div class="gallery">
+
+          ${galleryHTML}
+
+        </div>
+
+
+        <div class="product-info">
+
+          <h3>
+            ${product.name}
+          </h3>
+
+
+          <div class="price">
+            ${product.price} دينار
+          </div>
+
+
+          <p class="colors-title">
+            اختاري اللون:
+          </p>
+
+
+          <div
+            class="colors"
+            data-selected-color="${firstColor}"
+          >
+
+            ${colorsHTML}
+
+          </div>
+
+
+          <button
+            class="btn order-btn"
+            onclick="
+              orderProduct(
+                this,
+                '${product.id}',
+                '${product.name}',
+                ${product.price}
+              )
+            "
+          >
+            اطلب عبر واتساب
+          </button>
+
+        </div>
+
       `;
 
-    }).join("");
 
+      /*
+        إضافة البطاقة للموقع
+      */
+      grid.appendChild(card);
 
-  const colorsHTML =
-    product.colors.map((color, index) => {
+    });
 
-      return `
-        <button
-          class="color ${index === 0 ? "selected" : ""}"
-          style="background:${color.value}"
-          title="${color.name}"
-          onclick="selectColor(this, '${color.name}', '${color.image || ""}')">
-        </button>
-      `;
 
-    }).join("");
+    /*
+      تغيير الصورة الرئيسية
+      عند الضغط على صورة من المعرض
+    */
+    function changeImage(thumbnail, image) {
 
+      const card =
+        thumbnail.closest(".card");
 
-  const firstColor =
-    product.colors?.[0]?.name || "";
 
+      const mainImage =
+        card.querySelector(".main-image");
 
-  card.innerHTML = `
 
-    <div class="product-image">
+      mainImage.src = image;
 
-      <img
-        class="main-image"
-        src="${firstImage}"
-        alt="${product.name}"
-      >
 
-    </div>
+      /*
+        إزالة التحديد من جميع الصور
+      */
+      card
+        .querySelectorAll(".gallery img")
+        .forEach(img => {
 
+          img.classList.remove("active");
 
-    <div class="gallery">
+        });
 
-      ${galleryHTML}
 
-    </div>
+      /*
+        تحديد الصورة الحالية
+      */
+      thumbnail.classList.add("active");
 
+    }
 
-    <div class="product-info">
 
-      <h3>
-        ${product.name}
-      </h3>
+    /*
+      تغيير لون المنتج
+    */
+    function selectColor(button, color, image) {
 
+      const card =
+        button.closest(".card");
 
-      <div class="price">
-        ${product.price} دينار
-      </div>
 
+      /*
+        إزالة التحديد من الألوان
+      */
+      card
+        .querySelectorAll(".color")
+        .forEach(item => {
 
-      <p>
-        اختاري اللون:
-      </p>
+          item.classList.remove("selected");
 
+        });
 
-      <div
-        class="colors"
-        data-selected-color="${firstColor}"
-      >
 
-        ${colorsHTML}
+      /*
+        تحديد اللون المختار
+      */
+      button.classList.add("selected");
 
-      </div>
 
+      /*
+        حفظ اللون المختار
+      */
+      const colorsBox =
+        button.parentElement;
 
-      <button
-        class="btn order-btn"
-        onclick="orderProduct(this, '${product.id}', '${product.name}', ${product.price})"
-      >
-        اطلب عبر واتساب
-      </button>
 
-    </div>
-  `;
+      colorsBox.dataset.selectedColor =
+        color;
 
 
-  grid.appendChild(card);
-
-});
-
-
-function changeImage(thumbnail, image) {
-
-  const card =
-    thumbnail.closest(".card");
-
-  const mainImage =
-    card.querySelector(".main-image");
-
-  mainImage.src = image;
-
-
-  card
-    .querySelectorAll(".gallery img")
-    .forEach(img =>
-      img.classList.remove("active")
-    );
-
-
-  thumbnail.classList.add("active");
-}
-
-
-function selectColor(button, color, image) {
-
-  const card =
-    button.closest(".card");
-
-
-  card
-    .querySelectorAll(".color")
-    .forEach(item =>
-      item.classList.remove("selected")
-    );
-
-
-  button.classList.add("selected");
-
-
-  const colorsBox =
-    button.parentElement;
-
-  colorsBox.dataset.selectedColor =
-    color;
-
-
-  if (image) {
-
-    card.querySelector(".main-image").src =
-      image;
-
-
-    card
-      .querySelectorAll(".gallery img")
-      .forEach(img => {
-
-        img.classList.toggle(
-          "active",
-          img.src.includes(image)
-        );
-
-      });
-
-  }
-
-}
-
-
-function orderProduct(button, id, name, price) {
-
-  const card =
-    button.closest(".card");
-
-
-  const colorsBox =
-    card.querySelector(".colors");
-
-
-  const selectedColor =
-    colorsBox.dataset.selectedColor || "";
-
-
-  const message =
-`مرحباً AMO 👋
-
-أرغب بطلب:
-
-المنتج: ${name}
-رقم المنتج: #${id}
-اللون: ${selectedColor}
-السعر: ${price} دينار`;
-
-
-  const url =
-    "https://wa.me/" +
-    whatsappNumber +
-    "?text=" +
-    encodeURIComponent(message);
-
-
-  window.location.href
-}
-
-</script>
-
-</body>
-</html>
+      /*
+        إذا كان للون صورة
+        ن
