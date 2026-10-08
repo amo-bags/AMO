@@ -1,47 +1,35 @@
 const product = {
-  id: "11",
+  id: "12",
 
-  name: "شنطة AMO #11",
+  name: "شنطة AMO #12",
 
-  price: 15,
+  price: 10,
 
-  size: "كبير",
+  size: "وسط",
 
-  dimensions: "32 سم عرض × 26 سم ارتفاع",
+  dimensions: "28 سم عرض × 20 سم ارتفاع",
 
-  image: "https://llvll0.github.io/AMO/products-new/11/1688_image_share_6ae0043e0b46da71d9f5388194f73893.jpg",
+  image: "https://llvll0.github.io/AMO/products-new/12/1688_image_share_7e3191ba6e843d288bebce788cdfebfe.jpg",
 
   colors: [
     {
       name: "عسلي",
-      value: "#B98245",
-      image: "https://llvll0.github.io/AMO/products-new/11/1688_image_share_6ae0043e0b46da71d9f5388194f73893.jpg"
+      value: "#A96852",
+      image: "https://llvll0.github.io/AMO/products-new/12/1688_image_share_7e3191ba6e843d288bebce788cdfebfe.jpg"
     },
 
     {
-      name: "أوف وايت",
-      value: "#F5F0E3",
-      image: "https://llvll0.github.io/AMO/products-new/11/1688_image_share_a8df9176265a31aa9d023b2529f30639.jpg"
-    },
-
-    {
-      name: "أسود",
-      value: "#111111",
-      image: "https://llvll0.github.io/AMO/products-new/11/1688_image_share_cc834676e38937c29deee774c5abf589.jpg"
+      name: "بيج",
+      value: "#D8B98F",
+      image: "https://llvll0.github.io/AMO/products-new/12/1688_image_share_b376d985b72a8157cb3b04aa5a9e928a.jpg"
     }
   ],
 
   gallery: [
-    "https://llvll0.github.io/AMO/products-new/11/1688_image_share_6ae0043e0b46da71d9f5388194f73893.jpg",
+    "https://llvll0.github.io/AMO/products-new/12/1688_image_share_7e3191ba6e843d288bebce788cdfebfe.jpg",
 
-    "https://llvll0.github.io/AMO/products-new/11/1688_image_share_a8df9176265a31aa9d023b2529f30639.jpg",
+    "https://llvll0.github.io/AMO/products-new/12/1688_image_share_b376d985b72a8157cb3b04aa5a9e928a.jpg",
 
-    "https://llvll0.github.io/AMO/products-new/11/1688_image_share_cc834676e38937c29deee774c5abf589.jpg",
-
-    "https://llvll0.github.io/AMO/products-new/11/cdd034bb-071e-4c8e-957c-5d6d98d58ad3.jpg",
-
-    "https://llvll0.github.io/AMO/products-new/11/d475d557-3f1e-492d-a163-58b82e595985.jpg",
-
-    "https://llvll0.github.io/AMO/products-new/11/feb3059e-7ace-4ea1-aa17-71be0c2bab61.jpg"
+    "https://llvll0.github.io/AMO/products-new/12/1775318937264.jpg"
   ]
 };
