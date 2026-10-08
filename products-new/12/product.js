@@ -7,7 +7,7 @@ const product = {
 
   gallery: [
     "file_000000009a3081f4913722fbd4814540.png",
-    "file_000000000a09c820a8a62628710fcd48a.png",
+    "file_00000000a09c820a8a62628710fcd48a.png",
     "file_00000000930481f4bcb1bcb506f4aa8a.png",
     "file_00000000689071fdad670ed4ac30728c.png"
   ],
