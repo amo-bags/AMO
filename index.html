@@ -34,7 +34,7 @@
     .logo {
       font-size: 28px;
       font-weight: bold;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
     }
 
     nav a {
@@ -45,13 +45,13 @@
     }
 
     .hero {
-      padding: 85px 20px;
+      padding: 70px 20px;
       text-align: center;
       background: #eee9df;
     }
 
     .hero h1 {
-      font-size: 44px;
+      font-size: 42px;
       margin-bottom: 18px;
     }
 
@@ -74,7 +74,7 @@
     }
 
     .products {
-      padding: 60px 6%;
+      padding: 55px 5%;
     }
 
     .section-title {
@@ -85,7 +85,7 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 25px;
       max-width: 1200px;
       margin: auto;
@@ -93,19 +93,18 @@
 
     .card {
       background: white;
-      border-radius: 18px;
+      border-radius: 22px;
       overflow: hidden;
-      box-shadow: 0 5px 20px rgba(0,0,0,.07);
+      box-shadow: 0 5px 25px rgba(0,0,0,.08);
     }
 
     .product-image {
       width: 100%;
-      height: 320px;
-      background: #e9e6df;
+      height: 430px;
+      background: #eee;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #888;
       overflow: hidden;
     }
 
@@ -113,6 +112,28 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      cursor: pointer;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 8px;
+      padding: 12px 18px 4px;
+      overflow-x: auto;
+    }
+
+    .gallery img {
+      width: 62px;
+      height: 62px;
+      min-width: 62px;
+      object-fit: cover;
+      border-radius: 9px;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .gallery img.active {
+      border-color: #111;
     }
 
     .product-info {
@@ -120,50 +141,59 @@
     }
 
     .product-info h3 {
-      margin-bottom: 10px;
+      font-size: 24px;
+      margin-bottom: 14px;
     }
 
     .price {
-      font-size: 21px;
+      font-size: 25px;
       font-weight: bold;
-      margin-bottom: 15px;
+      margin-bottom: 22px;
     }
 
     .colors {
       display: flex;
-      gap: 10px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
+      gap: 12px;
+      margin: 12px 0 22px;
     }
 
     .color {
-      width: 30px;
-      height: 30px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      border: 2px solid white;
+      border: 3px solid white;
       box-shadow: 0 0 0 1px #aaa;
       cursor: pointer;
     }
 
-    .selected {
+    .color.selected {
       box-shadow: 0 0 0 2px #111;
+    }
+
+    .order-btn {
+      width: 100%;
     }
 
     footer {
       background: #111;
       color: white;
       text-align: center;
-      padding: 35px;
+      padding: 40px;
       margin-top: 30px;
     }
 
     @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 32px;
-      }
 
       nav a {
         display: none;
+      }
+
+      .hero {
+        padding: 55px 18px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
       }
 
       .products {
@@ -171,7 +201,11 @@
       }
 
       .product-image {
-        height: 330px;
+        height: 420px;
+      }
+
+      .product-info h3 {
+        font-size: 22px;
       }
     }
   </style>
@@ -189,17 +223,19 @@
   </nav>
 </header>
 
+
 <section class="hero" id="home">
+
   <h1>اختاري شنطتك بستايلك الخاص</h1>
 
-  <p>
-    حقائب أنيقة تناسب كل إطلالة ✨
-  </p>
+  <p>حقائب أنيقة تناسب كل إطلالة ✨</p>
 
   <a href="#products" class="btn">
     اكتشفي الحقائب
   </a>
+
 </section>
+
 
 <section class="products" id="products">
 
@@ -211,6 +247,7 @@
 
 </section>
 
+
 <footer id="contact">
 
   <div class="logo">AMO</div>
@@ -221,118 +258,243 @@
 
 </footer>
 
+
 <script src="products.js"></script>
 
 <script>
 
-  const grid = document.getElementById("productsGrid");
+const grid = document.getElementById("productsGrid");
 
-  products.forEach(product => {
 
-    const card = document.createElement("div");
+products.forEach(product => {
 
-    card.className = "card";
+  const card = document.createElement("div");
 
-    let imageHTML = "";
+  card.className = "card";
 
-    if (product.image) {
-      imageHTML =
-        `<img src="${product.image}" alt="${product.name}">`;
-    } else {
-      imageHTML =
-        `<span>صورة الشنطة #${product.id}</span>`;
-    }
 
-    const colorsHTML = product.colors.map((color, index) => {
+  const firstImage =
+    product.colors?.[0]?.image ||
+    product.image;
+
+
+  const galleryImages = [
+
+    ...(product.gallery || []),
+
+    ...((product.colors || [])
+      .map(color => color.image)
+      .filter(Boolean))
+
+  ];
+
+
+  const uniqueImages =
+    [...new Set(
+      galleryImages.length
+        ? galleryImages
+        : [product.image]
+    )];
+
+
+  const galleryHTML =
+    uniqueImages.map((image, index) => {
+
+      return `
+        <img
+          src="${image}"
+          class="${index === 0 ? "active" : ""}"
+          onclick="changeImage(this, '${image}')"
+        >
+      `;
+
+    }).join("");
+
+
+  const colorsHTML =
+    product.colors.map((color, index) => {
 
       return `
         <button
           class="color ${index === 0 ? "selected" : ""}"
           style="background:${color.value}"
           title="${color.name}"
-          onclick="selectColor(this, '${color.name}')">
+          onclick="selectColor(this, '${color.name}', '${color.image || ""}')">
         </button>
       `;
 
     }).join("");
 
-    const firstColor = product.colors[0]?.name || "";
 
-    card.innerHTML = `
+  const firstColor =
+    product.colors?.[0]?.name || "";
 
-      <div class="product-image">
-        ${imageHTML}
+
+  card.innerHTML = `
+
+    <div class="product-image">
+
+      <img
+        class="main-image"
+        src="${firstImage}"
+        alt="${product.name}"
+      >
+
+    </div>
+
+
+    <div class="gallery">
+
+      ${galleryHTML}
+
+    </div>
+
+
+    <div class="product-info">
+
+      <h3>
+        ${product.name}
+      </h3>
+
+
+      <div class="price">
+        ${product.price} دينار
       </div>
 
-      <div class="product-info">
 
-        <h3>${product.name}</h3>
+      <p>
+        اختاري اللون:
+      </p>
 
-        <div class="price">
-          ${product.price} دينار
-        </div>
 
-        <p style="margin-bottom:10px;">
-          اختاري اللون:
-        </p>
+      <div
+        class="colors"
+        data-selected-color="${firstColor}"
+      >
 
-        <div class="colors">
-          ${colorsHTML}
-        </div>
-
-        <button
-          class="btn"
-          onclick="orderProduct('${product.id}', '${product.name}', ${product.price}, '${firstColor}')">
-
-          اطلب عبر واتساب
-
-        </button>
+        ${colorsHTML}
 
       </div>
-    `;
-
-    grid.appendChild(card);
-  });
 
 
-  function selectColor(button, color) {
+      <button
+        class="btn order-btn"
+        onclick="orderProduct(this, '${product.id}', '${product.name}', ${product.price})"
+      >
+        اطلب عبر واتساب
+      </button>
 
-    const parent = button.parentElement;
+    </div>
+  `;
 
-    parent.querySelectorAll(".color")
-      .forEach(item => item.classList.remove("selected"));
 
-    button.classList.add("selected");
+  grid.appendChild(card);
 
-    parent.dataset.selectedColor = color;
+});
+
+
+function changeImage(thumbnail, image) {
+
+  const card =
+    thumbnail.closest(".card");
+
+  const mainImage =
+    card.querySelector(".main-image");
+
+  mainImage.src = image;
+
+
+  card
+    .querySelectorAll(".gallery img")
+    .forEach(img =>
+      img.classList.remove("active")
+    );
+
+
+  thumbnail.classList.add("active");
+}
+
+
+function selectColor(button, color, image) {
+
+  const card =
+    button.closest(".card");
+
+
+  card
+    .querySelectorAll(".color")
+    .forEach(item =>
+      item.classList.remove("selected")
+    );
+
+
+  button.classList.add("selected");
+
+
+  const colorsBox =
+    button.parentElement;
+
+  colorsBox.dataset.selectedColor =
+    color;
+
+
+  if (image) {
+
+    card.querySelector(".main-image").src =
+      image;
+
+
+    card
+      .querySelectorAll(".gallery img")
+      .forEach(img => {
+
+        img.classList.toggle(
+          "active",
+          img.src.includes(image)
+        );
+
+      });
+
   }
 
+}
 
-  function orderProduct(id, name, price, defaultColor) {
 
-    const card = event.target.closest(".card");
+function orderProduct(button, id, name, price) {
 
-    const colorsBox = card.querySelector(".colors");
+  const card =
+    button.closest(".card");
 
-    const selectedColor =
-      colorsBox.dataset.selectedColor || defaultColor;
 
-    const message =
-      "مرحباً AMO 👋\n\n" +
-      "أرغب بطلب:\n" +
-      "المنتج: " + name + "\n" +
-      "رقم المنتج: #" + id + "\n" +
-      "اللون: " + selectedColor + "\n" +
-      "السعر: " + price + " دينار";
+  const colorsBox =
+    card.querySelector(".colors");
 
-    const url =
-      "https://wa.me/" +
-      whatsappNumber +
-      "?text=" +
-      encodeURIComponent(message);
 
-    window.open(url, "_blank");
-  }
+  const selectedColor =
+    colorsBox.dataset.selectedColor || "";
+
+
+  const message =
+`مرحباً AMO 👋
+
+أرغب بطلب:
+
+المنتج: ${name}
+رقم المنتج: #${id}
+اللون: ${selectedColor}
+السعر: ${price} دينار`;
+
+
+  const url =
+    "https://wa.me/" +
+    whatsappNumber +
+    "?text=" +
+    encodeURIComponent(message);
+
+
+  window.open(url, "_blank");
+
+}
 
 </script>
 
