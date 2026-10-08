@@ -516,8 +516,7 @@ function jsesc(v){
 
 function absoluteImage(path, basePath){
   if(!path) return "";
-  if(/^https?:\/\//i.test(path)) return path;
-
+  if(/^https?:\/\//i.test(path)) return path.replace("https://llvll0.github.io/AMO/","https://amo-bags.github.io/");
   const cleanBase = basePath.endsWith("/")
     ? basePath
     : basePath.substring(0,basePath.lastIndexOf("/")+1);
