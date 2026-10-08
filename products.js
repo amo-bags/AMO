@@ -6,14 +6,23 @@ const products = [
     name: "شنطة AMO #664",
     price: 15,
 
+    // حجم الشنطة
+    size: "وسط",
+
+    // أبعاد الشنطة
+    dimensions: "31 سم عرض × 21 سم ارتفاع",
+
+    // الصورة الرئيسية
     image: "images/1688_image_share_4de829c112d350fba9cc5f0b5279e338.jpg",
 
+    // ألوان الشنطة
     colors: [
       {
         name: "أسود",
         value: "#111111",
         image: "images/1688_image_share_4de829c112d350fba9cc5f0b5279e338.jpg"
       },
+
       {
         name: "بني",
         value: "#795548",
@@ -21,6 +30,7 @@ const products = [
       }
     ],
 
+    // صور الشنطة
     gallery: [
       "images/1688_image_share_06d2714073a954bcc58e7de15d2754dc.jpg",
       "images/1688_image_share_18bdce7cfd3f8fdd826c6c9c8bb32356.jpg",
@@ -34,5 +44,3 @@ const products = [
     ]
   }
 ];
-size: "وسط",
-dimensions: "31 سم عرض × 21 سم ارتفاع",
