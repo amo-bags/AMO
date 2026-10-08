@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -13,6 +15,7 @@
   <title>AMO | حقائب نسائية</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -27,9 +30,8 @@
       --border: #e7e7e7;
       --white: #ffffff;
       --beige: #f4efe8;
-      --gold: #b38b59;
-      --danger: #c62828;
       --green: #16844a;
+      --danger: #c62828;
       --shadow: 0 8px 30px rgba(0,0,0,.08);
       --radius: 18px;
     }
@@ -66,6 +68,7 @@
       display: block;
     }
 
+
     /* =========================
        HEADER
     ========================= */
@@ -74,18 +77,24 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(255,255,255,.96);
+
+      background: rgba(255,255,255,.97);
+
       backdrop-filter: blur(12px);
+
       border-bottom: 1px solid var(--border);
     }
 
     .header-inner {
       max-width: 1250px;
       margin: auto;
+
       padding: 14px 18px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
+
       gap: 15px;
     }
 
@@ -96,30 +105,38 @@
     }
 
     .header-cart {
-      position: relative;
       border: 1px solid var(--black);
       background: var(--black);
       color: white;
+
       border-radius: 14px;
+
       padding: 11px 16px;
+
       display: flex;
       align-items: center;
       gap: 8px;
+
       font-weight: 700;
     }
 
     .cart-count {
       min-width: 22px;
       height: 22px;
+
       border-radius: 50%;
+
       background: white;
       color: black;
+
       display: inline-flex;
       align-items: center;
       justify-content: center;
+
       font-size: 12px;
       font-weight: 900;
     }
+
 
     /* =========================
        HERO
@@ -128,27 +145,36 @@
     .hero {
       max-width: 1250px;
       margin: auto;
+
       padding: 35px 18px 20px;
     }
 
     .hero-box {
       background: var(--beige);
+
       border-radius: 25px;
+
       padding: 35px 25px;
+
       text-align: center;
     }
 
     .hero-box h1 {
       font-size: clamp(28px, 6vw, 50px);
+
       margin-bottom: 10px;
+
       font-weight: 900;
     }
 
     .hero-box p {
       color: var(--gray);
+
       font-size: 16px;
+
       line-height: 1.8;
     }
+
 
     /* =========================
        PRODUCTS
@@ -157,14 +183,18 @@
     .products-section {
       max-width: 1250px;
       margin: auto;
+
       padding: 20px 18px 130px;
     }
 
     .section-title {
       display: flex;
+
       justify-content: space-between;
       align-items: center;
+
       margin-bottom: 20px;
+
       gap: 15px;
     }
 
@@ -174,34 +204,48 @@
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
       gap: 18px;
     }
 
     .product-card {
       background: white;
+
       border: 1px solid var(--border);
+
       border-radius: var(--radius);
+
       overflow: hidden;
-      box-shadow: 0 4px 18px rgba(0,0,0,.035);
+
+      box-shadow:
+        0 4px 18px rgba(0,0,0,.035);
+
       transition: .2s ease;
     }
 
     .product-card:hover {
       transform: translateY(-3px);
+
       box-shadow: var(--shadow);
     }
 
     .product-image-wrap {
       position: relative;
+
       background: #f7f7f7;
+
       aspect-ratio: 1 / 1;
+
       overflow: hidden;
     }
 
     .product-image {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
     }
 
@@ -211,22 +255,30 @@
 
     .product-name {
       font-size: 17px;
+
       font-weight: 800;
+
       margin-bottom: 7px;
     }
 
     .product-price {
       font-size: 19px;
+
       font-weight: 900;
+
       margin-bottom: 13px;
     }
 
     .product-meta {
       color: var(--gray);
+
       font-size: 13px;
+
       line-height: 1.7;
+
       margin-bottom: 10px;
     }
+
 
     /* =========================
        COLORS
@@ -234,38 +286,54 @@
 
     .colors-title {
       font-size: 13px;
+
       font-weight: 700;
+
       margin-bottom: 8px;
     }
 
     .colors {
       display: flex;
+
       gap: 8px;
+
       flex-wrap: wrap;
+
       margin-bottom: 13px;
     }
 
     .color-btn {
       width: 28px;
       height: 28px;
+
       border-radius: 50%;
+
       border: 2px solid white;
+
       outline: 1px solid #ccc;
+
       position: relative;
+
       transition: .2s;
     }
 
     .color-btn.active {
       outline: 2px solid var(--black);
+
       transform: scale(1.08);
     }
 
     .color-btn::after {
       content: "";
+
       display: none;
+
       position: absolute;
+
       inset: 5px;
+
       border-radius: 50%;
+
       border: 2px solid white;
     }
 
@@ -275,18 +343,27 @@
 
     .selected-color-name {
       font-size: 12px;
+
       color: var(--gray);
+
       margin-bottom: 12px;
     }
 
     .add-button {
       width: 100%;
+
       background: var(--black);
+
       color: white;
+
       border: none;
+
       border-radius: 12px;
+
       padding: 13px;
+
       font-weight: 800;
+
       font-size: 14px;
     }
 
@@ -294,27 +371,42 @@
       transform: scale(.98);
     }
 
+
     /* =========================
        FLOATING CART
     ========================= */
 
     .floating-cart {
       position: fixed;
+
       bottom: 18px;
+
       left: 50%;
+
       transform: translateX(-50%);
+
       z-index: 900;
+
       width: min(92%, 470px);
+
       background: var(--black);
+
       color: white;
+
       border-radius: 18px;
-      box-shadow: 0 12px 40px rgba(0,0,0,.25);
+
+      box-shadow:
+        0 12px 40px rgba(0,0,0,.25);
+
       padding: 13px 16px;
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 10px;
-      cursor: pointer;
     }
 
     .floating-cart.hidden {
@@ -323,7 +415,9 @@
 
     .floating-cart-info {
       display: flex;
+
       align-items: center;
+
       gap: 10px;
     }
 
@@ -333,18 +427,22 @@
 
     .floating-cart-text strong {
       display: block;
+
       font-size: 14px;
     }
 
     .floating-cart-text span {
       color: #ddd;
+
       font-size: 12px;
     }
 
     .floating-cart-total {
       font-weight: 900;
+
       white-space: nowrap;
     }
+
 
     /* =========================
        OVERLAY
@@ -352,9 +450,13 @@
 
     .overlay {
       position: fixed;
+
       inset: 0;
+
       background: rgba(0,0,0,.52);
+
       z-index: 1500;
+
       display: none;
     }
 
@@ -362,23 +464,37 @@
       display: block;
     }
 
+
     /* =========================
        CART DRAWER
     ========================= */
 
     .cart-drawer {
       position: fixed;
+
       top: 0;
+
       right: 0;
+
       width: min(440px, 94vw);
+
       height: 100vh;
+
       background: white;
+
       z-index: 1600;
+
       transform: translateX(110%);
-      transition: transform .3s ease;
+
+      transition:
+        transform .3s ease;
+
       display: flex;
+
       flex-direction: column;
-      box-shadow: -10px 0 35px rgba(0,0,0,.15);
+
+      box-shadow:
+        -10px 0 35px rgba(0,0,0,.15);
     }
 
     .cart-drawer.open {
@@ -387,10 +503,16 @@
 
     .cart-header {
       padding: 18px;
-      border-bottom: 1px solid var(--border);
+
+      border-bottom:
+        1px solid var(--border);
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       gap: 10px;
     }
 
@@ -401,26 +523,40 @@
     .close-button {
       width: 38px;
       height: 38px;
+
       border-radius: 50%;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       background: white;
+
       font-size: 20px;
     }
 
     .cart-body {
       flex: 1;
+
       overflow-y: auto;
+
       padding: 15px;
     }
 
     .empty-cart {
       min-height: 50vh;
+
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
+
       justify-content: center;
+
       text-align: center;
+
       color: var(--gray);
+
       gap: 10px;
     }
 
@@ -429,20 +565,31 @@
     }
 
     .cart-item {
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
+
       border-radius: 16px;
+
       padding: 10px;
+
       margin-bottom: 12px;
+
       display: grid;
-      grid-template-columns: 76px 1fr;
+
+      grid-template-columns:
+        76px 1fr;
+
       gap: 12px;
     }
 
     .cart-item-image {
       width: 76px;
       height: 76px;
+
       border-radius: 12px;
+
       object-fit: cover;
+
       background: #f5f5f5;
     }
 
@@ -452,140 +599,207 @@
 
     .cart-item-name {
       font-size: 14px;
+
       font-weight: 800;
+
       margin-bottom: 5px;
     }
 
     .cart-item-color {
       font-size: 12px;
+
       color: var(--gray);
+
       margin-bottom: 6px;
     }
 
     .cart-item-price {
       font-size: 14px;
+
       font-weight: 900;
     }
 
     .cart-item-actions {
       grid-column: 1 / -1;
+
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       gap: 10px;
     }
 
     .quantity-box {
       display: flex;
+
       align-items: center;
-      border: 1px solid var(--border);
+
+      border:
+        1px solid var(--border);
+
       border-radius: 10px;
+
       overflow: hidden;
     }
 
     .quantity-btn {
       width: 36px;
       height: 34px;
+
       border: none;
+
       background: #f6f6f6;
+
       font-size: 18px;
+
       font-weight: 900;
     }
 
     .quantity-value {
       width: 35px;
+
       text-align: center;
+
       font-weight: 900;
     }
 
     .remove-btn {
       border: none;
+
       background: transparent;
+
       color: var(--danger);
+
       font-size: 12px;
+
       font-weight: 700;
     }
 
+
     /* =========================
-       DELIVERY PROGRESS
+       FREE DELIVERY
     ========================= */
 
     .free-delivery-box {
       background: #f7f7f7;
+
       border-radius: 15px;
+
       padding: 13px;
+
       margin-bottom: 15px;
     }
 
     .free-delivery-text {
       font-size: 13px;
+
       line-height: 1.6;
+
       margin-bottom: 8px;
     }
 
     .progress {
       height: 7px;
+
       background: #ddd;
+
       border-radius: 99px;
+
       overflow: hidden;
     }
 
     .progress-bar {
       height: 100%;
+
       width: 0;
+
       background: var(--green);
+
       border-radius: inherit;
+
       transition: .3s;
     }
+
 
     /* =========================
        CART FOOTER
     ========================= */
 
     .cart-footer {
-      border-top: 1px solid var(--border);
+      border-top:
+        1px solid var(--border);
+
       padding: 15px;
+
       background: white;
     }
 
     .summary-row {
       display: flex;
+
       justify-content: space-between;
+
       margin-bottom: 9px;
+
       font-size: 14px;
     }
 
     .summary-row.total {
       font-size: 19px;
+
       font-weight: 900;
-      border-top: 1px solid var(--border);
+
+      border-top:
+        1px solid var(--border);
+
       padding-top: 12px;
+
       margin-top: 10px;
     }
 
     .checkout-button {
       width: 100%;
+
       border: none;
+
       background: var(--black);
+
       color: white;
+
       border-radius: 13px;
+
       padding: 15px;
+
       font-size: 16px;
+
       font-weight: 900;
+
       margin-top: 13px;
     }
 
     .continue-button {
       width: 100%;
-      border: 1px solid var(--black);
+
+      border:
+        1px solid var(--black);
+
       background: white;
+
       color: var(--black);
+
       border-radius: 13px;
+
       padding: 12px;
+
       font-size: 14px;
+
       font-weight: 800;
+
       margin-top: 8px;
     }
+
 
     /* =========================
        CHECKOUT MODAL
@@ -593,11 +807,17 @@
 
     .modal {
       position: fixed;
+
       inset: 0;
+
       background: rgba(0,0,0,.58);
+
       z-index: 2000;
+
       display: none;
+
       align-items: flex-end;
+
       justify-content: center;
     }
 
@@ -607,15 +827,24 @@
 
     .checkout-modal {
       background: white;
+
       width: min(620px, 100%);
+
       max-height: 94vh;
+
       overflow-y: auto;
-      border-radius: 25px 25px 0 0;
+
+      border-radius:
+        25px 25px 0 0;
+
       padding: 20px;
-      animation: slideUp .25s ease;
+
+      animation:
+        slideUp .25s ease;
     }
 
     @keyframes slideUp {
+
       from {
         transform: translateY(30px);
         opacity: 0;
@@ -625,12 +854,16 @@
         transform: translateY(0);
         opacity: 1;
       }
+
     }
 
     .checkout-header {
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
       margin-bottom: 20px;
     }
 
@@ -640,14 +873,19 @@
 
     .step-indicator {
       display: flex;
+
       gap: 7px;
+
       margin-bottom: 20px;
     }
 
     .step {
       flex: 1;
+
       height: 5px;
+
       border-radius: 99px;
+
       background: #ddd;
     }
 
@@ -655,14 +893,22 @@
       background: var(--black);
     }
 
+
+    /* =========================
+       FORM
+    ========================= */
+
     .form-group {
       margin-bottom: 14px;
     }
 
     .form-group label {
       display: block;
+
       font-size: 13px;
+
       font-weight: 800;
+
       margin-bottom: 7px;
     }
 
@@ -670,11 +916,18 @@
     .form-group select,
     .form-group textarea {
       width: 100%;
-      border: 1px solid #ddd;
+
+      border:
+        1px solid #ddd;
+
       border-radius: 12px;
+
       padding: 13px;
+
       font-size: 14px;
+
       outline: none;
+
       background: white;
     }
 
@@ -686,6 +939,7 @@
 
     .form-group textarea {
       min-height: 85px;
+
       resize: vertical;
     }
 
@@ -693,19 +947,32 @@
       color: var(--danger);
     }
 
+
+    /* =========================
+       REVIEW
+    ========================= */
+
     .checkout-summary {
       background: #f7f7f7;
+
       border-radius: 16px;
+
       padding: 14px;
+
       margin: 15px 0;
     }
 
     .review-product {
       display: flex;
+
       gap: 10px;
+
       align-items: center;
+
       padding: 9px 0;
-      border-bottom: 1px solid #e5e5e5;
+
+      border-bottom:
+        1px solid #e5e5e5;
     }
 
     .review-product:last-child {
@@ -715,7 +982,9 @@
     .review-product img {
       width: 55px;
       height: 55px;
+
       object-fit: cover;
+
       border-radius: 10px;
     }
 
@@ -725,46 +994,70 @@
 
     .review-product-info strong {
       display: block;
+
       font-size: 13px;
     }
 
     .review-product-info span {
       display: block;
+
       color: var(--gray);
+
       font-size: 11px;
+
       margin-top: 4px;
     }
 
+
+    /* =========================
+       CHECKOUT BUTTONS
+    ========================= */
+
     .checkout-actions {
       display: flex;
+
       gap: 9px;
+
       margin-top: 15px;
     }
 
     .checkout-actions button {
       flex: 1;
+
       border-radius: 13px;
+
       padding: 14px;
+
       font-weight: 900;
+
       font-size: 14px;
     }
 
     .back-button {
-      border: 1px solid var(--black);
+      border:
+        1px solid var(--black);
+
       background: white;
+
       color: var(--black);
     }
 
-    .next-button,
-    .send-button {
+    .next-button {
       border: none;
+
       background: var(--black);
+
       color: white;
     }
 
     .send-button {
-      background: #16844a;
+      border: none;
+
+      background: var(--green);
+
+      color: white;
     }
+
 
     /* =========================
        TOAST
@@ -772,59 +1065,92 @@
 
     .toast {
       position: fixed;
+
       bottom: 90px;
+
       left: 50%;
-      transform: translate(-50%, 20px);
+
+      transform:
+        translate(-50%, 20px);
+
       background: var(--black);
+
       color: white;
+
       padding: 12px 18px;
+
       border-radius: 13px;
+
       font-size: 13px;
+
       z-index: 5000;
+
       opacity: 0;
+
       pointer-events: none;
+
       transition: .25s;
+
       max-width: 90%;
+
       text-align: center;
     }
 
     .toast.show {
       opacity: 1;
-      transform: translate(-50%, 0);
+
+      transform:
+        translate(-50%, 0);
     }
 
+
     /* =========================
-       LOADING
+       LOADING / ERROR
     ========================= */
 
     .loading {
       text-align: center;
+
       padding: 50px 20px;
+
       color: var(--gray);
     }
 
     .error-box {
       background: #fff0f0;
+
       color: var(--danger);
+
       padding: 20px;
+
       border-radius: 15px;
+
       text-align: center;
+
       line-height: 1.8;
     }
+
 
     /* =========================
        MOBILE
     ========================= */
 
     @media (max-width: 1000px) {
+
       .products-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns:
+          repeat(3, 1fr);
       }
+
     }
 
+
     @media (max-width: 700px) {
+
       .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
+
         gap: 10px;
       }
 
@@ -864,12 +1190,11 @@
       .section-title h2 {
         font-size: 21px;
       }
+
     }
 
+
     @media (max-width: 430px) {
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
 
       .header-inner {
         padding: 11px 13px;
@@ -881,23 +1206,30 @@
 
       .header-cart {
         padding: 9px 11px;
+
         font-size: 12px;
       }
 
       .cart-drawer {
         width: 100%;
       }
+
     }
+
   </style>
+
 </head>
 
+
 <body>
+
 
   <!-- =========================
        HEADER
   ========================== -->
 
   <header>
+
     <div class="header-inner">
 
       <div class="logo">
@@ -909,16 +1241,20 @@
         type="button"
         onclick="openCart()"
       >
+
         🛒 السلة
+
         <span
           id="headerCartCount"
           class="cart-count"
         >
           0
         </span>
+
       </button>
 
     </div>
+
   </header>
 
 
@@ -930,11 +1266,14 @@
 
     <div class="hero-box">
 
-      <h1>AMO</h1>
+      <h1>
+        AMO
+      </h1>
 
       <p>
-        اختاري شنطتك المفضلة وأضيفيها إلى السلة
-        ثم أكملي الطلب بسهولة عبر WhatsApp.
+        اختاري شنطتك المفضلة
+        وأضيفيها إلى السلة
+        ثم أكملي الطلب بسهولة.
       </p>
 
     </div>
@@ -956,12 +1295,16 @@
 
       <span
         id="productsCount"
-        style="color:#777;font-size:13px"
+        style="
+          color:#777;
+          font-size:13px;
+        "
       >
         جاري التحميل...
       </span>
 
     </div>
+
 
     <div
       id="productsGrid"
@@ -1008,6 +1351,7 @@
 
     </div>
 
+
     <div
       id="floatingCartTotal"
       class="floating-cart-total"
@@ -1030,7 +1374,7 @@
 
 
   <!-- =========================
-       CART DRAWER
+       CART
   ========================== -->
 
   <aside
@@ -1070,7 +1414,7 @@
 
 
   <!-- =========================
-       CHECKOUT MODAL
+       CHECKOUT
   ========================== -->
 
   <div
@@ -1079,6 +1423,7 @@
   >
 
     <div class="checkout-modal">
+
 
       <div class="checkout-header">
 
@@ -1115,6 +1460,7 @@
       <!-- STEP 1 -->
 
       <div id="checkoutStep1">
+
 
         <div class="form-group">
 
@@ -1300,42 +1646,51 @@
 
   <script>
 
-    /* =========================================================
+
+    /* =====================================================
        إعدادات الموقع
-    ========================================================= */
+    ===================================================== */
 
     const REPO_OWNER = "llvll0";
+
     const REPO_NAME = "AMO";
+
     const BRANCH = "main";
 
-    const WHATSAPP_NUMBER = "962790780914";
+    const WHATSAPP_NUMBER =
+      "962790780914";
+
 
     const DELIVERY_PRICE = 2;
+
     const FREE_DELIVERY_FROM = 49;
 
     const CART_KEY = "amo_cart";
 
 
-    /* =========================================================
-       متغيرات
-    ========================================================= */
+    /* =====================================================
+       المتغيرات
+    ===================================================== */
 
     let products = [];
+
     let cart = loadCart();
 
     let toastTimer = null;
 
 
-    /* =========================================================
+    /* =====================================================
        تحميل السلة
-    ========================================================= */
+    ===================================================== */
 
     function loadCart() {
 
       try {
 
         const saved =
-          localStorage.getItem(CART_KEY);
+          localStorage.getItem(
+            CART_KEY
+          );
 
         if (!saved) {
           return [];
@@ -1370,14 +1725,15 @@
       );
 
       renderCart();
+
       updateCartUI();
 
     }
 
 
-    /* =========================================================
+    /* =====================================================
        الصور
-    ========================================================= */
+    ===================================================== */
 
     function makeImageUrl(
       path,
@@ -1388,18 +1744,19 @@
         return "";
       }
 
+
       path =
-        String(path)
-          .trim();
+        String(path).trim();
+
 
       if (
-        /^(https?:\/\/|data:)/i
-          .test(path)
+        /^(https?:\/\/|data:)/i.test(path)
       ) {
 
         return path;
 
       }
+
 
       path =
         path.replace(
@@ -1415,8 +1772,8 @@
       if (folder) {
 
         /*
-         * دعم احتياطي إذا كان product.js
-         * يحتوي على images/
+         * إذا كان product.js يحتوي
+         * images/ يتم حذفها
          */
 
         path =
@@ -1425,12 +1782,18 @@
             ""
           );
 
+
         return (
-          `https://raw.githubusercontent.com/` +
-          `${REPO_OWNER}/${REPO_NAME}/${BRANCH}/` +
-          `products-new/` +
-          `${encodeURIComponent(folder)}/` +
-          `${encodeURIComponent(path)}`
+          "https://raw.githubusercontent.com/" +
+          REPO_OWNER +
+          "/" +
+          REPO_NAME +
+          "/" +
+          BRANCH +
+          "/products-new/" +
+          encodeURIComponent(folder) +
+          "/" +
+          encodeURIComponent(path)
         );
 
       }
@@ -1446,16 +1809,24 @@
       ) {
 
         return (
-          `https://${REPO_OWNER}.github.io/` +
-          `${REPO_NAME}/${path}`
+          "https://" +
+          REPO_OWNER +
+          ".github.io/" +
+          REPO_NAME +
+          "/" +
+          path
         );
 
       }
 
 
       return (
-        `https://${REPO_OWNER}.github.io/` +
-        `${REPO_NAME}/images/${path}`
+        "https://" +
+        REPO_OWNER +
+        ".github.io/" +
+        REPO_NAME +
+        "/images/" +
+        path
       );
 
     }
@@ -1474,33 +1845,46 @@
     }
 
 
-    /* =========================================================
-       تحميل المنتجات القديمة
-    ========================================================= */
+    /* =====================================================
+       المنتجات القديمة
+    ===================================================== */
 
     async function loadOldProducts() {
 
       try {
 
         const url =
-          `https://raw.githubusercontent.com/` +
-          `${REPO_OWNER}/${REPO_NAME}/${BRANCH}/products.js`;
+          "https://raw.githubusercontent.com/" +
+          REPO_OWNER +
+          "/" +
+          REPO_NAME +
+          "/" +
+          BRANCH +
+          "/products.js";
+
 
         const response =
           await fetch(
             url,
-            { cache: "no-store" }
+            {
+              cache: "no-store"
+            }
           );
 
+
         if (!response.ok) {
+
           return [];
+
         }
+
 
         const text =
           await response.text();
 
+
         /*
-         * products.js الحالي عندك:
+         * products.js:
          *
          * const products = [];
          */
@@ -1511,14 +1895,23 @@
             "\nreturn products;"
           )();
 
+
         if (!Array.isArray(parsed)) {
+
           return [];
+
         }
 
-        return parsed.map(product => ({
-          ...product,
-          folder: product.folder || ""
-        }));
+
+        return parsed.map(
+          product => ({
+            ...product,
+
+            folder:
+              product.folder || ""
+          })
+        );
+
 
       } catch (error) {
 
@@ -1534,16 +1927,19 @@
     }
 
 
-    /* =========================================================
-       تحميل المنتجات الجديدة تلقائيًا
-    ========================================================= */
+    /* =====================================================
+       المنتجات الجديدة
+    ===================================================== */
 
     async function loadNewProducts() {
 
       const apiUrl =
-        `https://api.github.com/repos/` +
-        `${REPO_OWNER}/${REPO_NAME}/contents/` +
-        `products-new?ref=${BRANCH}`;
+        "https://api.github.com/repos/" +
+        REPO_OWNER +
+        "/" +
+        REPO_NAME +
+        "/contents/products-new?ref=" +
+        BRANCH;
 
 
       const response =
@@ -1551,10 +1947,12 @@
           apiUrl,
           {
             cache: "no-store",
+
             headers: {
               "Accept":
                 "application/vnd.github+json"
             }
+
           }
         );
 
@@ -1573,13 +1971,14 @@
 
 
       /*
-       * نأخذ فقط المجلدات التي اسمها رقم
+       * يأخذ فقط المجلدات الرقمية
        *
        * 1
        * 7
        * 8
        * 9
        * 11
+       * 12
        * ...
        */
 
@@ -1609,33 +2008,38 @@
         try {
 
           const productUrl =
-            `https://raw.githubusercontent.com/` +
-            `${REPO_OWNER}/${REPO_NAME}/${BRANCH}/` +
-            `products-new/` +
-            `${encodeURIComponent(folder.name)}/product.js`;
+            "https://raw.githubusercontent.com/" +
+            REPO_OWNER +
+            "/" +
+            REPO_NAME +
+            "/" +
+            BRANCH +
+            "/products-new/" +
+            encodeURIComponent(
+              folder.name
+            ) +
+            "/product.js";
 
 
           const productResponse =
             await fetch(
               productUrl,
-              { cache: "no-store" }
+              {
+                cache: "no-store"
+              }
             );
 
 
           if (!productResponse.ok) {
+
             continue;
+
           }
 
 
           const productCode =
             await productResponse.text();
 
-
-          /*
-           * قراءة:
-           *
-           * const product = {...}
-           */
 
           const product =
             new Function(
@@ -1645,24 +2049,33 @@
 
 
           if (!product) {
+
             continue;
+
           }
 
 
           loaded.push({
+
             ...product,
-            id: String(
-              product.id ||
+
+            id:
+              String(
+                product.id ||
+                folder.name
+              ),
+
+            folder:
               folder.name
-            ),
-            folder: folder.name
+
           });
 
 
         } catch (error) {
 
           console.warn(
-            `خطأ في المنتج ${folder.name}:`,
+            "خطأ في المنتج " +
+            folder.name,
             error
           );
 
@@ -1676,9 +2089,9 @@
     }
 
 
-    /* =========================================================
-       تحميل كل المنتجات
-    ========================================================= */
+    /* =====================================================
+       تحميل جميع المنتجات
+    ===================================================== */
 
     async function loadProducts() {
 
@@ -1700,17 +2113,15 @@
         const [
           oldProducts,
           newProducts
-        ] = await Promise.all([
-          loadOldProducts(),
-          loadNewProducts()
-        ]);
+        ] =
+          await Promise.all([
+            loadOldProducts(),
+            loadNewProducts()
+          ]);
 
 
         /*
-         * المنتجات الجديدة لها الأولوية
-         *
-         * لو كان نفس ID موجود قديمًا
-         * لن يظهر مرتين.
+         * منع التكرار
          */
 
         const map =
@@ -1761,14 +2172,21 @@
 
         console.error(error);
 
+
         grid.innerHTML = `
+
           <div class="error-box">
+
             حدث خطأ أثناء تحميل المنتجات.
+
             <br>
+
             تأكدي أن مجلد
             <b>products-new</b>
             موجود في GitHub.
+
           </div>
+
         `;
 
       }
@@ -1776,9 +2194,9 @@
     }
 
 
-    /* =========================================================
-       رسم المنتجات
-    ========================================================= */
+    /* =====================================================
+       عرض المنتجات
+    ===================================================== */
 
     function renderProducts() {
 
@@ -1791,15 +2209,20 @@
       document.getElementById(
         "productsCount"
       ).textContent =
-        `${products.length} منتجات`;
+        products.length +
+        " منتجات";
 
 
       if (!products.length) {
 
         grid.innerHTML = `
+
           <div class="loading">
+
             لا توجد منتجات حاليًا.
+
           </div>
+
         `;
 
         return;
@@ -1813,17 +2236,21 @@
       products.forEach(
         product => {
 
+
           const card =
             document.createElement(
               "article"
             );
+
 
           card.className =
             "product-card";
 
 
           const colors =
-            Array.isArray(product.colors)
+            Array.isArray(
+              product.colors
+            )
               ? product.colors
               : [];
 
@@ -1847,8 +2274,14 @@
 
               <img
                 class="product-image"
-                src="${productImage(product, selectedImage)}"
-                alt="${escapeHtml(product.name || "AMO")}"
+                src="${productImage(
+                  product,
+                  selectedImage
+                )}"
+                alt="${escapeHtml(
+                  product.name ||
+                  "AMO"
+                )}"
                 loading="lazy"
               >
 
@@ -1857,72 +2290,124 @@
 
             <div class="product-info">
 
+
               <div class="product-name">
+
                 ${escapeHtml(
                   product.name ||
-                  `شنطة AMO #${product.id}`
+                  "شنطة AMO #" +
+                  product.id
                 )}
+
               </div>
 
 
               <div class="product-price">
-                ${Number(product.price || 0).toFixed(2)}
+
+                ${Number(
+                  product.price || 0
+                ).toFixed(2)}
+
                 د.أ
+
               </div>
 
 
               ${
                 product.dimensions
-                  ? `
-                    <div class="product-meta">
-                      📐 ${escapeHtml(
-                        product.dimensions
-                      )}
-                    </div>
-                  `
-                  : ""
+
+                ?
+
+                `
+                  <div class="product-meta">
+
+                    📐
+                    ${escapeHtml(
+                      product.dimensions
+                    )}
+
+                  </div>
+                `
+
+                :
+
+                ""
               }
 
 
               ${
                 colors.length
-                  ? `
-                    <div class="colors-title">
-                      اختاري اللون:
-                    </div>
 
-                    <div class="colors">
+                ?
 
-                      ${colors.map(
-                        (color, index) => `
-                          <button
-                            type="button"
-                            class="color-btn ${
-                              index === 0
-                                ? "active"
-                                : ""
-                            }"
-                            data-color-index="${index}"
-                            title="${escapeHtml(
-                              color.name || ""
-                            )}"
-                            style="background:${color.value || "#ddd"}"
-                          ></button>
-                        `
-                      ).join("")}
+                `
 
-                    </div>
+                  <div class="colors-title">
 
-                    <div class="selected-color-name">
-                      اللون:
-                      <b class="selected-color-text">
-                        ${escapeHtml(
-                          selectedColor?.name || ""
-                        )}
-                      </b>
-                    </div>
-                  `
-                  : ""
+                    اختاري اللون:
+
+                  </div>
+
+
+                  <div class="colors">
+
+                    ${colors.map(
+                      (
+                        color,
+                        index
+                      ) => `
+
+                        <button
+                          type="button"
+
+                          class="color-btn ${
+                            index === 0
+                              ? "active"
+                              : ""
+                          }"
+
+                          data-color-index="${index}"
+
+                          title="${escapeHtml(
+                            color.name || ""
+                          )}"
+
+                          style="
+                            background:
+                            ${color.value || "#ddd"}
+                          "
+                        ></button>
+
+                      `
+                    ).join("")}
+
+                  </div>
+
+
+                  <div
+                    class="selected-color-name"
+                  >
+
+                    اللون:
+
+                    <b
+                      class="selected-color-text"
+                    >
+
+                      ${escapeHtml(
+                        selectedColor?.name ||
+                        ""
+                      )}
+
+                    </b>
+
+                  </div>
+
+                `
+
+                :
+
+                ""
               }
 
 
@@ -1930,10 +2415,14 @@
                 type="button"
                 class="add-button"
               >
+
                 🛒 إضافة للسلة
+
               </button>
 
+
             </div>
+
           `;
 
 
@@ -1952,6 +2441,7 @@
                   "click",
                   () => {
 
+
                     const index =
                       Number(
                         button.dataset
@@ -1969,11 +2459,13 @@
                       "";
 
 
-                    card
-                      .querySelector(
+                    const image =
+                      card.querySelector(
                         ".product-image"
-                      )
-                      .src =
+                      );
+
+
+                    image.src =
                       productImage(
                         product,
                         selectedImage
@@ -1986,9 +2478,10 @@
                       )
                       .forEach(
                         btn =>
-                          btn.classList.remove(
-                            "active"
-                          )
+                          btn.classList
+                            .remove(
+                              "active"
+                            )
                       );
 
 
@@ -2030,17 +2523,25 @@
               "click",
               () => {
 
+
                 addToCart(
+
                   product,
-                  selectedColor?.name || "",
+
+                  selectedColor?.name ||
+                    "",
+
                   selectedImage
+
                 );
 
               }
             );
 
 
-          grid.appendChild(card);
+          grid.appendChild(
+            card
+          );
 
         }
       );
@@ -2048,15 +2549,16 @@
     }
 
 
-    /* =========================================================
-       إضافة منتج للسلة
-    ========================================================= */
+    /* =====================================================
+       إضافة للسلة
+    ===================================================== */
 
     function addToCart(
       product,
       colorName = "",
       colorImage = ""
     ) {
+
 
       const productId =
         String(product.id);
@@ -2070,10 +2572,16 @@
       const existingIndex =
         cart.findIndex(
           item =>
-            String(item.productId) ===
-              productId &&
-            String(item.color || "") ===
-              String(colorName || "")
+            String(
+              item.productId
+            ) === productId &&
+
+            String(
+              item.color || ""
+            ) ===
+            String(
+              colorName || ""
+            )
         );
 
 
@@ -2081,34 +2589,59 @@
         existingIndex !== -1
       ) {
 
-        cart[existingIndex].qty += 1;
+        cart[
+          existingIndex
+        ].qty += 1;
 
       } else {
 
+
         cart.push({
 
-          productId,
+          productId:
+
+            productId,
+
 
           name:
+
             product.name ||
-            `شنطة AMO #${productId}`,
+            "شنطة AMO #" +
+            productId,
+
 
           price:
+
             Number(
               product.price || 0
             ),
 
+
           color:
+
             colorName,
 
+
+          /*
+           * الصورة تستخدم داخل الموقع
+           * والسلة فقط.
+           *
+           * لا يتم إرسالها إلى WhatsApp.
+           */
+
           image:
+
             colorImage ||
             product.image ||
             product.gallery?.[0] ||
             "",
 
+
           folder:
-            product.folder || "",
+
+            product.folder ||
+            "",
+
 
           qty: 1
 
@@ -2127,22 +2660,29 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        تغيير الكمية
-    ========================================================= */
+    ===================================================== */
 
     function changeQuantity(
       index,
       amount
     ) {
 
+
       if (!cart[index]) {
+
         return;
+
       }
 
 
       cart[index].qty =
-        Number(cart[index].qty || 1) +
+
+        Number(
+          cart[index].qty || 1
+        ) +
+
         amount;
 
 
@@ -2163,14 +2703,19 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        حذف منتج
-    ========================================================= */
+    ===================================================== */
 
-    function removeFromCart(index) {
+    function removeFromCart(
+      index
+    ) {
+
 
       if (!cart[index]) {
+
         return;
+
       }
 
 
@@ -2190,19 +2735,30 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        الحسابات
-    ========================================================= */
+    ===================================================== */
 
     function getSubtotal() {
 
       return cart.reduce(
-        (sum, item) =>
+        (
+          sum,
+          item
+        ) =>
+
           sum +
+
           (
-            Number(item.price || 0) *
-            Number(item.qty || 0)
+            Number(
+              item.price || 0
+            ) *
+
+            Number(
+              item.qty || 0
+            )
           ),
+
         0
       );
 
@@ -2210,6 +2766,7 @@
 
 
     function getDelivery() {
+
 
       const subtotal =
         getSubtotal();
@@ -2242,20 +2799,29 @@
     function getCartCount() {
 
       return cart.reduce(
-        (sum, item) =>
+        (
+          sum,
+          item
+        ) =>
+
           sum +
-          Number(item.qty || 0),
+
+          Number(
+            item.qty || 0
+          ),
+
         0
       );
 
     }
 
 
-    /* =========================================================
+    /* =====================================================
        تحديث واجهة السلة
-    ========================================================= */
+    ===================================================== */
 
     function updateCartUI() {
+
 
       const count =
         getCartCount();
@@ -2265,13 +2831,9 @@
         getSubtotal();
 
 
-      const headerCount =
-        document.getElementById(
-          "headerCartCount"
-        );
-
-
-      headerCount.textContent =
+      document.getElementById(
+        "headerCartCount"
+      ).textContent =
         count;
 
 
@@ -2295,23 +2857,28 @@
 
       if (count > 0) {
 
+
         floating.classList.remove(
           "hidden"
         );
 
 
         floatingItems.textContent =
-          `${count} ${
+          count +
+          (
             count === 1
-              ? "منتج"
-              : "منتجات"
-          }`;
+              ? " منتج"
+              : " منتجات"
+          );
 
 
         floatingTotal.textContent =
-          `${subtotal.toFixed(2)} د.أ`;
+          subtotal.toFixed(2) +
+          " د.أ";
+
 
       } else {
+
 
         floating.classList.add(
           "hidden"
@@ -2322,11 +2889,12 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        رسم السلة
-    ========================================================= */
+    ===================================================== */
 
     function renderCart() {
+
 
       const body =
         document.getElementById(
@@ -2342,29 +2910,37 @@
 
       if (!cart.length) {
 
+
         body.innerHTML = `
 
           <div class="empty-cart">
 
-            <div class="empty-cart-icon">
+            <div
+              class="empty-cart-icon"
+            >
               🛒
             </div>
+
 
             <strong>
               السلة فارغة
             </strong>
+
 
             <span>
               اختاري المنتجات التي تعجبك
               وأضيفيها إلى السلة.
             </span>
 
+
             <button
               class="continue-button"
               style="max-width:220px"
               onclick="closeCart()"
             >
+
               تصفح المنتجات
+
             </button>
 
           </div>
@@ -2386,7 +2962,11 @@
 
 
       cart.forEach(
-        (item, index) => {
+        (
+          item,
+          index
+        ) => {
+
 
           const imageUrl =
             makeImageUrl(
@@ -2396,8 +2976,14 @@
 
 
           const itemTotal =
-            Number(item.price || 0) *
-            Number(item.qty || 0);
+
+            Number(
+              item.price || 0
+            ) *
+
+            Number(
+              item.qty || 0
+            );
 
 
           const element =
@@ -2414,74 +3000,141 @@
 
             <img
               class="cart-item-image"
+
               src="${imageUrl}"
-              alt="${escapeHtml(item.name)}"
+
+              alt="${escapeHtml(
+                item.name
+              )}"
             >
 
 
-            <div class="cart-item-info">
+            <div
+              class="cart-item-info"
+            >
 
-              <div class="cart-item-name">
-                ${escapeHtml(item.name)}
+
+              <div
+                class="cart-item-name"
+              >
+
+                ${escapeHtml(
+                  item.name
+                )}
+
               </div>
 
 
               ${
                 item.color
-                  ? `
-                    <div class="cart-item-color">
-                      اللون:
-                      <b>
-                        ${escapeHtml(item.color)}
-                      </b>
-                    </div>
-                  `
-                  : ""
+
+                ?
+
+                `
+                  <div
+                    class="cart-item-color"
+                  >
+
+                    اللون:
+
+                    <b>
+                      ${escapeHtml(
+                        item.color
+                      )}
+                    </b>
+
+                  </div>
+                `
+
+                :
+
+                ""
               }
 
 
-              <div class="cart-item-price">
+              <div
+                class="cart-item-price"
+              >
+
                 ${itemTotal.toFixed(2)}
                 د.أ
+
               </div>
+
 
             </div>
 
 
-            <div class="cart-item-actions">
+            <div
+              class="cart-item-actions"
+            >
 
-              <div class="quantity-box">
+
+              <div
+                class="quantity-box"
+              >
+
 
                 <button
                   class="quantity-btn"
+
                   type="button"
-                  onclick="changeQuantity(${index}, -1)"
+
+                  onclick="
+                    changeQuantity(
+                      ${index},
+                      -1
+                    )
+                  "
                 >
                   −
                 </button>
 
-                <div class="quantity-value">
+
+                <div
+                  class="quantity-value"
+                >
+
                   ${item.qty}
+
                 </div>
+
 
                 <button
                   class="quantity-btn"
+
                   type="button"
-                  onclick="changeQuantity(${index}, 1)"
+
+                  onclick="
+                    changeQuantity(
+                      ${index},
+                      1
+                    )
+                  "
                 >
                   +
                 </button>
+
 
               </div>
 
 
               <button
                 class="remove-btn"
+
                 type="button"
-                onclick="removeFromCart(${index})"
+
+                onclick="
+                  removeFromCart(
+                    ${index}
+                  )
+                "
               >
+
                 🗑 حذف
+
               </button>
+
 
             </div>
 
@@ -2505,10 +3158,12 @@
 
 
       const total =
-        subtotal + delivery;
+        subtotal +
+        delivery;
 
 
-      let deliveryMessage = "";
+      let deliveryMessage =
+        "";
 
 
       if (
@@ -2516,21 +3171,35 @@
         FREE_DELIVERY_FROM
       ) {
 
+
         deliveryMessage = `
-          <div class="free-delivery-text">
+
+          <div
+            class="free-delivery-text"
+          >
+
             🎉 مبروك!
-            حصلتِ على التوصيل المجاني.
+
+            حصلتِ على
+            <b>التوصيل المجاني</b>.
+
           </div>
 
+
           <div class="progress">
+
             <div
               class="progress-bar"
               style="width:100%"
             ></div>
+
           </div>
+
         `;
 
+
       } else {
+
 
         const remaining =
           FREE_DELIVERY_FROM -
@@ -2540,6 +3209,7 @@
         const percentage =
           Math.min(
             100,
+
             (
               subtotal /
               FREE_DELIVERY_FROM
@@ -2548,21 +3218,40 @@
 
 
         deliveryMessage = `
-          <div class="free-delivery-text">
+
+          <div
+            class="free-delivery-text"
+          >
+
             أضيفي
+
             <b>
-              ${remaining.toFixed(2)} د.أ
+              ${remaining.toFixed(2)}
+              د.أ
             </b>
+
             لتحصلي على
-            <b>توصيل مجاني</b> 🎁
+
+            <b>
+              توصيل مجاني
+            </b>
+
+            🎁
+
           </div>
 
+
           <div class="progress">
+
             <div
               class="progress-bar"
-              style="width:${percentage}%"
+              style="
+                width:${percentage}%
+              "
             ></div>
+
           </div>
+
         `;
 
       }
@@ -2570,8 +3259,13 @@
 
       footer.innerHTML = `
 
-        <div class="free-delivery-box">
+
+        <div
+          class="free-delivery-box"
+        >
+
           ${deliveryMessage}
+
         </div>
 
 
@@ -2582,7 +3276,10 @@
           </span>
 
           <strong>
-            ${subtotal.toFixed(2)} د.أ
+
+            ${subtotal.toFixed(2)}
+            د.أ
+
           </strong>
 
         </div>
@@ -2595,24 +3292,34 @@
           </span>
 
           <strong>
+
             ${
               delivery === 0
+
                 ? "مجاني"
-                : `${delivery.toFixed(2)} د.أ`
+
+                : delivery.toFixed(2) +
+                  " د.أ"
             }
+
           </strong>
 
         </div>
 
 
-        <div class="summary-row total">
+        <div
+          class="summary-row total"
+        >
 
           <span>
             الإجمالي
           </span>
 
           <strong>
-            ${total.toFixed(2)} د.أ
+
+            ${total.toFixed(2)}
+            د.أ
+
           </strong>
 
         </div>
@@ -2620,19 +3327,31 @@
 
         <button
           class="checkout-button"
+
           type="button"
-          onclick="openCheckout()"
+
+          onclick="
+            openCheckout()
+          "
         >
+
           إكمال الطلب →
+
         </button>
 
 
         <button
           class="continue-button"
+
           type="button"
-          onclick="closeCart()"
+
+          onclick="
+            closeCart()
+          "
         >
+
           متابعة التسوق
+
         </button>
 
       `;
@@ -2643,11 +3362,12 @@
     }
 
 
-    /* =========================================================
-       فتح / إغلاق السلة
-    ========================================================= */
+    /* =====================================================
+       فتح السلة
+    ===================================================== */
 
     function openCart() {
+
 
       renderCart();
 
@@ -2677,7 +3397,12 @@
     }
 
 
+    /* =====================================================
+       إغلاق السلة
+    ===================================================== */
+
     function closeCart() {
+
 
       document
         .getElementById(
@@ -2707,16 +3432,18 @@
     function closeAllOverlays() {
 
       closeCart();
+
       closeCheckout();
 
     }
 
 
-    /* =========================================================
-       Checkout
-    ========================================================= */
+    /* =====================================================
+       فتح Checkout
+    ===================================================== */
 
     function openCheckout() {
+
 
       if (!cart.length) {
 
@@ -2751,7 +3478,12 @@
     }
 
 
+    /* =====================================================
+       إغلاق Checkout
+    ===================================================== */
+
     function closeCheckout() {
+
 
       document
         .getElementById(
@@ -2769,16 +3501,23 @@
     }
 
 
+    /* =====================================================
+       بيانات العميل
+    ===================================================== */
+
     function goToCustomerData() {
+
 
       document.getElementById(
         "checkoutStep1"
-      ).style.display = "block";
+      ).style.display =
+        "block";
 
 
       document.getElementById(
         "checkoutStep2"
-      ).style.display = "none";
+      ).style.display =
+        "none";
 
 
       document.getElementById(
@@ -2797,7 +3536,12 @@
     }
 
 
+    /* =====================================================
+       مراجعة الطلب
+    ===================================================== */
+
     function goToReview() {
+
 
       const name =
         document.getElementById(
@@ -2844,12 +3588,14 @@
 
       document.getElementById(
         "checkoutStep1"
-      ).style.display = "none";
+      ).style.display =
+        "none";
 
 
       document.getElementById(
         "checkoutStep2"
-      ).style.display = "block";
+      ).style.display =
+        "block";
 
 
       document.getElementById(
@@ -2868,11 +3614,12 @@
     }
 
 
-    /* =========================================================
-       مراجعة الطلب
-    ========================================================= */
+    /* =====================================================
+       عرض المراجعة
+    ===================================================== */
 
     function renderReview() {
+
 
       const productsBox =
         document.getElementById(
@@ -2886,58 +3633,104 @@
           المنتجات
         </strong>
 
-        <div style="margin-top:8px">
 
-          ${cart.map(item => {
+        <div
+          style="margin-top:8px"
+        >
 
-            const imageUrl =
-              makeImageUrl(
-                item.image,
-                item.folder || ""
-              );
+          ${cart.map(
+            item => {
 
 
-            return `
+              const imageUrl =
+                makeImageUrl(
+                  item.image,
+                  item.folder || ""
+                );
 
-              <div class="review-product">
 
-                <img
-                  src="${imageUrl}"
-                  alt="${escapeHtml(item.name)}"
+              return `
+
+                <div
+                  class="review-product"
                 >
 
-                <div class="review-product-info">
+
+                  <img
+                    src="${imageUrl}"
+
+                    alt="${escapeHtml(
+                      item.name
+                    )}"
+                  >
+
+
+                  <div
+                    class="review-product-info"
+                  >
+
+
+                    <strong>
+
+                      ${escapeHtml(
+                        item.name
+                      )}
+
+                    </strong>
+
+
+                    <span>
+
+                      ${
+                        item.color
+
+                        ?
+
+                        "اللون: " +
+                        escapeHtml(
+                          item.color
+                        ) +
+                        " · "
+
+                        :
+
+                        ""
+                      }
+
+                      الكمية:
+                      ${item.qty}
+
+                    </span>
+
+
+                  </div>
+
 
                   <strong>
-                    ${escapeHtml(item.name)}
+
+                    ${
+                      (
+                        Number(
+                          item.price
+                        ) *
+
+                        Number(
+                          item.qty
+                        )
+                      ).toFixed(2)
+                    }
+
+                    د.أ
+
                   </strong>
 
-                  <span>
-                    ${
-                      item.color
-                        ? `اللون: ${escapeHtml(item.color)} · `
-                        : ""
-                    }
-                    الكمية: ${item.qty}
-                  </span>
 
                 </div>
 
-                <strong>
-                  ${
-                    (
-                      Number(item.price) *
-                      Number(item.qty)
-                    ).toFixed(2)
-                  }
-                  د.أ
-                </strong>
+              `;
 
-              </div>
-
-            `;
-
-          }).join("")}
+            }
+          ).join("")}
 
         </div>
 
@@ -2974,17 +3767,14 @@
         ).value.trim();
 
 
-      const customerBox =
-        document.getElementById(
-          "reviewCustomer"
-        );
-
-
-      customerBox.innerHTML = `
+      document.getElementById(
+        "reviewCustomer"
+      ).innerHTML = `
 
         <strong>
           بيانات التوصيل
         </strong>
+
 
         <div
           style="
@@ -2994,24 +3784,39 @@
           "
         >
 
-          👤 ${escapeHtml(name)}
+          👤
+          ${escapeHtml(name)}
+
           <br>
 
-          📞 ${escapeHtml(phone)}
+          📞
+          ${escapeHtml(phone)}
+
           <br>
 
-          📍 ${escapeHtml(city)}
+          📍
+          ${escapeHtml(city)}
+
           <br>
 
-          🏠 ${escapeHtml(address)}
+          🏠
+          ${escapeHtml(address)}
 
           ${
             notes
-              ? `
-                <br>
-                📝 ${escapeHtml(notes)}
-              `
-              : ""
+
+            ?
+
+            `
+              <br>
+
+              📝
+              ${escapeHtml(notes)}
+            `
+
+            :
+
+            ""
           }
 
         </div>
@@ -3028,12 +3833,14 @@
 
 
       const total =
-        subtotal + delivery;
+        subtotal +
+        delivery;
 
 
       document.getElementById(
         "reviewTotals"
       ).innerHTML = `
+
 
         <div class="summary-row">
 
@@ -3042,7 +3849,10 @@
           </span>
 
           <strong>
-            ${subtotal.toFixed(2)} د.أ
+
+            ${subtotal.toFixed(2)}
+            د.أ
+
           </strong>
 
         </div>
@@ -3055,24 +3865,34 @@
           </span>
 
           <strong>
+
             ${
               delivery === 0
+
                 ? "مجاني"
-                : `${delivery.toFixed(2)} د.أ`
+
+                : delivery.toFixed(2) +
+                  " د.أ"
             }
+
           </strong>
 
         </div>
 
 
-        <div class="summary-row total">
+        <div
+          class="summary-row total"
+        >
 
           <span>
             الإجمالي
           </span>
 
           <strong>
-            ${total.toFixed(2)} د.أ
+
+            ${total.toFixed(2)}
+            د.أ
+
           </strong>
 
         </div>
@@ -3082,11 +3902,13 @@
     }
 
 
-    /* =========================================================
-       إرسال الطلب
-    ========================================================= */
+    /* =====================================================
+       إرسال الطلب إلى WhatsApp
+       بدون صور
+    ===================================================== */
 
-    async function sendWhatsAppOrder() {
+    function sendWhatsAppOrder() {
+
 
       if (!cart.length) {
 
@@ -3129,6 +3951,10 @@
         ).value.trim();
 
 
+      /*
+       * التأكد من البيانات
+       */
+
       if (
         !name ||
         !phone ||
@@ -3136,16 +3962,23 @@
         !address
       ) {
 
+
         goToCustomerData();
+
 
         showToast(
           "يرجى تعبئة جميع البيانات المطلوبة"
         );
 
+
         return;
 
       }
 
+
+      /*
+       * الحسابات
+       */
 
       const subtotal =
         getSubtotal();
@@ -3156,373 +3989,166 @@
 
 
       const total =
-        subtotal + delivery;
+        subtotal +
+        delivery;
 
 
       /*
-       * إنشاء نص الطلب
+       * إنشاء رسالة WhatsApp
        */
 
       let message =
-        `🛍️ طلب جديد من AMO\n\n`;
+        "🛍️ طلب جديد من AMO\n\n";
 
 
       message +=
-        `👤 الاسم: ${name}\n`;
+        "👤 الاسم: " +
+        name +
+        "\n";
 
 
       message +=
-        `📞 الهاتف: ${phone}\n`;
+        "📞 الهاتف: " +
+        phone +
+        "\n";
 
 
       message +=
-        `📍 المحافظة: ${city}\n`;
+        "📍 المحافظة: " +
+        city +
+        "\n";
 
 
       message +=
-        `🏠 العنوان: ${address}\n`;
+        "🏠 العنوان: " +
+        address +
+        "\n";
 
 
       if (notes) {
 
         message +=
-          `📝 الملاحظات: ${notes}\n`;
+          "📝 الملاحظات: " +
+          notes +
+          "\n";
 
       }
 
 
       message +=
-        `\n━━━━━━━━━━━━\n`;
+        "\n━━━━━━━━━━━━\n";
 
 
       message +=
-        `🛒 المنتجات:\n\n`;
+        "🛒 المنتجات:\n\n";
 
+
+      /*
+       * المنتجات
+       */
 
       cart.forEach(
         item => {
 
+
           message +=
-            `• ${item.name}`;
+            "• " +
+            item.name;
 
 
           if (item.color) {
 
             message +=
-              ` | اللون: ${item.color}`;
+              " | اللون: " +
+              item.color;
 
           }
 
 
           message +=
-            ` | الكمية: ${item.qty}`;
+            " | الكمية: " +
+            item.qty;
 
 
           message +=
-            ` | ${(
+            " | " +
+            (
               Number(item.price) *
               Number(item.qty)
-            ).toFixed(2)} د.أ\n`;
+            ).toFixed(2) +
+            " د.أ\n";
 
         }
       );
-
-
-      message +=
-        `\n💰 المجموع: ${subtotal.toFixed(2)} د.أ\n`;
-
-
-      message +=
-        `🚚 التوصيل: ${
-          delivery === 0
-            ? "مجاني"
-            : delivery.toFixed(2) + " د.أ"
-        }\n`;
-
-
-      message +=
-        `💵 الإجمالي: ${total.toFixed(2)} د.أ`;
 
 
       /*
-       * =====================================================
-       * تحميل صور المنتجات المختارة
-       * =====================================================
+       * الإجمالي
        */
 
-      const files = [];
+      message +=
+        "\n━━━━━━━━━━━━\n";
 
 
-      showToast(
-        "جاري تجهيز صور الطلب..."
-      );
+      message +=
+        "💰 المجموع: " +
+        subtotal.toFixed(2) +
+        " د.أ\n";
 
 
-      try {
-
-        for (
-          const item of cart
-        ) {
-
-          if (!item.image) {
-            continue;
-          }
-
-
-          const imageUrl =
-            makeImageUrl(
-              item.image,
-              item.folder || ""
-            );
+      message +=
+        "🚚 التوصيل: " +
+        (
+          delivery === 0
+            ? "مجاني"
+            : delivery.toFixed(2) +
+              " د.أ"
+        ) +
+        "\n";
 
 
-          const response =
-            await fetch(
-              imageUrl,
-              {
-                cache: "no-store"
-              }
-            );
+      message +=
+        "💵 الإجمالي: " +
+        total.toFixed(2) +
+        " د.أ";
 
 
-          if (!response.ok) {
+      /*
+       * فتح WhatsApp
+       *
+       * لا يتم إرسال أي صورة.
+       */
 
-            console.warn(
-              "تعذر تحميل الصورة:",
-              imageUrl
-            );
-
-            continue;
-
-          }
-
-
-          const blob =
-            await response.blob();
-
-
-          let extension =
-            "jpg";
-
-
-          if (
-            blob.type.includes("png")
-          ) {
-
-            extension = "png";
-
-          } else if (
-            blob.type.includes("webp")
-          ) {
-
-            extension = "webp";
-
-          } else if (
-            blob.type.includes("jpeg")
-          ) {
-
-            extension = "jpg";
-
-          }
-
-
-          const safeProductName =
-            String(
-              item.name || "AMO"
-            )
-              .replace(
-                /[^\w\u0600-\u06FF\- ]/g,
-                ""
-              )
-              .replace(
-                /\s+/g,
-                "_"
-              );
-
-
-          const safeColor =
-            String(
-              item.color || ""
-            )
-              .replace(
-                /[^\w\u0600-\u06FF\- ]/g,
-                ""
-              )
-              .replace(
-                /\s+/g,
-                "_"
-              );
-
-
-          const fileName =
-            `${safeProductName}_${safeColor}.${extension}`;
-
-
-          const file =
-            new File(
-              [blob],
-              fileName,
-              {
-                type:
-                  blob.type ||
-                  "image/jpeg"
-              }
-            );
-
-
-          files.push(file);
-
-        }
-
-
-        /*
-         * =====================================================
-         * مشاركة الصور + نص الطلب
-         * =====================================================
-         */
-
-        if (
-          navigator.share &&
-          navigator.canShare &&
-          files.length &&
-          navigator.canShare({
-            files
-          })
-        ) {
-
-          /*
-           * مهم:
-           * هذا الاستدعاء يحدث مباشرة
-           * ضمن عملية الضغط على زر إرسال الطلب.
-           */
-
-          await navigator.share({
-
-            title:
-              "طلب جديد من AMO",
-
-            text:
-              message,
-
-            files:
-              files
-
-          });
-
-
-          showToast(
-            "تم تجهيز الطلب للمشاركة ✅"
-          );
-
-
-          return;
-
-        }
-
-
-        /*
-         * إذا الجهاز لا يدعم مشاركة الصور
-         */
-
-        showToast(
-          "المتصفح لا يدعم إرسال الصور، سيتم فتح WhatsApp بالنص."
+      const whatsappUrl =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(
+          message
         );
-
-
-        setTimeout(
-          () => {
-
-            openWhatsAppText(
-              message
-            );
-
-          },
-          900
-        );
-
-
-      } catch (error) {
-
-        console.error(
-          "Share error:",
-          error
-        );
-
-
-        /*
-         * إذا المستخدم أغلق شاشة المشاركة
-         * لا نريد فتح WhatsApp تلقائيًا.
-         */
-
-        if (
-          error &&
-          error.name ===
-          "AbortError"
-        ) {
-
-          showToast(
-            "تم إلغاء المشاركة"
-          );
-
-          return;
-
-        }
-
-
-        /*
-         * أي خطأ آخر:
-         * نفتح WhatsApp بالنص.
-         */
-
-        showToast(
-          "تعذر إرسال الصور، سيتم فتح WhatsApp بالطلب."
-        );
-
-
-        setTimeout(
-          () => {
-
-            openWhatsAppText(
-              message
-            );
-
-          },
-          900
-        );
-
-      }
-
-    }
-
-
-    /* =========================================================
-       فتح WhatsApp بالنص
-    ========================================================= */
-
-    function openWhatsAppText(
-      message
-    ) {
-
-      const url =
-        `https://wa.me/${WHATSAPP_NUMBER}` +
-        `?text=${encodeURIComponent(message)}`;
 
 
       window.open(
-        url,
+        whatsappUrl,
         "_blank"
+      );
+
+
+      showToast(
+        "تم تجهيز الطلب على WhatsApp ✅"
       );
 
     }
 
 
-    /* =========================================================
+    /* =====================================================
        Toast
-    ========================================================= */
+    ===================================================== */
 
     function showToast(
       message
     ) {
+
 
       const toast =
         document.getElementById(
@@ -3559,33 +4185,39 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        حماية النصوص
-    ========================================================= */
+    ===================================================== */
 
     function escapeHtml(
       value
     ) {
 
+
       return String(
         value ?? ""
       )
+
         .replace(
           /&/g,
           "&amp;"
         )
+
         .replace(
           /</g,
           "&lt;"
         )
+
         .replace(
           />/g,
           "&gt;"
         )
+
         .replace(
           /"/g,
           "&quot;"
         )
+
         .replace(
           /'/g,
           "&#039;"
@@ -3594,17 +4226,20 @@
     }
 
 
-    /* =========================================================
+    /* =====================================================
        تشغيل الموقع
-    ========================================================= */
+    ===================================================== */
 
     document.addEventListener(
       "DOMContentLoaded",
       () => {
 
+
         renderCart();
 
+
         updateCartUI();
+
 
         loadProducts();
 
@@ -3612,9 +4247,9 @@
     );
 
 
-    /* =========================================================
-       إغلاق نافذة checkout عند الضغط خارجها
-    ========================================================= */
+    /* =====================================================
+       إغلاق Checkout عند الضغط خارج النافذة
+    ===================================================== */
 
     document
       .getElementById(
@@ -3623,6 +4258,7 @@
       .addEventListener(
         "click",
         event => {
+
 
           if (
             event.target.id ===
@@ -3639,4 +4275,5 @@
   </script>
 
 </body>
+
 </html>
