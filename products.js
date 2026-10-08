@@ -5,7 +5,6 @@ const products = [
     id: "664",
     name: "شنطة AMO #664",
     price: 15,
-
     image: "images/1688_image_share_4de829c112d350fba9cc5f0b5279e338.jpg",
 
     colors: [
