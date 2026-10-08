@@ -18,22 +18,22 @@ const product = {
     {
       name: "أسود",
       value: "#111111",
-      image: "1000133619.jpg"
+      image: "1000133622.jpg"
     },
     {
       name: "أبيض",
       value: "#f3f1eb",
-      image: "1000133620.jpg"
+      image: "1000133619.jpg"
     },
     {
       name: "عسلي",
-      value: "#b87545",
+      value: "#B87333",
       image: "1000133621.jpg"
     },
     {
       name: "بني",
       value: "#795548",
-      image: "1000133622.jpg"
+      image: "1000133620.jpg"
     }
   ],
 
