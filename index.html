@@ -133,6 +133,9 @@ onclick="orderProduct(this,'${product.id}','${product.name}',${product.price})">
 </div>
 `;
 
+card.dataset.color =
+  product.colors?.[0]?.name || "";
+
 grid.appendChild(card);
 
 });
