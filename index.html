@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>AMO | حقائب نسائية</title>
-
   <meta name="description" content="AMO - متجر حقائب نسائية">
 
   <style>
@@ -26,17 +25,16 @@
     }
 
     body {
-      font-family:
-        Arial,
-        "Tahoma",
-        sans-serif;
+      font-family: Arial, "Tahoma", sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
     }
 
     button,
-    input {
+    input,
+    textarea,
+    select {
       font-family: inherit;
     }
 
@@ -149,7 +147,7 @@
 
       padding: 0 20px;
 
-      box-shadow: 0 5px 20px rgba(0,0,0,.04);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, .04);
     }
 
     .search-icon {
@@ -190,7 +188,7 @@
     }
 
     /* =========================
-       PRODUCTS GRID
+       PRODUCTS
     ========================== */
 
     .products-grid {
@@ -216,7 +214,7 @@
 
     .product-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(0,0,0,.08);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .08);
     }
 
     .product-image-wrap {
@@ -225,7 +223,6 @@
       background: #f4f4f2;
       position: relative;
       overflow: hidden;
-
       cursor: pointer;
     }
 
@@ -247,7 +244,7 @@
       top: 12px;
       right: 12px;
 
-      background: rgba(255,255,255,.92);
+      background: rgba(255, 255, 255, .92);
       color: #111;
 
       padding: 6px 10px;
@@ -359,14 +356,14 @@
     }
 
     /* =========================
-       MODAL
+       PRODUCT MODAL
     ========================== */
 
     .modal {
       position: fixed;
       inset: 0;
 
-      background: rgba(0,0,0,.65);
+      background: rgba(0, 0, 0, .65);
 
       display: none;
       align-items: center;
@@ -546,7 +543,7 @@
       position: fixed;
       inset: 0;
 
-      background: rgba(0,0,0,.55);
+      background: rgba(0, 0, 0, .55);
 
       z-index: 700;
 
@@ -720,7 +717,7 @@
       position: fixed;
       inset: 0;
 
-      background: rgba(0,0,0,.65);
+      background: rgba(0, 0, 0, .65);
 
       z-index: 800;
 
@@ -778,6 +775,7 @@
       outline: none;
 
       font-size: 15px;
+      background: #fff;
     }
 
     .form-group textarea {
@@ -992,39 +990,54 @@
 
 <body>
 
-<!-- =========================
-     HEADER
-========================== -->
-
 <header>
+
   <div class="header-inner">
 
-    <button class="cart-button" onclick="openCart()">
-      <span class="cart-count" id="cartCount">0</span>
-      <span>السلة 🛒</span>
+    <button
+      class="cart-button"
+      onclick="openCart()"
+    >
+      <span
+        class="cart-count"
+        id="cartCount"
+      >
+        0
+      </span>
+
+      <span>
+        السلة 🛒
+      </span>
     </button>
 
-    <a href="#" class="logo">AMO</a>
+    <a
+      href="#"
+      class="logo"
+    >
+      AMO
+    </a>
 
   </div>
+
 </header>
 
 
-<!-- =========================
-     MAIN
-========================== -->
-
 <main>
 
-  <h1 class="page-title">أحدث الحقائب</h1>
+  <h1 class="page-title">
+    أحدث الحقائب
+  </h1>
 
-  <!-- SEARCH -->
+
+  <!-- البحث -->
 
   <div class="search-area">
 
     <div class="search-box">
 
-      <span class="search-icon">🔍</span>
+      <span class="search-icon">
+        🔍
+      </span>
 
       <input
         type="search"
@@ -1043,20 +1056,29 @@
 
     </div>
 
-    <div class="results-count" id="resultsCount"></div>
+    <div
+      class="results-count"
+      id="resultsCount"
+    ></div>
 
   </div>
 
 
-  <!-- PRODUCTS -->
+  <!-- المنتجات -->
 
-  <div class="loading" id="loading">
+  <div
+    class="loading"
+    id="loading"
+  >
 
     <div class="loader"></div>
 
-    <p>جاري تحميل الحقائب...</p>
+    <p>
+      جاري تحميل الحقائب...
+    </p>
 
   </div>
+
 
   <div
     class="products-grid"
@@ -1069,11 +1091,17 @@
     id="emptyProducts"
   >
 
-    <div class="icon">🔍</div>
+    <div class="icon">
+      🔍
+    </div>
 
-    <h3>لم نجد هذا المنتج</h3>
+    <h3>
+      لم نجد هذا المنتج
+    </h3>
 
-    <p>جربي البحث باسم أو رقم آخر.</p>
+    <p>
+      جربي البحث باسم أو رقم آخر.
+    </p>
 
   </div>
 
@@ -1081,8 +1109,8 @@
 
 
 <!-- =========================
-     PRODUCT MODAL
-========================== -->
+     تفاصيل المنتج
+========================= -->
 
 <div
   class="modal"
@@ -1110,8 +1138,8 @@
 
 
 <!-- =========================
-     CART
-========================== -->
+     السلة
+========================= -->
 
 <div
   class="cart-drawer"
@@ -1123,7 +1151,9 @@
 
     <div class="cart-header">
 
-      <h2>سلة المشتريات 🛒</h2>
+      <h2>
+        سلة المشتريات 🛒
+      </h2>
 
       <button
         class="close-cart"
@@ -1134,10 +1164,12 @@
 
     </div>
 
+
     <div
       class="cart-items"
       id="cartItems"
     ></div>
+
 
     <div
       class="cart-footer"
@@ -1150,8 +1182,8 @@
 
 
 <!-- =========================
-     CHECKOUT
-========================== -->
+     الدفع / معلومات التوصيل
+========================= -->
 
 <div
   class="checkout"
@@ -1164,9 +1196,12 @@
       معلومات التوصيل
     </h2>
 
+
     <div class="form-group">
 
-      <label>الاسم الكامل</label>
+      <label>
+        الاسم الكامل
+      </label>
 
       <input
         type="text"
@@ -1176,9 +1211,12 @@
 
     </div>
 
+
     <div class="form-group">
 
-      <label>رقم الهاتف</label>
+      <label>
+        رقم الهاتف
+      </label>
 
       <input
         type="tel"
@@ -1188,13 +1226,18 @@
 
     </div>
 
+
     <div class="form-group">
 
-      <label>المحافظة</label>
+      <label>
+        المحافظة
+      </label>
 
       <select id="customerCity">
 
-        <option value="">اختاري المحافظة</option>
+        <option value="">
+          اختاري المحافظة
+        </option>
 
         <option>عمان</option>
         <option>الزرقاء</option>
@@ -1213,9 +1256,12 @@
 
     </div>
 
+
     <div class="form-group">
 
-      <label>العنوان بالتفصيل</label>
+      <label>
+        العنوان بالتفصيل
+      </label>
 
       <textarea
         id="customerAddress"
@@ -1224,9 +1270,12 @@
 
     </div>
 
+
     <div class="form-group">
 
-      <label>ملاحظات إضافية</label>
+      <label>
+        ملاحظات إضافية
+      </label>
 
       <textarea
         id="customerNotes"
@@ -1235,10 +1284,12 @@
 
     </div>
 
+
     <div
       id="checkoutSummary"
       style="margin-top:20px;"
     ></div>
+
 
     <div class="checkout-actions">
 
@@ -1266,7 +1317,7 @@
 <script>
 
 /* =====================================================
-   SETTINGS
+   الإعدادات
 ===================================================== */
 
 const REPO_OWNER = "llvll0";
@@ -1280,7 +1331,7 @@ const FREE_DELIVERY_FROM = 49;
 
 
 /* =====================================================
-   VARIABLES
+   المتغيرات
 ===================================================== */
 
 let allProducts = [];
@@ -1336,15 +1387,16 @@ function loadCart() {
    IMAGE URL
 ===================================================== */
 
-function makeImageUrl(path, folder = "") {
+function makeImageUrl(
+  path,
+  folder = ""
+) {
 
   if (!path) {
     return "";
   }
 
   path = String(path).trim();
-
-  /* already URL */
 
   if (
     path.startsWith("http://") ||
@@ -1358,28 +1410,23 @@ function makeImageUrl(path, folder = "") {
 
   path = path.replace(/^\/+/, "");
 
-  /*
-    New product:
-    products-new/8/image.jpg
-  */
-
   if (folder) {
 
     return `https://${REPO_OWNER}.github.io/${REPO_NAME}/products-new/${encodeURIComponent(folder)}/${path}`;
 
   }
 
-  /*
-    Old products
-  */
-
-  if (path.startsWith("products/")) {
+  if (
+    path.startsWith("products/")
+  ) {
 
     return `https://${REPO_OWNER}.github.io/${REPO_NAME}/${path}`;
 
   }
 
-  if (path.startsWith("images/")) {
+  if (
+    path.startsWith("images/")
+  ) {
 
     return `https://${REPO_OWNER}.github.io/${REPO_NAME}/${path}`;
 
@@ -1394,7 +1441,10 @@ function makeImageUrl(path, folder = "") {
    NORMALIZE PRODUCT
 ===================================================== */
 
-function normalizeProduct(product, folder = "") {
+function normalizeProduct(
+  product,
+  folder = ""
+) {
 
   if (!product) {
     return null;
@@ -1404,6 +1454,7 @@ function normalizeProduct(product, folder = "") {
     ...product
   };
 
+
   p.id =
     String(
       p.id ??
@@ -1412,12 +1463,15 @@ function normalizeProduct(product, folder = "") {
       ""
     );
 
+
   p.name =
     p.name ||
     `شنطة AMO #${p.id}`;
 
+
   p.price =
     Number(p.price) || 0;
+
 
   p.image =
     p.image ||
@@ -1428,20 +1482,28 @@ function normalizeProduct(product, folder = "") {
         : ""
     );
 
+
   if (!Array.isArray(p.gallery)) {
 
-    p.gallery = p.image
-      ? [p.image]
-      : [];
+    p.gallery =
+      p.image
+        ? [p.image]
+        : [];
 
   }
+
 
   p.gallery =
     p.gallery
       .filter(Boolean)
-      .map(img =>
-        makeImageUrl(img, folder)
+      .map(
+        img =>
+          makeImageUrl(
+            img,
+            folder
+          )
       );
+
 
   p.image =
     makeImageUrl(
@@ -1449,34 +1511,48 @@ function normalizeProduct(product, folder = "") {
       folder
     );
 
-  if (!p.image && p.gallery.length) {
-    p.image = p.gallery[0];
+
+  if (
+    !p.image &&
+    p.gallery.length
+  ) {
+
+    p.image =
+      p.gallery[0];
+
   }
+
 
   if (!Array.isArray(p.colors)) {
     p.colors = [];
   }
 
+
   p.colors =
-    p.colors.map(color => ({
-      ...color,
+    p.colors.map(
+      color => ({
 
-      name:
-        color.name ||
-        "لون",
+        ...color,
 
-      value:
-        color.value ||
-        "#ddd",
+        name:
+          color.name ||
+          "لون",
 
-      image:
-        color.image
-          ? makeImageUrl(
-              color.image,
-              folder
-            )
-          : p.image
-    }));
+        value:
+          color.value ||
+          "#ddd",
+
+        image:
+          color.image
+            ? makeImageUrl(
+                color.image,
+                folder
+              )
+            : p.image
+
+      })
+    );
+
 
   if (!Array.isArray(p.sizes)) {
 
@@ -1487,6 +1563,7 @@ function normalizeProduct(product, folder = "") {
 
   }
 
+
   p.folder = folder;
 
   return p;
@@ -1495,7 +1572,7 @@ function normalizeProduct(product, folder = "") {
 
 
 /* =====================================================
-   LOAD OLD PRODUCTS.JS
+   المنتجات القديمة
 ===================================================== */
 
 async function loadOldProducts() {
@@ -1503,17 +1580,21 @@ async function loadOldProducts() {
   const url =
     `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/products.js?cache=${Date.now()}`;
 
+
   try {
 
     const response =
       await fetch(url);
 
+
     if (!response.ok) {
       return [];
     }
 
+
     const code =
       await response.text();
+
 
     const factory =
       new Function(
@@ -1531,17 +1612,23 @@ async function loadOldProducts() {
         `
       );
 
-    const data = factory();
+
+    const data =
+      factory();
+
 
     if (!Array.isArray(data)) {
       return [];
     }
 
+
     return data
-      .map(product =>
-        normalizeProduct(product)
+      .map(
+        product =>
+          normalizeProduct(product)
       )
       .filter(Boolean);
+
 
   } catch (error) {
 
@@ -1558,7 +1645,7 @@ async function loadOldProducts() {
 
 
 /* =====================================================
-   LOAD NEW PRODUCTS
+   المنتجات الجديدة
 ===================================================== */
 
 async function loadNewProducts() {
@@ -1566,21 +1653,26 @@ async function loadNewProducts() {
   const api =
     `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/products-new?ref=${BRANCH}`;
 
+
   try {
 
     const response =
       await fetch(api);
 
+
     if (!response.ok) {
       return [];
     }
 
+
     const folders =
       await response.json();
+
 
     if (!Array.isArray(folders)) {
       return [];
     }
+
 
     const productFolders =
       folders.filter(
@@ -1588,7 +1680,9 @@ async function loadNewProducts() {
           item.type === "dir"
       );
 
+
     const results = [];
+
 
     for (
       const folder of productFolders
@@ -1598,39 +1692,52 @@ async function loadNewProducts() {
 
         /*
           مهم:
-          لا نضيف ?ref=main هنا
+          لا نضيف ?ref=main
+          إلى folder.url
         */
 
         const folderResponse =
           await fetch(folder.url);
 
+
         if (!folderResponse.ok) {
           continue;
         }
 
+
         const files =
           await folderResponse.json();
+
 
         const productFile =
           files.find(
             file =>
               file.type === "file" &&
-              file.name.toLowerCase() === "product.js"
+              file.name
+                .toLowerCase() ===
+                "product.js"
           );
+
 
         if (!productFile) {
           continue;
         }
 
+
         const productResponse =
-          await fetch(productFile.download_url);
+          await fetch(
+            productFile.download_url
+          );
+
 
         if (!productResponse.ok) {
           continue;
         }
 
+
         const code =
           await productResponse.text();
+
 
         const factory =
           new Function(
@@ -1646,12 +1753,15 @@ async function loadNewProducts() {
             `
           );
 
+
         const product =
           factory();
+
 
         if (!product) {
           continue;
         }
+
 
         const normalized =
           normalizeProduct(
@@ -1659,9 +1769,13 @@ async function loadNewProducts() {
             folder.name
           );
 
+
         if (normalized) {
-          results.push(normalized);
+          results.push(
+            normalized
+          );
         }
+
 
       } catch (error) {
 
@@ -1675,7 +1789,9 @@ async function loadNewProducts() {
 
     }
 
+
     return results;
+
 
   } catch (error) {
 
@@ -1692,13 +1808,16 @@ async function loadNewProducts() {
 
 
 /* =====================================================
-   LOAD ALL PRODUCTS
+   تحميل كل المنتجات
 ===================================================== */
 
 async function loadProducts() {
 
   const loading =
-    document.getElementById("loading");
+    document.getElementById(
+      "loading"
+    );
+
 
   try {
 
@@ -1711,13 +1830,10 @@ async function loadProducts() {
         loadNewProducts()
       ]);
 
-    /*
-      إذا كان نفس ID موجود في القديم والجديد
-      نستخدم الجديد.
-    */
 
     const map =
       new Map();
+
 
     oldProducts.forEach(
       product =>
@@ -1727,6 +1843,7 @@ async function loadProducts() {
         )
     );
 
+
     newProducts.forEach(
       product =>
         map.set(
@@ -1735,12 +1852,12 @@ async function loadProducts() {
         )
     );
 
-    allProducts =
-      Array.from(map.values());
 
-    /*
-      ترتيب الأحدث أولاً
-    */
+    allProducts =
+      Array.from(
+        map.values()
+      );
+
 
     allProducts.sort(
       (a, b) => {
@@ -1756,17 +1873,22 @@ async function loadProducts() {
       }
     );
 
+
     filteredProducts =
       [...allProducts];
+
 
     loading.style.display =
       "none";
 
+
     renderProducts();
+
 
   } catch (error) {
 
     console.error(error);
+
 
     loading.innerHTML = `
       <p>
@@ -1782,7 +1904,7 @@ async function loadProducts() {
 
 
 /* =====================================================
-   RENDER PRODUCTS
+   عرض المنتجات
 ===================================================== */
 
 function renderProducts() {
@@ -1792,22 +1914,27 @@ function renderProducts() {
       "productsGrid"
     );
 
+
   const empty =
     document.getElementById(
       "emptyProducts"
     );
+
 
   const resultsCount =
     document.getElementById(
       "resultsCount"
     );
 
+
   grid.innerHTML = "";
+
 
   resultsCount.textContent =
     filteredProducts.length
       ? `${filteredProducts.length} منتج`
       : "";
+
 
   if (!filteredProducts.length) {
 
@@ -1818,6 +1945,7 @@ function renderProducts() {
 
   }
 
+
   empty.style.display =
     "none";
 
@@ -1826,11 +1954,18 @@ function renderProducts() {
     product => {
 
       const card =
-        document.createElement("article");
+        document.createElement(
+          "article"
+        );
+
 
       card.className =
         "product-card";
 
+
+      /*
+        الألوان
+      */
 
       const colorsHTML =
         product.colors.length
@@ -1845,22 +1980,41 @@ function renderProducts() {
                 (color, index) => `
 
                   <button
+                    type="button"
                     class="color-option ${
                       index === 0
                         ? "active"
                         : ""
                     }"
-                    title="${escapeHTML(color.name)}"
+
+                    title="${escapeHTML(
+                      color.name
+                    )}"
+
+                    data-color-name="${escapeHTML(
+                      color.name
+                    )}"
+
                     style="
-                      background:${escapeHTML(color.value)}
+                      background:${escapeHTML(
+                        color.value
+                      )}
                     "
+
                     onclick="
                       event.stopPropagation();
+
                       changeCardColor(
-                        '${escapeJS(product.id)}',
-                        '${escapeJS(color.image)}',
+                        '${escapeJS(
+                          product.id
+                        )}',
+
+                        '${escapeJS(
+                          color.image
+                        )}',
+
                         this
-                      )
+                      );
                     "
                   ></button>
 
@@ -1892,23 +2046,38 @@ function renderProducts() {
 
         <div
           class="product-image-wrap"
+
           onclick="
             openProductModal(
-              '${escapeJS(product.id)}'
+              '${escapeJS(
+                product.id
+              )}'
             )
           "
         >
 
           <img
             class="product-image"
-            src="${escapeHTML(product.image)}"
-            alt="${escapeHTML(product.name)}"
+
+            src="${escapeHTML(
+              product.image
+            )}"
+
+            alt="${escapeHTML(
+              product.name
+            )}"
+
             loading="lazy"
-            onerror="this.src=''; this.style.background='#eee';"
+
+            onerror="
+              this.style.background='#eee';
+            "
           >
 
           <span class="product-number">
-            #${escapeHTML(product.id)}
+            #${escapeHTML(
+              product.id
+            )}
           </span>
 
         </div>
@@ -1918,23 +2087,32 @@ function renderProducts() {
 
           <div
             class="product-name"
+
             onclick="
               openProductModal(
-                '${escapeJS(product.id)}'
+                '${escapeJS(
+                  product.id
+                )}'
               )
             "
           >
-            ${escapeHTML(product.name)}
+            ${escapeHTML(
+              product.name
+            )}
           </div>
 
 
           <div class="product-price">
-            ${formatPrice(product.price)}
+            ${formatPrice(
+              product.price
+            )}
           </div>
 
 
           <div class="product-meta">
-            ${escapeHTML(meta)}
+            ${escapeHTML(
+              meta
+            )}
           </div>
 
 
@@ -1942,10 +2120,16 @@ function renderProducts() {
 
 
           <button
+            type="button"
             class="add-cart"
+
             onclick="
-              addToCart(
-                '${escapeJS(product.id)}'
+              addToCartFromCard(
+                '${escapeJS(
+                  product.id
+                )}',
+
+                this
               )
             "
           >
@@ -1956,6 +2140,7 @@ function renderProducts() {
 
       `;
 
+
       grid.appendChild(card);
 
     }
@@ -1965,13 +2150,14 @@ function renderProducts() {
 
 
 /* =====================================================
-   SEARCH
+   البحث
 ===================================================== */
 
 const searchInput =
   document.getElementById(
     "searchInput"
   );
+
 
 const clearSearchButton =
   document.getElementById(
@@ -1987,6 +2173,7 @@ searchInput.addEventListener(
       this.value
         .trim()
         .toLowerCase();
+
 
     clearSearchButton.style.display =
       query
@@ -2010,18 +2197,26 @@ searchInput.addEventListener(
                 product.name,
                 product.id,
                 product.number,
+
                 ...(product.colors || [])
-                  .map(c => c.name)
+                  .map(
+                    c =>
+                      c.name
+                  )
               ]
               .join(" ")
               .toLowerCase();
 
-            return text.includes(query);
+
+            return text.includes(
+              query
+            );
 
           }
         );
 
     }
+
 
     renderProducts();
 
@@ -2036,10 +2231,13 @@ function clearSearch() {
   clearSearchButton.style.display =
     "none";
 
+
   filteredProducts =
     [...allProducts];
 
+
   renderProducts();
+
 
   searchInput.focus();
 
@@ -2047,7 +2245,7 @@ function clearSearch() {
 
 
 /* =====================================================
-   CARD COLOR
+   اختيار اللون من بطاقة المنتج
 ===================================================== */
 
 function changeCardColor(
@@ -2061,23 +2259,45 @@ function changeCardColor(
       ".product-card"
     );
 
+
+  if (!card) {
+    return;
+  }
+
+
   const img =
     card.querySelector(
       ".product-image"
     );
 
-  img.src = image;
+
+  if (img) {
+    img.src = image;
+  }
+
+
+  /*
+    إزالة التحديد
+  */
 
   card
     .querySelectorAll(
       ".color-option"
     )
     .forEach(
-      item =>
+      item => {
+
         item.classList.remove(
           "active"
-        )
+        );
+
+      }
     );
+
+
+  /*
+    تحديد اللون الجديد
+  */
 
   button.classList.add(
     "active"
@@ -2087,7 +2307,100 @@ function changeCardColor(
 
 
 /* =====================================================
-   PRODUCT MODAL
+   إضافة المنتج من البطاقة
+   مع اللون المحدد
+===================================================== */
+
+function addToCartFromCard(
+  productId,
+  button
+) {
+
+  const card =
+    button.closest(
+      ".product-card"
+    );
+
+
+  if (!card) {
+    return;
+  }
+
+
+  const product =
+    allProducts.find(
+      p =>
+        String(p.id) ===
+        String(productId)
+    );
+
+
+  if (!product) {
+    return;
+  }
+
+
+  let selectedColor =
+    null;
+
+
+  /*
+    نبحث عن دائرة اللون
+    التي عليها active
+  */
+
+  const activeColor =
+    card.querySelector(
+      ".color-option.active"
+    );
+
+
+  if (activeColor) {
+
+    const colorName =
+      activeColor.dataset.colorName;
+
+
+    selectedColor =
+      product.colors.find(
+        color =>
+          String(color.name) ===
+          String(colorName)
+      );
+
+  }
+
+
+  /*
+    إذا لم يكن للمنتج ألوان
+    لا مشكلة
+  */
+
+  if (
+    !selectedColor &&
+    product.colors.length
+  ) {
+
+    selectedColor =
+      product.colors[0];
+
+  }
+
+
+  /*
+    إضافة اللون المختار
+  */
+
+  addToCart(
+    productId,
+    selectedColor
+  );
+
+}
+
+
+/* =====================================================
+   تفاصيل المنتج
 ===================================================== */
 
 function openProductModal(id) {
@@ -2099,12 +2412,15 @@ function openProductModal(id) {
         String(id)
     );
 
+
   if (!product) {
     return;
   }
 
+
   selectedProduct =
     product;
+
 
   selectedColor =
     product.colors.length
@@ -2114,11 +2430,15 @@ function openProductModal(id) {
 
   renderProductModal();
 
+
   document
     .getElementById(
       "productModal"
     )
-    .classList.add("show");
+    .classList.add(
+      "show"
+    );
+
 
   document.body.style.overflow =
     "hidden";
@@ -2126,10 +2446,15 @@ function openProductModal(id) {
 }
 
 
+/* =====================================================
+   عرض تفاصيل المنتج
+===================================================== */
+
 function renderProductModal() {
 
   const product =
     selectedProduct;
+
 
   const modalContent =
     document.getElementById(
@@ -2143,18 +2468,27 @@ function renderProductModal() {
       : [product.image];
 
 
+  const firstImage =
+    selectedColor?.image ||
+    product.image;
+
+
   modalContent.innerHTML = `
 
     <div>
 
       <img
         id="modalMainImage"
+
         class="modal-main-image"
+
         src="${escapeHTML(
-          selectedColor?.image ||
-          product.image
+          firstImage
         )}"
-        alt="${escapeHTML(product.name)}"
+
+        alt="${escapeHTML(
+          product.name
+        )}"
       >
 
 
@@ -2164,14 +2498,26 @@ function renderProductModal() {
           (image, index) => `
 
             <img
-              src="${escapeHTML(image)}"
-              class="${index === 0 ? "active" : ""}"
+              src="${escapeHTML(
+                image
+              )}"
+
+              class="${
+                index === 0
+                  ? "active"
+                  : ""
+              }"
+
               onclick="
                 changeModalImage(
-                  '${escapeJS(image)}',
+                  '${escapeJS(
+                    image
+                  )}',
+
                   this
                 )
               "
+
               alt=""
             >
 
@@ -2186,12 +2532,20 @@ function renderProductModal() {
     <div class="modal-info">
 
       <div class="modal-name">
-        ${escapeHTML(product.name)}
+
+        ${escapeHTML(
+          product.name
+        )}
+
       </div>
 
 
       <div class="modal-price">
-        ${formatPrice(product.price)}
+
+        ${formatPrice(
+          product.price
+        )}
+
       </div>
 
 
@@ -2205,9 +2559,11 @@ function renderProductModal() {
               </span>
 
               <span class="detail-value">
+
                 ${escapeHTML(
                   product.sizes.join("، ")
                 )}
+
               </span>
 
             </div>
@@ -2226,9 +2582,11 @@ function renderProductModal() {
               </span>
 
               <span class="detail-value">
+
                 ${escapeHTML(
                   product.dimensions
                 )}
+
               </span>
 
             </div>
@@ -2247,17 +2605,21 @@ function renderProductModal() {
                 اختاري اللون
               </h4>
 
+
               <div>
 
                 ${product.colors.map(
                   (color, index) => `
 
                     <button
+                      type="button"
+
                       class="modal-color ${
                         index === 0
                           ? "active"
                           : ""
                       }"
+
                       onclick="
                         selectModalColor(
                           ${index},
@@ -2268,6 +2630,7 @@ function renderProductModal() {
 
                       <span
                         class="modal-color-dot"
+
                         style="
                           background:${escapeHTML(
                             color.value
@@ -2294,7 +2657,9 @@ function renderProductModal() {
 
 
       <button
+        type="button"
         class="modal-add"
+
         onclick="
           addSelectedProductToCart()
         "
@@ -2309,6 +2674,10 @@ function renderProductModal() {
 }
 
 
+/* =====================================================
+   صورة تفاصيل المنتج
+===================================================== */
+
 function changeModalImage(
   image,
   element
@@ -2319,6 +2688,7 @@ function changeModalImage(
       "modalMainImage"
     )
     .src = image;
+
 
   document
     .querySelectorAll(
@@ -2331,6 +2701,7 @@ function changeModalImage(
         )
     );
 
+
   element.classList.add(
     "active"
   );
@@ -2338,13 +2709,20 @@ function changeModalImage(
 }
 
 
+/* =====================================================
+   اختيار اللون من التفاصيل
+===================================================== */
+
 function selectModalColor(
   index,
   button
 ) {
 
   selectedColor =
-    selectedProduct.colors[index];
+    selectedProduct.colors[
+      index
+    ];
+
 
   document
     .getElementById(
@@ -2353,6 +2731,7 @@ function selectModalColor(
     .src =
       selectedColor.image ||
       selectedProduct.image;
+
 
   document
     .querySelectorAll(
@@ -2365,6 +2744,7 @@ function selectModalColor(
         )
     );
 
+
   button.classList.add(
     "active"
   );
@@ -2372,23 +2752,34 @@ function selectModalColor(
 }
 
 
+/* =====================================================
+   إضافة المنتج المختار من التفاصيل
+===================================================== */
+
 function addSelectedProductToCart() {
 
   if (!selectedProduct) {
     return;
   }
 
+
   addToCart(
     selectedProduct.id,
     selectedColor
   );
 
+
   closeProductModal();
+
 
   openCart();
 
 }
 
+
+/* =====================================================
+   إغلاق التفاصيل
+===================================================== */
 
 function closeProductModal() {
 
@@ -2396,7 +2787,10 @@ function closeProductModal() {
     .getElementById(
       "productModal"
     )
-    .classList.remove("show");
+    .classList.remove(
+      "show"
+    );
+
 
   document.body.style.overflow =
     "";
@@ -2404,7 +2798,9 @@ function closeProductModal() {
 }
 
 
-function closeModalOutside(event) {
+function closeModalOutside(
+  event
+) {
 
   if (
     event.target.id ===
@@ -2419,7 +2815,7 @@ function closeModalOutside(event) {
 
 
 /* =====================================================
-   CART
+   إضافة للسلة
 ===================================================== */
 
 function addToCart(
@@ -2434,29 +2830,43 @@ function addToCart(
         String(productId)
     );
 
+
   if (!product) {
     return;
   }
 
 
+  /*
+    اللون المختار
+  */
+
   const colorName =
     color?.name ||
-    product.colors?.[0]?.name ||
     "";
+
 
   const colorImage =
     color?.image ||
-    product.colors?.[0]?.image ||
     product.image;
 
+
+  /*
+    نفس المنتج + نفس اللون
+    = نفس السطر وزيادة الكمية
+  */
 
   const existing =
     cart.find(
       item =>
         String(item.id) ===
-        String(product.id) &&
-        String(item.color || "") ===
-        String(colorName || "")
+          String(product.id) &&
+
+        String(
+          item.color || ""
+        ) ===
+          String(
+            colorName || ""
+          )
     );
 
 
@@ -2492,34 +2902,53 @@ function addToCart(
 }
 
 
+/* =====================================================
+   عدد السلة
+===================================================== */
+
 function updateCartCount() {
 
   const count =
     cart.reduce(
-      (sum, item) =>
+      (
+        sum,
+        item
+      ) =>
         sum +
-        Number(item.quantity || 0),
+        Number(
+          item.quantity || 0
+        ),
       0
     );
+
 
   document
     .getElementById(
       "cartCount"
     )
-    .textContent = count;
+    .textContent =
+      count;
 
 }
 
+
+/* =====================================================
+   فتح السلة
+===================================================== */
 
 function openCart() {
 
   renderCart();
 
+
   document
     .getElementById(
       "cartDrawer"
     )
-    .classList.add("show");
+    .classList.add(
+      "show"
+    );
+
 
   document.body.style.overflow =
     "hidden";
@@ -2527,13 +2956,20 @@ function openCart() {
 }
 
 
+/* =====================================================
+   إغلاق السلة
+===================================================== */
+
 function closeCart() {
 
   document
     .getElementById(
       "cartDrawer"
     )
-    .classList.remove("show");
+    .classList.remove(
+      "show"
+    );
+
 
   document.body.style.overflow =
     "";
@@ -2541,7 +2977,9 @@ function closeCart() {
 }
 
 
-function closeCartOutside(event) {
+function closeCartOutside(
+  event
+) {
 
   if (
     event.target.id ===
@@ -2555,6 +2993,10 @@ function closeCartOutside(event) {
 }
 
 
+/* =====================================================
+   الكمية
+===================================================== */
+
 function changeQuantity(
   index,
   amount
@@ -2564,15 +3006,22 @@ function changeQuantity(
     return;
   }
 
-  cart[index].quantity += amount;
+
+  cart[index].quantity +=
+    amount;
+
 
   if (
     cart[index].quantity <= 0
   ) {
 
-    cart.splice(index, 1);
+    cart.splice(
+      index,
+      1
+    );
 
   }
+
 
   saveCart();
 
@@ -2583,13 +3032,20 @@ function changeQuantity(
 }
 
 
-function removeCartItem(index) {
+/* =====================================================
+   حذف منتج من السلة
+===================================================== */
+
+function removeCartItem(
+  index
+) {
 
   cart.splice(
     index,
     1
   );
 
+
   saveCart();
 
   updateCartCount();
@@ -2599,10 +3055,17 @@ function removeCartItem(index) {
 }
 
 
+/* =====================================================
+   المجموع
+===================================================== */
+
 function calculateSubtotal() {
 
   return cart.reduce(
-    (sum, item) =>
+    (
+      sum,
+      item
+    ) =>
       sum +
       (
         Number(item.price) *
@@ -2613,6 +3076,10 @@ function calculateSubtotal() {
 
 }
 
+
+/* =====================================================
+   التوصيل
+===================================================== */
 
 function calculateDelivery(
   subtotal
@@ -2626,12 +3093,17 @@ function calculateDelivery(
 }
 
 
+/* =====================================================
+   عرض السلة
+===================================================== */
+
 function renderCart() {
 
   const container =
     document.getElementById(
       "cartItems"
     );
+
 
   const footer =
     document.getElementById(
@@ -2645,7 +3117,12 @@ function renderCart() {
 
       <div class="empty-cart">
 
-        <div style="font-size:45px;">
+        <div
+          style="
+            font-size:45px;
+            margin-bottom:15px;
+          "
+        >
           🛒
         </div>
 
@@ -2657,6 +3134,7 @@ function renderCart() {
 
     `;
 
+
     footer.innerHTML = "";
 
     return;
@@ -2666,13 +3144,20 @@ function renderCart() {
 
   container.innerHTML =
     cart.map(
-      (item, index) => `
+      (
+        item,
+        index
+      ) => `
 
         <div class="cart-item">
 
           <img
             class="cart-item-image"
-            src="${escapeHTML(item.image)}"
+
+            src="${escapeHTML(
+              item.image
+            )}"
+
             alt=""
           >
 
@@ -2680,7 +3165,11 @@ function renderCart() {
           <div class="cart-item-info">
 
             <div class="cart-item-name">
-              ${escapeHTML(item.name)}
+
+              ${escapeHTML(
+                item.name
+              )}
+
             </div>
 
 
@@ -2688,7 +3177,12 @@ function renderCart() {
               item.color
                 ? `
                   <div class="cart-item-color">
-                    اللون: ${escapeHTML(item.color)}
+
+                    اللون:
+                    ${escapeHTML(
+                      item.color
+                    )}
+
                   </div>
                 `
                 : ""
@@ -2696,13 +3190,18 @@ function renderCart() {
 
 
             <div class="cart-item-price">
-              ${formatPrice(item.price)}
+
+              ${formatPrice(
+                item.price
+              )}
+
             </div>
 
 
             <div class="quantity">
 
               <button
+                type="button"
                 onclick="
                   changeQuantity(
                     ${index},
@@ -2713,11 +3212,14 @@ function renderCart() {
                 −
               </button>
 
+
               <span>
                 ${item.quantity}
               </span>
 
+
               <button
+                type="button"
                 onclick="
                   changeQuantity(
                     ${index},
@@ -2732,7 +3234,9 @@ function renderCart() {
 
 
             <button
+              type="button"
               class="remove-item"
+
               onclick="
                 removeCartItem(
                   ${index}
@@ -2754,13 +3258,16 @@ function renderCart() {
   const subtotal =
     calculateSubtotal();
 
+
   const delivery =
     calculateDelivery(
       subtotal
     );
 
+
   const total =
-    subtotal + delivery;
+    subtotal +
+    delivery;
 
 
   footer.innerHTML = `
@@ -2772,7 +3279,9 @@ function renderCart() {
       </span>
 
       <strong>
-        ${formatPrice(subtotal)}
+        ${formatPrice(
+          subtotal
+        )}
       </strong>
 
     </div>
@@ -2785,24 +3294,32 @@ function renderCart() {
       </span>
 
       <strong>
+
         ${
           delivery === 0
             ? "مجاني"
-            : formatPrice(delivery)
+            : formatPrice(
+                delivery
+              )
         }
+
       </strong>
 
     </div>
 
 
-    <div class="summary-row summary-total">
+    <div
+      class="summary-row summary-total"
+    >
 
       <span>
         الإجمالي
       </span>
 
       <span>
-        ${formatPrice(total)}
+        ${formatPrice(
+          total
+        )}
       </span>
 
     </div>
@@ -2828,8 +3345,12 @@ function renderCart() {
 
 
     <button
+      type="button"
       class="checkout-button"
-      onclick="openCheckout()"
+
+      onclick="
+        openCheckout()
+      "
     >
       متابعة الطلب
     </button>
@@ -2840,7 +3361,7 @@ function renderCart() {
 
 
 /* =====================================================
-   CHECKOUT
+   صفحة معلومات التوصيل
 ===================================================== */
 
 function openCheckout() {
@@ -2849,15 +3370,21 @@ function openCheckout() {
     return;
   }
 
+
   closeCart();
 
+
   renderCheckoutSummary();
+
 
   document
     .getElementById(
       "checkoutModal"
     )
-    .classList.add("show");
+    .classList.add(
+      "show"
+    );
+
 
   document.body.style.overflow =
     "hidden";
@@ -2871,13 +3398,20 @@ function closeCheckout() {
     .getElementById(
       "checkoutModal"
     )
-    .classList.remove("show");
+    .classList.remove(
+      "show"
+    );
+
 
   document.body.style.overflow =
     "";
 
 }
 
+
+/* =====================================================
+   ملخص الطلب
+===================================================== */
 
 function renderCheckoutSummary() {
 
@@ -2886,16 +3420,20 @@ function renderCheckoutSummary() {
       "checkoutSummary"
     );
 
+
   const subtotal =
     calculateSubtotal();
+
 
   const delivery =
     calculateDelivery(
       subtotal
     );
 
+
   const total =
-    subtotal + delivery;
+    subtotal +
+    delivery;
 
 
   container.innerHTML = `
@@ -2915,7 +3453,9 @@ function renderCheckoutSummary() {
         </span>
 
         <strong>
-          ${formatPrice(subtotal)}
+          ${formatPrice(
+            subtotal
+          )}
         </strong>
 
       </div>
@@ -2928,11 +3468,15 @@ function renderCheckoutSummary() {
         </span>
 
         <strong>
+
           ${
             delivery === 0
               ? "مجاني"
-              : formatPrice(delivery)
+              : formatPrice(
+                  delivery
+                )
           }
+
         </strong>
 
       </div>
@@ -2940,6 +3484,7 @@ function renderCheckoutSummary() {
 
       <div
         class="summary-row"
+
         style="
           font-size:19px;
           font-weight:900;
@@ -2952,7 +3497,9 @@ function renderCheckoutSummary() {
         </span>
 
         <span>
-          ${formatPrice(total)}
+          ${formatPrice(
+            total
+          )}
         </span>
 
       </div>
@@ -2965,7 +3512,7 @@ function renderCheckoutSummary() {
 
 
 /* =====================================================
-   SEND WHATSAPP ORDER
+   إرسال الطلب إلى واتساب
 ===================================================== */
 
 function sendOrder() {
@@ -3067,39 +3614,56 @@ function sendOrder() {
   const subtotal =
     calculateSubtotal();
 
+
   const delivery =
     calculateDelivery(
       subtotal
     );
 
+
   const total =
-    subtotal + delivery;
+    subtotal +
+    delivery;
 
 
   let message =
     "👜 *طلب جديد من متجر AMO*%0A";
+
 
   message +=
     "━━━━━━━━━━━━━━%0A";
 
 
   message +=
-    `👤 الاسم: ${encodeURIComponent(name)}%0A`;
+    `👤 الاسم: ${encodeURIComponent(
+      name
+    )}%0A`;
+
 
   message +=
-    `📱 الهاتف: ${encodeURIComponent(phone)}%0A`;
+    `📱 الهاتف: ${encodeURIComponent(
+      phone
+    )}%0A`;
+
 
   message +=
-    `📍 المحافظة: ${encodeURIComponent(city)}%0A`;
+    `📍 المحافظة: ${encodeURIComponent(
+      city
+    )}%0A`;
+
 
   message +=
-    `🏠 العنوان: ${encodeURIComponent(address)}%0A`;
+    `🏠 العنوان: ${encodeURIComponent(
+      address
+    )}%0A`;
 
 
   if (notes) {
 
     message +=
-      `📝 الملاحظات: ${encodeURIComponent(notes)}%0A`;
+      `📝 الملاحظات: ${encodeURIComponent(
+        notes
+      )}%0A`;
 
   }
 
@@ -3109,20 +3673,30 @@ function sendOrder() {
 
 
   cart.forEach(
-    (item, index) => {
+    (
+      item,
+      index
+    ) => {
 
       message +=
-        `${index + 1}. ${encodeURIComponent(item.name)}%0A`;
+        `${index + 1}. ${encodeURIComponent(
+          item.name
+        )}%0A`;
+
 
       message +=
         `   الكمية: ${item.quantity}%0A`;
 
+
       if (item.color) {
 
         message +=
-          `   اللون: ${encodeURIComponent(item.color)}%0A`;
+          `   اللون: ${encodeURIComponent(
+            item.color
+          )}%0A`;
 
       }
+
 
       message +=
         `   السعر: ${item.price} د.أ%0A`;
@@ -3136,19 +3710,24 @@ function sendOrder() {
 
 
   message +=
-    `💰 المجموع: ${subtotal.toFixed(2)} د.أ%0A`;
+    `💰 المجموع: ${subtotal.toFixed(
+      2
+    )} د.أ%0A`;
 
 
   message +=
     `🚚 التوصيل: ${
       delivery === 0
         ? "مجاني"
-        : delivery.toFixed(2) + " د.أ"
+        : delivery.toFixed(2) +
+          " د.أ"
     }%0A`;
 
 
   message +=
-    `💵 *الإجمالي: ${total.toFixed(2)} د.أ*%0A`;
+    `💵 *الإجمالي: ${total.toFixed(
+      2
+    )} د.أ*%0A`;
 
 
   const whatsappURL =
@@ -3164,10 +3743,12 @@ function sendOrder() {
 
 
 /* =====================================================
-   HELPERS
+   أدوات مساعدة
 ===================================================== */
 
-function formatPrice(price) {
+function formatPrice(
+  price
+) {
 
   return `
     ${Number(price).toFixed(2)}
@@ -3177,46 +3758,86 @@ function formatPrice(price) {
 }
 
 
-function escapeHTML(value) {
+function escapeHTML(
+  value
+) {
 
-  if (value === null ||
-      value === undefined) {
+  if (
+    value === null ||
+    value === undefined
+  ) {
 
     return "";
 
   }
 
+
   return String(value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+    .replace(
+      /</g,
+      "&lt;"
+    )
+    .replace(
+      />/g,
+      "&gt;"
+    )
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
 
-function escapeJS(value) {
+function escapeJS(
+  value
+) {
 
-  if (value === null ||
-      value === undefined) {
+  if (
+    value === null ||
+    value === undefined
+  ) {
 
     return "";
 
   }
 
+
   return String(value)
-    .replace(/\\/g, "\\\\")
-    .replace(/'/g, "\\'")
-    .replace(/"/g, '\\"')
-    .replace(/\n/g, "\\n")
-    .replace(/\r/g, "\\r");
+    .replace(
+      /\\/g,
+      "\\\\"
+    )
+    .replace(
+      /'/g,
+      "\\'"
+    )
+    .replace(
+      /"/g,
+      '\\"'
+    )
+    .replace(
+      /\n/g,
+      "\\n"
+    )
+    .replace(
+      /\r/g,
+      "\\r"
+    );
 
 }
 
 
 /* =====================================================
-   START
+   تشغيل الموقع
 ===================================================== */
 
 loadCart();
