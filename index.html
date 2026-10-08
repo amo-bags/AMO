@@ -43,6 +43,39 @@ header{
   background:#fff;color:#111;border-radius:999px;font-size:12px;font-weight:900;
 }
 
+/* إضافات البحث والطلبات السابقة فقط */
+.extra-btn{
+  border:1px solid #ddd8d0;background:#fff;color:#111;
+  border-radius:999px;padding:10px 12px;font-weight:700;white-space:nowrap;
+}
+.search-input{
+  width:100%;border:1px solid #ddd;border-radius:11px;padding:13px;
+  outline:none;margin-bottom:10px;background:#fff;
+}
+.search-results{display:grid;gap:8px}
+.search-result{
+  display:flex;align-items:center;gap:10px;padding:9px;
+  border:1px solid #eee;border-radius:12px;background:#fff;cursor:pointer;
+}
+.search-result img{
+  width:62px;height:68px;object-fit:cover;border-radius:9px;flex:0 0 62px;
+}
+.search-result-info{flex:1;min-width:0}
+.search-result-name{font-weight:800;margin-bottom:4px}
+.search-result-meta{color:#777;font-size:12px}
+.orders-empty{text-align:center;color:#777;padding:35px 10px;line-height:2}
+.previous-order{
+  border:1px solid #eee;border-radius:14px;padding:12px;margin-bottom:10px;background:#fff;
+}
+.previous-order-head{
+  display:flex;justify-content:space-between;gap:10px;font-weight:800;margin-bottom:8px;
+}
+.previous-order-date{color:#777;font-size:11px}
+.previous-order-items{color:#555;font-size:13px;line-height:1.8}
+.previous-order-total{
+  border-top:1px solid #eee;margin-top:8px;padding-top:8px;font-weight:900;
+}
+
 .hero{
   max-width:1200px;margin:16px auto;padding:54px 18px;
   background:#e9e2d8;border-radius:22px;text-align:center;
@@ -273,6 +306,7 @@ footer{text-align:center;color:#777;padding:40px 15px}
   .header{padding:10px 12px}
   .logo{font-size:25px}
   .top-btn{padding:9px 11px}
+  .extra-btn{padding:8px 8px;font-size:11px}
   .hero{margin:10px 10px 18px;padding:38px 14px}
   .hero h1{font-size:26px}
   .section{padding:0 10px;margin-top:26px}
@@ -302,9 +336,23 @@ footer{text-align:center;color:#777;padding:40px 15px}
 <header>
   <div class="header">
     <div class="logo">AMO</div>
+
     <div class="header-actions">
-      <button class="top-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">المنتجات</button>
-      <button class="top-btn cart-btn" onclick="openCart()">🛒 السلة <span class="cart-count">0</span></button>
+      <button class="top-btn" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+        المنتجات
+      </button>
+
+      <button class="extra-btn" onclick="openSearch()">
+        🔎 بحث
+      </button>
+
+      <button class="extra-btn" onclick="openPreviousOrders()">
+        📦 طلباتي
+      </button>
+
+      <button class="top-btn cart-btn" onclick="openCart()">
+        🛒 السلة <span class="cart-count">0</span>
+      </button>
     </div>
   </div>
 </header>
@@ -384,6 +432,40 @@ footer{text-align:center;color:#777;padding:40px 15px}
   <div id="reviewBox" class="modal-box"></div>
 </div>
 
+<!-- البحث -->
+<div id="searchModal" class="modal">
+  <div class="modal-box">
+    <button class="close" onclick="closeSearch()">×</button>
+
+    <div class="modal-title">🔎 البحث عن شنطة</div>
+    <div class="modal-sub">ابحثي برقم الموديل أو اسم الشنطة أو اللون</div>
+
+    <input
+      id="searchInput"
+      class="search-input"
+      type="search"
+      placeholder="مثلاً: 3 أو AMO #3 أو أسود"
+      oninput="searchProducts()"
+    >
+
+    <div id="searchResults" class="search-results">
+      <div class="orders-empty">ابدئي بكتابة اسم أو رقم الموديل</div>
+    </div>
+  </div>
+</div>
+
+<!-- الطلبات السابقة -->
+<div id="ordersModal" class="modal">
+  <div class="modal-box">
+    <button class="close" onclick="closePreviousOrders()">×</button>
+
+    <div class="modal-title">📦 طلباتي السابقة</div>
+    <div class="modal-sub">الطلبات المحفوظة على هذا الجهاز</div>
+
+    <div id="previousOrders"></div>
+  </div>
+</div>
+
 <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
   <button class="lb lb-close" onclick="closeLightbox()">×</button>
   <button class="lb lb-prev" onclick="prevLightbox(event)">‹</button>
@@ -392,11 +474,6 @@ footer{text-align:center;color:#777;padding:40px 15px}
 </div>
 
 <script>
-/*
-  IMPORTANT:
-  لا يوجد اعتماد على GitHub API هنا.
-  لإضافة منتج جديد لاحقاً: أضيفي فقط مسار product.js الجديد إلى PRODUCT_FILES.
-*/
 const PRODUCT_FILES = [
   "products-new/1/product.js",
   "products-new/12/product.js",
@@ -410,6 +487,7 @@ window.AMO_PRODUCTS = window.AMO_PRODUCTS || [];
 
 const WHATSAPP = "962790780914";
 const CART_KEY = "amo_cart_v4";
+const ORDERS_KEY = "amo_previous_orders_v1";
 
 let products = [];
 let cart = [];
@@ -433,23 +511,36 @@ function jsesc(v){
 function absoluteImage(path, basePath){
   if(!path) return "";
   if(/^https?:\/\//i.test(path)) return path;
-  const base = basePath.replace(/\/[^\/]+$/,"/");
-  return new URL(path.replace(/^\/+/,""), location.origin + location.pathname.replace(/\/[^\/]*$/,"/") + base).href;
+
+  const cleanBase = basePath.endsWith("/")
+    ? basePath
+    : basePath.substring(0,basePath.lastIndexOf("/")+1);
+
+  return new URL(
+    path.replace(/^\/+/,""),
+    new URL(cleanBase,location.href)
+  ).href;
 }
 
-function normalizeProduct(p, filePath){
+function normalizeProduct(p,filePath){
   const base = filePath.substring(0,filePath.lastIndexOf("/")+1);
-  p.image = absoluteImage(p.image, base);
+
+  p.image = absoluteImage(p.image,base);
+
   if(Array.isArray(p.gallery)){
     p.gallery = p.gallery.map(x=>absoluteImage(x,base));
   }
+
   if(Array.isArray(p.colors)){
     p.colors = p.colors.map(c=>({
       ...c,
       image:absoluteImage(c.image,base),
-      gallery:Array.isArray(c.gallery)?c.gallery.map(x=>absoluteImage(x,base)):null
+      gallery:Array.isArray(c.gallery)
+        ? c.gallery.map(x=>absoluteImage(x,base))
+        : null
     }));
   }
+
   return p;
 }
 
@@ -463,7 +554,7 @@ function loadCart(){
 }
 
 function saveCart(){
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  localStorage.setItem(CART_KEY,JSON.stringify(cart));
 }
 
 async function loadProducts(){
@@ -472,14 +563,11 @@ async function loadProducts(){
   try{
     const loaded = await Promise.all(PRODUCT_FILES.map(async file=>{
       try{
-        const response = await fetch(file, {cache:"no-store"});
+        const response = await fetch(file,{cache:"no-store"});
         if(!response.ok) throw new Error("HTTP "+response.status);
 
         const source = await response.text();
 
-        // Supports both product formats:
-        // 1) const product = {...}
-        // 2) window.AMO_PRODUCTS.push({...})
         const before = Array.isArray(window.AMO_PRODUCTS)
           ? window.AMO_PRODUCTS.length
           : 0;
@@ -491,7 +579,7 @@ async function loadProducts(){
             source + "\nreturn (typeof product !== 'undefined' ? product : null);"
           )();
         }catch(e){
-          console.error("Product module error:", file, e);
+          console.error("Product module error:",file,e);
         }
 
         if(product && product.id){
@@ -503,15 +591,17 @@ async function loadProducts(){
           : [];
 
         if(list.length > before){
-          const added = list[list.length - 1];
+          const added = list[list.length-1];
+
           return added && added.id
             ? normalizeProduct(added,file)
             : null;
         }
 
         return null;
+
       }catch(error){
-        console.error("Product load error:", file, error);
+        console.error("Product load error:",file,error);
         return null;
       }
     }));
@@ -524,8 +614,10 @@ async function loadProducts(){
 
     renderProducts();
     renderCart();
+
   }catch(error){
     console.error(error);
+
     grid.innerHTML = `
       <p style="grid-column:1/-1;text-align:center;padding:35px">
         تعذر تحميل المنتجات. حاولي تحديث الصفحة.
@@ -534,146 +626,284 @@ async function loadProducts(){
 }
 
 function getGallery(p,colorIndex=null){
-  if(colorIndex !== null && p.colors?.[colorIndex]?.gallery?.length){
+
+  if(
+    colorIndex !== null &&
+    p.colors?.[colorIndex]?.gallery?.length
+  ){
     return p.colors[colorIndex].gallery;
   }
-  if(colorIndex !== null && p.colors?.[colorIndex]?.image){
+
+  if(
+    colorIndex !== null &&
+    p.colors?.[colorIndex]?.image
+  ){
     const selected = p.colors[colorIndex].image;
-    return [selected,...(p.gallery||[]).filter(x=>x!==selected)];
+
+    return [
+      selected,
+      ...(p.gallery || []).filter(x=>x!==selected)
+    ];
   }
-  return p.gallery?.length ? p.gallery : [p.image];
+
+  return p.gallery?.length
+    ? p.gallery
+    : [p.image];
 }
 
 function selectedColorIndex(id){
-  const buttons = [...document.querySelectorAll(`#colors-${CSS.escape(id)} .option`)];
-  const index = buttons.findIndex(x=>x.classList.contains("selected"));
-  return index < 0 ? 0 : index;
-}
+  const buttons = [
+    ...document.querySelectorAll(
+      `#colors-${CSS.escape(id)} .color-dot`
+    )
+  ];
 
-function selectedSizeIndex(id){
-  const buttons = [...document.querySelectorAll(`#sizes-${CSS.escape(id)} .option`)];
-  const index = buttons.findIndex(x=>x.classList.contains("selected"));
+  const index = buttons.findIndex(
+    x=>x.classList.contains("selected")
+  );
+
   return index < 0 ? 0 : index;
 }
 
 function renderProducts(){
+
   const grid = document.getElementById("productsGrid");
 
   grid.innerHTML = products.map(p=>{
+
     const colors = p.colors || [];
     const gallery = getGallery(p);
     const first = p.image || gallery[0];
 
     return `
       <article class="card" data-id="${esc(p.id)}">
+
         <div class="card-image-wrap">
-          <img class="card-image"
-               id="main-${esc(p.id)}"
-               src="${esc(first)}"
-               alt="${esc(p.name)}"
-               loading="lazy"
-               onclick="openProductDetails('${jsesc(p.id)}')">
-          <span class="image-badge">اضغطي للتفاصيل</span>
+
+          <img
+            class="card-image"
+            id="main-${esc(p.id)}"
+            src="${esc(first)}"
+            alt="${esc(p.name)}"
+            loading="lazy"
+            onclick="openProductDetails('${jsesc(p.id)}')"
+          >
+
+          <span class="image-badge">
+            اضغطي للتفاصيل
+          </span>
+
         </div>
 
         <div class="thumbs">
+
           ${gallery.map((im,i)=>`
-            <img src="${esc(im)}"
-                 class="${i===0?'active':''}"
-                 loading="lazy"
-                 onclick="changeCardImage('${jsesc(p.id)}',${i})"
-                 alt="">
+
+            <img
+              src="${esc(im)}"
+              class="${i===0?'active':''}"
+              loading="lazy"
+              onclick="changeCardImage('${jsesc(p.id)}',${i})"
+              alt=""
+            >
+
           `).join("")}
+
         </div>
 
         <div class="info">
-          <div class="name">${esc(p.name)}</div>
-          <div class="price">${Number(p.price).toFixed(2)} د.أ</div>
+
+          <div class="name">
+            ${esc(p.name)}
+          </div>
+
+          <div class="price">
+            ${Number(p.price).toFixed(2)} د.أ
+          </div>
 
           <div class="details">
-            ${p.size ? `الحجم: ${esc(p.size)}<br>` : ""}
-            ${p.dimensions ? `الأبعاد: ${esc(p.dimensions)}` : ""}
+
+            ${p.size
+              ? `الحجم: ${esc(p.size)}<br>`
+              : ""}
+
+            ${p.dimensions
+              ? `الأبعاد: ${esc(p.dimensions)}`
+              : ""}
+
           </div>
 
           ${colors.length ? `
-            <div class="color-row" id="colors-${esc(p.id)}">
+
+            <div
+              class="color-row"
+              id="colors-${esc(p.id)}"
+            >
+
               ${colors.map((c,i)=>`
-                <button class="color-dot ${i===0?'selected':''}"
-                        title="${esc(c.name)}"
-                        style="background:${esc(c.value||'#ccc')}"
-                        onclick="selectCardColor('${jsesc(p.id)}',${i})"></button>
+
+                <button
+                  class="color-dot ${i===0?'selected':''}"
+                  title="${esc(c.name)}"
+                  style="background:${esc(c.value||'#ccc')}"
+                  onclick="selectCardColor('${jsesc(p.id)}',${i})"
+                ></button>
+
               `).join("")}
+
             </div>
+
           ` : ""}
 
           <div class="card-actions">
-            <button class="details-btn" onclick="openProductDetails('${jsesc(p.id)}')">عرض التفاصيل</button>
-            <button class="add-btn" onclick="addCardToCart('${jsesc(p.id)}')">أضف للسلة 🛒</button>
+
+            <button
+              class="details-btn"
+              onclick="openProductDetails('${jsesc(p.id)}')"
+            >
+              عرض التفاصيل
+            </button>
+
+            <button
+              class="add-btn"
+              onclick="addCardToCart('${jsesc(p.id)}')"
+            >
+              أضف للسلة 🛒
+            </button>
+
           </div>
+
         </div>
-      </article>`;
+
+      </article>
+    `;
+
   }).join("");
 }
 
 function changeCardImage(id,index){
+
   const p = products.find(x=>x.id===id);
   if(!p) return;
 
-  const ci = p.colors?.length ? selectedColorIndex(id) : null;
-  const gallery = getGallery(p,ci);
-  const main = document.getElementById("main-"+id);
-  if(main && gallery[index]) main.src = gallery[index];
+  const ci = p.colors?.length
+    ? selectedColorIndex(id)
+    : null;
 
-  const card = document.querySelector(`[data-id="${CSS.escape(id)}"]`);
-  card?.querySelectorAll(".thumbs img").forEach((img,i)=>{
-    img.classList.toggle("active",i===index);
-  });
+  const gallery = getGallery(p,ci);
+
+  const main = document.getElementById("main-"+id);
+
+  if(main && gallery[index]){
+    main.src = gallery[index];
+  }
+
+  const card = document.querySelector(
+    `[data-id="${CSS.escape(id)}"]`
+  );
+
+  card?.querySelectorAll(".thumbs img")
+    .forEach((img,i)=>{
+      img.classList.toggle("active",i===index);
+    });
 
   openLightbox(gallery,index);
 }
 
 function selectCardColor(id,index){
+
   const p = products.find(x=>x.id===id);
+
   if(!p?.colors?.[index]) return;
 
-  document.querySelectorAll(`#colors-${CSS.escape(id)} .color-dot`)
-    .forEach((b,i)=>b.classList.toggle("selected",i===index));
+  document.querySelectorAll(
+    `#colors-${CSS.escape(id)} .color-dot`
+  ).forEach((b,i)=>{
+    b.classList.toggle("selected",i===index);
+  });
 
   const main = document.getElementById("main-"+id);
-  if(main) main.src = p.colors[index].image || p.image;
+
+  if(main){
+    main.src =
+      p.colors[index].image ||
+      p.image;
+  }
+
+  /* عند تغيير اللون نعيد تحديد أول صورة */
+  const card = document.querySelector(
+    `[data-id="${CSS.escape(id)}"]`
+  );
+
+  card?.querySelectorAll(".thumbs img")
+    .forEach((img,i)=>{
+      img.classList.toggle("active",i===0);
+    });
 }
 
 function openLightbox(gallery,index){
+
   if(!gallery?.length) return;
+
   lightboxGallery = gallery;
-  lightboxIndex = Math.max(0,Math.min(index,gallery.length-1));
-  document.getElementById("lightboxImg").src = gallery[lightboxIndex];
-  document.getElementById("lightbox").classList.add("show");
+
+  lightboxIndex =
+    Math.max(
+      0,
+      Math.min(index,gallery.length-1)
+    );
+
+  document.getElementById("lightboxImg").src =
+    gallery[lightboxIndex];
+
+  document.getElementById("lightbox")
+    .classList.add("show");
+
   document.body.classList.add("lock");
 }
 
 function closeLightbox(e){
+
   if(e && e.target.id!=="lightbox") return;
-  document.getElementById("lightbox").classList.remove("show");
+
+  document.getElementById("lightbox")
+    .classList.remove("show");
+
   document.body.classList.remove("lock");
 }
 
 function nextLightbox(e){
+
   e?.stopPropagation();
+
   if(!lightboxGallery.length) return;
-  lightboxIndex = (lightboxIndex+1) % lightboxGallery.length;
-  document.getElementById("lightboxImg").src = lightboxGallery[lightboxIndex];
+
+  lightboxIndex =
+    (lightboxIndex+1) %
+    lightboxGallery.length;
+
+  document.getElementById("lightboxImg").src =
+    lightboxGallery[lightboxIndex];
 }
 
 function prevLightbox(e){
+
   e?.stopPropagation();
+
   if(!lightboxGallery.length) return;
-  lightboxIndex = (lightboxIndex-1+lightboxGallery.length) % lightboxGallery.length;
-  document.getElementById("lightboxImg").src = lightboxGallery[lightboxIndex];
+
+  lightboxIndex =
+    (lightboxIndex-1+lightboxGallery.length) %
+    lightboxGallery.length;
+
+  document.getElementById("lightboxImg").src =
+    lightboxGallery[lightboxIndex];
 }
 
 function openProductDetails(id){
+
   const p = products.find(x=>x.id===id);
+
   if(!p) return;
 
   detailProductId = id;
@@ -681,415 +911,1398 @@ function openProductDetails(id){
   detailSizeIndex = 0;
 
   renderProductDetails();
-  document.getElementById("productModal").classList.add("show");
+
+  document.getElementById("productModal")
+    .classList.add("show");
+
   document.body.classList.add("lock");
 }
 
 function closeProductDetails(){
-  document.getElementById("productModal").classList.remove("show");
+
+  document.getElementById("productModal")
+    .classList.remove("show");
+
   document.body.classList.remove("lock");
+
   detailProductId = null;
 }
 
 function renderProductDetails(){
-  const p = products.find(x=>x.id===detailProductId);
+
+  const p = products.find(
+    x=>x.id===detailProductId
+  );
+
   if(!p) return;
 
   const colors = p.colors || [];
   const sizes = p.sizes || [];
-  const gallery = getGallery(p, colors.length ? detailColorIndex : null);
-  const selectedImage = gallery[0] || p.image;
+
+  const gallery = getGallery(
+    p,
+    colors.length
+      ? detailColorIndex
+      : null
+  );
+
+  const selectedImage =
+    gallery[0] || p.image;
 
   document.getElementById("productBox").innerHTML = `
-    <button class="close" onclick="closeProductDetails()">×</button>
 
-    <img id="detailMainImage"
-         class="product-detail-main"
-         src="${esc(selectedImage)}"
-         alt="${esc(p.name)}"
-         onclick='openLightbox(${JSON.stringify(gallery)},0)'>
+    <button
+      class="close"
+      onclick="closeProductDetails()"
+    >
+      ×
+    </button>
+
+    <img
+      id="detailMainImage"
+      class="product-detail-main"
+      src="${esc(selectedImage)}"
+      alt="${esc(p.name)}"
+      onclick="openLightbox(${JSON.stringify(gallery)},0)"
+    >
 
     <div class="detail-thumbs">
+
       ${gallery.map((im,i)=>`
-        <img src="${esc(im)}"
-             class="${i===0?'active':''}"
-             onclick="changeDetailImage(${i})"
-             alt="">
+
+        <img
+          src="${esc(im)}"
+          class="${i===0?'active':''}"
+          onclick="changeDetailImage(${i})"
+          alt=""
+        >
+
       `).join("")}
+
     </div>
 
     <div class="detail-info">
-      <div class="detail-name">${esc(p.name)}</div>
-      <div class="detail-price">${Number(p.price).toFixed(2)} د.أ</div>
+
+      <div class="detail-name">
+        ${esc(p.name)}
+      </div>
+
+      <div class="detail-price">
+        ${Number(p.price).toFixed(2)} د.أ
+      </div>
+
       <div class="detail-text">
-        ${p.size ? `الحجم: ${esc(p.size)}<br>` : ""}
-        ${p.dimensions ? `الأبعاد: ${esc(p.dimensions)}` : ""}
+
+        ${p.size
+          ? `الحجم: ${esc(p.size)}<br>`
+          : ""}
+
+        ${p.dimensions
+          ? `الأبعاد: ${esc(p.dimensions)}`
+          : ""}
+
       </div>
 
       ${colors.length ? `
-        <div class="option-title">اختاري اللون:</div>
-        <div class="options" id="detailColors">
-          ${colors.map((c,i)=>`
-            <button class="option ${i===detailColorIndex?'selected':''}"
-                    onclick="selectDetailColor(${i})">
-              <span class="swatch" style="background:${esc(c.value||'#ccc')}"></span>
-              ${esc(c.name)}
-            </button>
-          `).join("")}
+
+        <div class="option-title">
+          اختاري اللون:
         </div>
+
+        <div
+          class="options"
+          id="detailColors"
+        >
+
+          ${colors.map((c,i)=>`
+
+            <button
+              class="option ${i===detailColorIndex?'selected':''}"
+              onclick="selectDetailColor(${i})"
+            >
+
+              <span
+                class="swatch"
+                style="background:${esc(c.value||'#ccc')}"
+              ></span>
+
+              ${esc(c.name)}
+
+            </button>
+
+          `).join("")}
+
+        </div>
+
       ` : ""}
 
       ${sizes.length ? `
-        <div class="option-title">اختاري الحجم:</div>
-        <div class="options" id="detailSizes">
-          ${sizes.map((s,i)=>`
-            <button class="option ${i===detailSizeIndex?'selected':''}"
-                    onclick="selectDetailSize(${i})">
-              ${esc(typeof s==="string" ? s : (s.name||""))}
-            </button>
-          `).join("")}
+
+        <div class="option-title">
+          اختاري الحجم:
         </div>
+
+        <div
+          class="options"
+          id="detailSizes"
+        >
+
+          ${sizes.map((s,i)=>`
+
+            <button
+              class="option ${i===detailSizeIndex?'selected':''}"
+              onclick="selectDetailSize(${i})"
+            >
+              ${esc(
+                typeof s==="string"
+                  ? s
+                  : (s.name||"")
+              )}
+            </button>
+
+          `).join("")}
+
+        </div>
+
       ` : ""}
 
-      <button class="detail-add" onclick="addDetailToCart()">
+      <button
+        class="detail-add"
+        onclick="addDetailToCart()"
+      >
         أضف إلى السلة 🛒
       </button>
+
     </div>
   `;
 }
 
 function changeDetailImage(index){
-  const p = products.find(x=>x.id===detailProductId);
+
+  const p = products.find(
+    x=>x.id===detailProductId
+  );
+
   if(!p) return;
-  const gallery = getGallery(p, p.colors?.length ? detailColorIndex : null);
-  const img = document.getElementById("detailMainImage");
+
+  const gallery = getGallery(
+    p,
+    p.colors?.length
+      ? detailColorIndex
+      : null
+  );
+
+  const img =
+    document.getElementById("detailMainImage");
+
   if(img && gallery[index]){
+
     img.src = gallery[index];
-    img.onclick = ()=>openLightbox(gallery,index);
+
+    img.onclick =
+      ()=>openLightbox(gallery,index);
   }
-  document.querySelectorAll(".detail-thumbs img").forEach((x,i)=>{
-    x.classList.toggle("active",i===index);
+
+  document.querySelectorAll(
+    ".detail-thumbs img"
+  ).forEach((x,i)=>{
+    x.classList.toggle(
+      "active",
+      i===index
+    );
   });
 }
 
 function selectDetailColor(index){
-  const p = products.find(x=>x.id===detailProductId);
+
+  const p = products.find(
+    x=>x.id===detailProductId
+  );
+
   if(!p?.colors?.[index]) return;
+
   detailColorIndex = index;
+
   renderProductDetails();
 }
 
 function selectDetailSize(index){
+
   detailSizeIndex = index;
-  document.querySelectorAll("#detailSizes .option").forEach((x,i)=>{
-    x.classList.toggle("selected",i===index);
+
+  document.querySelectorAll(
+    "#detailSizes .option"
+  ).forEach((x,i)=>{
+    x.classList.toggle(
+      "selected",
+      i===index
+    );
   });
 }
 
 function addCardToCart(id){
-  const p = products.find(x=>x.id===id);
+
+  const p = products.find(
+    x=>x.id===id
+  );
+
   if(!p) return;
 
-  const colorIndex = p.colors?.length ? selectedColorIndex(id) : 0;
-  const color = p.colors?.[colorIndex] || null;
+  const colorIndex =
+    p.colors?.length
+      ? selectedColorIndex(id)
+      : 0;
+
+  const color =
+    p.colors?.[colorIndex] || null;
+
   const size = "";
 
-  addProductLine(p,color,size);
+  addProductLine(
+    p,
+    color,
+    size
+  );
 }
 
 function addDetailToCart(){
-  const p = products.find(x=>x.id===detailProductId);
+
+  const p = products.find(
+    x=>x.id===detailProductId
+  );
+
   if(!p) return;
 
-  const color = p.colors?.[detailColorIndex] || null;
-  const sizeObj = p.sizes?.[detailSizeIndex];
-  const size = sizeObj ? (typeof sizeObj==="string" ? sizeObj : (sizeObj.name||"")) : "";
+  const color =
+    p.colors?.[detailColorIndex] || null;
 
-  addProductLine(p,color,size);
+  const sizeObj =
+    p.sizes?.[detailSizeIndex];
+
+  const size =
+    sizeObj
+      ? (
+          typeof sizeObj==="string"
+            ? sizeObj
+            : (sizeObj.name||"")
+        )
+      : "";
+
+  addProductLine(
+    p,
+    color,
+    size
+  );
+
   closeProductDetails();
 }
 
-function addProductLine(p,color,size){
-  const colorName = color?.name || "";
-  const key = `${p.id}|${colorName}|${size}`;
-  const existing = cart.find(x=>x.key===key);
+function addProductLine(
+  p,
+  color,
+  size
+){
+
+  const colorName =
+    color?.name || "";
+
+  const key =
+    `${p.id}|${colorName}|${size}`;
+
+  const existing =
+    cart.find(x=>x.key===key);
 
   if(existing){
+
     existing.quantity++;
+
   }else{
+
     cart.push({
+
       key,
+
       productId:p.id,
+
       name:p.name,
+
       price:Number(p.price),
-      image:color?.image || p.image,
+
+      image:
+        color?.image ||
+        p.image,
+
       colorName,
+
       size,
-      dimensions:p.dimensions||"",
+
+      dimensions:
+        p.dimensions || "",
+
       quantity:1
+
     });
   }
 
   saveCart();
+
   renderCart();
+
   openCart();
 }
 
 function changeQty(index,delta){
+
   if(!cart[index]) return;
+
   cart[index].quantity += delta;
-  if(cart[index].quantity<=0) cart.splice(index,1);
+
+  if(cart[index].quantity<=0){
+    cart.splice(index,1);
+  }
+
   saveCart();
   renderCart();
 }
 
 function removeItem(index){
+
   cart.splice(index,1);
+
   saveCart();
   renderCart();
 }
 
 function productsTotal(){
-  return cart.reduce((sum,x)=>sum + x.price*x.quantity,0);
+
+  return cart.reduce(
+    (sum,x)=>
+      sum + x.price*x.quantity,
+    0
+  );
 }
 
 function delivery(){
-  const total = productsTotal();
-  return total<=0 ? 0 : (total>=49 ? 0 : 2);
+
+  const total =
+    productsTotal();
+
+  return total<=0
+    ? 0
+    : (
+        total>=49
+          ? 0
+          : 2
+      );
 }
 
 function renderCart(){
-  const body = document.getElementById("cartBody");
-  const customerBox = document.getElementById("customerBox");
+
+  const body =
+    document.getElementById("cartBody");
+
+  const customerBox =
+    document.getElementById("customerBox");
 
   if(!cart.length){
+
     body.innerHTML = `
       <div class="empty">
         🛍️ السلة فارغة
         <br>
-        <small>اختاري أي شنطة وستظهر هنا.</small>
-      </div>`;
+        <small>
+          اختاري أي شنطة وستظهر هنا.
+        </small>
+      </div>
+    `;
+
     customerBox.style.display="none";
+
   }else{
-    body.innerHTML = cart.map((x,i)=>`
-      <div class="cart-item">
-        <img src="${esc(x.image)}" alt="${esc(x.name)}">
-        <div class="cart-item-info">
-          <div class="cart-item-name">${esc(x.name)}</div>
-          <div class="cart-meta">
-            ${x.colorName ? `اللون: ${esc(x.colorName)}<br>` : ""}
-            ${x.size ? `الحجم: ${esc(x.size)}<br>` : ""}
-            السعر: ${x.price.toFixed(2)} د.أ
+
+    body.innerHTML =
+      cart.map((x,i)=>`
+
+        <div class="cart-item">
+
+          <img
+            src="${esc(x.image)}"
+            alt="${esc(x.name)}"
+          >
+
+          <div class="cart-item-info">
+
+            <div class="cart-item-name">
+              ${esc(x.name)}
+            </div>
+
+            <div class="cart-meta">
+
+              ${x.colorName
+                ? `اللون: ${esc(x.colorName)}<br>`
+                : ""}
+
+              ${x.size
+                ? `الحجم: ${esc(x.size)}<br>`
+                : ""}
+
+              السعر:
+              ${x.price.toFixed(2)}
+              د.أ
+
+            </div>
+
+            <div class="qty-row">
+
+              <button
+                onclick="changeQty(${i},-1)"
+              >
+                −
+              </button>
+
+              <b>${x.quantity}</b>
+
+              <button
+                onclick="changeQty(${i},1)"
+              >
+                +
+              </button>
+
+              <button
+                class="remove-btn"
+                onclick="removeItem(${i})"
+                aria-label="حذف"
+              >
+                🗑️
+              </button>
+
+            </div>
+
           </div>
 
-          <div class="qty-row">
-            <button onclick="changeQty(${i},-1)" aria-label="نقص">−</button>
-            <b>${x.quantity}</b>
-            <button onclick="changeQty(${i},1)" aria-label="زيادة">+</button>
-            <button class="remove-btn" onclick="removeItem(${i})" aria-label="حذف">🗑️</button>
-          </div>
         </div>
-      </div>
-    `).join("");
+
+      `).join("");
 
     customerBox.style.display="block";
   }
 
-  const total = productsTotal();
-  const d = delivery();
-  const final = total+d;
+  const total =
+    productsTotal();
 
-  document.getElementById("productsTotal").textContent = total.toFixed(2)+" د.أ";
-  document.getElementById("deliveryTotal").textContent = d===0 ? "مجاني" : d.toFixed(2)+" د.أ";
-  document.getElementById("finalTotal").textContent = final.toFixed(2)+" د.أ";
+  const d =
+    delivery();
 
-  const count = cart.reduce((sum,x)=>sum+x.quantity,0);
-  document.querySelectorAll(".cart-count").forEach(el=>el.textContent=count);
+  const final =
+    total+d;
 
-  const progress = document.getElementById("deliveryProgress");
+  document.getElementById(
+    "productsTotal"
+  ).textContent =
+    total.toFixed(2)+" د.أ";
+
+  document.getElementById(
+    "deliveryTotal"
+  ).textContent =
+    d===0
+      ? "مجاني"
+      : d.toFixed(2)+" د.أ";
+
+  document.getElementById(
+    "finalTotal"
+  ).textContent =
+    final.toFixed(2)+" د.أ";
+
+  const count =
+    cart.reduce(
+      (sum,x)=>sum+x.quantity,
+      0
+    );
+
+  document.querySelectorAll(
+    ".cart-count"
+  ).forEach(el=>{
+    el.textContent=count;
+  });
+
+  const progress =
+    document.getElementById(
+      "deliveryProgress"
+    );
+
   if(!cart.length){
+
     progress.style.display="none";
+
   }else if(total>=49){
+
     progress.style.display="block";
-    progress.innerHTML = "🎉 حصلتِ على توصيل مجاني!";
-    progress.innerHTML += `<div class="progress-track"><div class="progress-bar" style="width:100%"></div></div>`;
+
+    progress.innerHTML =
+      "🎉 حصلتِ على توصيل مجاني!";
+
+    progress.innerHTML += `
+      <div class="progress-track">
+        <div
+          class="progress-bar"
+          style="width:100%"
+        ></div>
+      </div>
+    `;
+
   }else{
-    const remaining = 49-total;
-    const percent = Math.min(100,(total/49)*100);
+
+    const remaining =
+      49-total;
+
+    const percent =
+      Math.min(
+        100,
+        (total/49)*100
+      );
+
     progress.style.display="block";
-    progress.innerHTML = `أضيفي ${remaining.toFixed(2)} د.أ لتحصلي على التوصيل المجاني`;
-    progress.innerHTML += `<div class="progress-track"><div class="progress-bar" style="width:${percent}%"></div></div>`;
+
+    progress.innerHTML =
+      `أضيفي ${remaining.toFixed(2)}
+       د.أ لتحصلي على التوصيل المجاني`;
+
+    progress.innerHTML += `
+      <div class="progress-track">
+        <div
+          class="progress-bar"
+          style="width:${percent}%"
+        ></div>
+      </div>
+    `;
   }
 }
 
 function openCart(){
-  document.getElementById("cart").classList.add("show");
-  document.getElementById("cartOverlay").classList.add("show");
+
+  document.getElementById("cart")
+    .classList.add("show");
+
+  document.getElementById("cartOverlay")
+    .classList.add("show");
+
   document.body.classList.add("lock");
 }
 
 function closeCart(){
-  document.getElementById("cart").classList.remove("show");
-  document.getElementById("cartOverlay").classList.remove("show");
+
+  document.getElementById("cart")
+    .classList.remove("show");
+
+  document.getElementById("cartOverlay")
+    .classList.remove("show");
+
   document.body.classList.remove("lock");
 }
 
 function customerData(){
+
   return {
-    name:document.getElementById("customerName").value.trim(),
-    phone:document.getElementById("customerPhone").value.trim(),
-    city:document.getElementById("customerCity").value.trim(),
-    address:document.getElementById("customerAddress").value.trim(),
-    notes:document.getElementById("customerNotes").value.trim()
+
+    name:
+      document.getElementById(
+        "customerName"
+      ).value.trim(),
+
+    phone:
+      document.getElementById(
+        "customerPhone"
+      ).value.trim(),
+
+    city:
+      document.getElementById(
+        "customerCity"
+      ).value.trim(),
+
+    address:
+      document.getElementById(
+        "customerAddress"
+      ).value.trim(),
+
+    notes:
+      document.getElementById(
+        "customerNotes"
+      ).value.trim()
   };
 }
 
 function validateCustomer(){
+
   if(!cart.length){
+
     alert("السلة فارغة.");
+
     return false;
   }
 
-  const c=customerData();
+  const c =
+    customerData();
 
-  if(!c.name){alert("يرجى كتابة الاسم الكامل.");return false}
-  if(!c.phone){alert("يرجى كتابة رقم الهاتف.");return false}
-  if(!c.city){alert("يرجى اختيار المحافظة.");return false}
-  if(!c.address){alert("يرجى كتابة العنوان بالتفصيل.");return false}
+  if(!c.name){
+    alert("يرجى كتابة الاسم الكامل.");
+    return false;
+  }
+
+  if(!c.phone){
+    alert("يرجى كتابة رقم الهاتف.");
+    return false;
+  }
+
+  if(!c.city){
+    alert("يرجى اختيار المحافظة.");
+    return false;
+  }
+
+  if(!c.address){
+    alert("يرجى كتابة العنوان بالتفصيل.");
+    return false;
+  }
 
   return true;
 }
 
 function reviewOrder(){
+
   if(!validateCustomer()) return;
 
-  const c=customerData();
-  const total=productsTotal();
-  const d=delivery();
+  const c =
+    customerData();
 
-  document.getElementById("reviewBox").innerHTML=`
-    <button class="close" onclick="closeReview()">×</button>
-    <div class="modal-title">🧾 مراجعة الطلب</div>
-    <div class="modal-sub">تأكدي من كل شيء قبل الإرسال عبر واتساب</div>
+  const total =
+    productsTotal();
+
+  const d =
+    delivery();
+
+  document.getElementById(
+    "reviewBox"
+  ).innerHTML = `
+
+    <button
+      class="close"
+      onclick="closeReview()"
+    >
+      ×
+    </button>
+
+    <div class="modal-title">
+      🧾 مراجعة الطلب
+    </div>
+
+    <div class="modal-sub">
+      تأكدي من كل شيء قبل الإرسال عبر واتساب
+    </div>
 
     ${cart.map(x=>`
+
       <div class="review-item">
-        <img src="${esc(x.image)}" alt="">
+
+        <img
+          src="${esc(x.image)}"
+          alt=""
+        >
+
         <div class="review-info">
+
           <b>${esc(x.name)}</b><br>
-          ${x.colorName?`🎨 اللون: ${esc(x.colorName)}<br>`:""}
-          ${x.size?`📏 الحجم: ${esc(x.size)}<br>`:""}
+
+          ${x.colorName
+            ? `🎨 اللون: ${esc(x.colorName)}<br>`
+            : ""}
+
+          ${x.size
+            ? `📏 الحجم: ${esc(x.size)}<br>`
+            : ""}
+
           الكمية: ${x.quantity}<br>
-          سعر القطعة: ${x.price.toFixed(2)} د.أ<br>
-          المجموع: ${(x.price*x.quantity).toFixed(2)} د.أ
+
+          سعر القطعة:
+          ${x.price.toFixed(2)} د.أ<br>
+
+          المجموع:
+          ${(x.price*x.quantity).toFixed(2)}
+          د.أ
+
         </div>
+
       </div>
+
     `).join("")}
 
     <div class="review-customer">
+
       <b>📦 معلومات التوصيل</b><br>
-      الاسم: ${esc(c.name)}<br>
-      الهاتف: ${esc(c.phone)}<br>
-      المحافظة: ${esc(c.city)}<br>
-      العنوان: ${esc(c.address)}
-      ${c.notes?`<br>الملاحظات: ${esc(c.notes)}`:""}
+
+      الاسم:
+      ${esc(c.name)}<br>
+
+      الهاتف:
+      ${esc(c.phone)}<br>
+
+      المحافظة:
+      ${esc(c.city)}<br>
+
+      العنوان:
+      ${esc(c.address)}
+
+      ${c.notes
+        ? `<br>الملاحظات: ${esc(c.notes)}`
+        : ""}
+
     </div>
 
     <div class="modal-total">
-      <div class="line"><span>مجموع المنتجات</span><b>${total.toFixed(2)} د.أ</b></div>
-      <div class="line"><span>التوصيل</span><b>${d===0?"مجاني":d.toFixed(2)+" د.أ"}</b></div>
-      <div class="line final"><span>المجموع النهائي</span><b>${(total+d).toFixed(2)} د.أ</b></div>
+
+      <div class="line">
+        <span>مجموع المنتجات</span>
+        <b>${total.toFixed(2)} د.أ</b>
+      </div>
+
+      <div class="line">
+        <span>التوصيل</span>
+        <b>
+          ${d===0
+            ? "مجاني"
+            : d.toFixed(2)+" د.أ"}
+        </b>
+      </div>
+
+      <div class="line final">
+        <span>المجموع النهائي</span>
+        <b>
+          ${(total+d).toFixed(2)} د.أ
+        </b>
+      </div>
+
     </div>
 
     <div class="modal-actions">
-      <button class="edit-btn" onclick="closeReview()">✏️ تعديل الطلب</button>
-      <button class="send-btn" onclick="confirmOrder()">✅ تأكيد وإرسال</button>
+
+      <button
+        class="edit-btn"
+        onclick="closeReview()"
+      >
+        ✏️ تعديل الطلب
+      </button>
+
+      <button
+        class="send-btn"
+        onclick="confirmOrder()"
+      >
+        ✅ تأكيد وإرسال
+      </button>
+
     </div>
   `;
 
-  document.getElementById("reviewModal").classList.add("show");
+  document.getElementById(
+    "reviewModal"
+  ).classList.add("show");
+
   document.body.classList.add("lock");
 }
 
 function closeReview(){
-  document.getElementById("reviewModal").classList.remove("show");
+
+  document.getElementById(
+    "reviewModal"
+  ).classList.remove("show");
+
   document.body.classList.remove("lock");
 }
 
+function savePreviousOrder(order){
+
+  try{
+
+    const orders =
+      loadPreviousOrders();
+
+    orders.unshift(order);
+
+    /*
+      الاحتفاظ بآخر 20 طلب على الجهاز
+    */
+    localStorage.setItem(
+      ORDERS_KEY,
+      JSON.stringify(
+        orders.slice(0,20)
+      )
+    );
+
+  }catch(e){
+
+    console.error(
+      "Could not save previous order:",
+      e
+    );
+  }
+}
+
+function loadPreviousOrders(){
+
+  try{
+
+    const saved =
+      JSON.parse(
+        localStorage.getItem(
+          ORDERS_KEY
+        ) || "[]"
+      );
+
+    return Array.isArray(saved)
+      ? saved
+      : [];
+
+  }catch(e){
+
+    return [];
+  }
+}
+
 function confirmOrder(){
+
   if(!validateCustomer()) return;
 
-  const c=customerData();
-  const total=productsTotal();
-  const d=delivery();
+  const c =
+    customerData();
 
-  let msg="🛍️ طلب جديد من AMO\n\n";
-  msg+="👤 الاسم: "+c.name+"\n";
-  msg+="📱 الهاتف: "+c.phone+"\n";
-  msg+="📍 المحافظة: "+c.city+"\n";
-  msg+="🏠 العنوان: "+c.address+"\n";
-  if(c.notes) msg+="📝 الملاحظات: "+c.notes+"\n";
+  const total =
+    productsTotal();
 
-  msg+="\n━━━━━━━━━━━━━━\n🛒 تفاصيل الطلب:\n";
+  const d =
+    delivery();
 
-  cart.forEach((x,i)=>{
-    msg+=`\n${i+1}. ${x.name}\n`;
-    if(x.colorName) msg+=`🎨 اللون: ${x.colorName}\n`;
-    if(x.size) msg+=`📏 الحجم: ${x.size}\n`;
-    msg+=`🔢 الكمية: ${x.quantity}\n`;
-    msg+=`💰 سعر القطعة: ${x.price.toFixed(2)} د.أ\n`;
-    msg+=`💵 المجموع: ${(x.price*x.quantity).toFixed(2)} د.أ\n`;
+  /*
+    حفظ نسخة من الطلب قبل تفريغ السلة
+  */
+  savePreviousOrder({
+
+    date:
+      new Date().toISOString(),
+
+    customer:{
+
+      name:c.name,
+      phone:c.phone,
+      city:c.city,
+      address:c.address,
+      notes:c.notes
+
+    },
+
+    items:
+      cart.map(x=>({
+
+        name:x.name,
+        price:x.price,
+        quantity:x.quantity,
+        colorName:x.colorName || "",
+        size:x.size || "",
+        image:x.image
+
+      })),
+
+    productsTotal:total,
+    delivery:d,
+    total:total+d
+
   });
 
-  msg+="\n━━━━━━━━━━━━━━\n";
-  msg+=`💰 مجموع المنتجات: ${total.toFixed(2)} د.أ\n`;
-  msg+=`🚚 التوصيل: ${d===0?"مجاني":d.toFixed(2)+" د.أ"}\n`;
-  msg+=`💳 المجموع النهائي: ${(total+d).toFixed(2)} د.أ\n`;
-  msg+="\nشكراً لطلبك من AMO 🤍";
+  let msg =
+    "🛍️ طلب جديد من AMO\n\n";
 
-  const url="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
-  window.open(url,"_blank");
+  msg +=
+    "👤 الاسم: "+
+    c.name+
+    "\n";
 
-  // Clear only after the user confirms the order.
+  msg +=
+    "📱 الهاتف: "+
+    c.phone+
+    "\n";
+
+  msg +=
+    "📍 المحافظة: "+
+    c.city+
+    "\n";
+
+  msg +=
+    "🏠 العنوان: "+
+    c.address+
+    "\n";
+
+  if(c.notes){
+
+    msg +=
+      "📝 الملاحظات: "+
+      c.notes+
+      "\n";
+  }
+
+  msg +=
+    "\n━━━━━━━━━━━━━━\n" +
+    "🛒 تفاصيل الطلب:\n";
+
+  cart.forEach((x,i)=>{
+
+    msg +=
+      `\n${i+1}. ${x.name}\n`;
+
+    if(x.colorName){
+
+      msg +=
+        `🎨 اللون: ${x.colorName}\n`;
+    }
+
+    if(x.size){
+
+      msg +=
+        `📏 الحجم: ${x.size}\n`;
+    }
+
+    msg +=
+      `🔢 الكمية: ${x.quantity}\n`;
+
+    msg +=
+      `💰 سعر القطعة: ${x.price.toFixed(2)} د.أ\n`;
+
+    msg +=
+      `💵 المجموع: ${(x.price*x.quantity).toFixed(2)} د.أ\n`;
+  });
+
+  msg +=
+    "\n━━━━━━━━━━━━━━\n";
+
+  msg +=
+    `💰 مجموع المنتجات: ${total.toFixed(2)} د.أ\n`;
+
+  msg +=
+    `🚚 التوصيل: ${
+      d===0
+        ? "مجاني"
+        : d.toFixed(2)+" د.أ"
+    }\n`;
+
+  msg +=
+    `💳 المجموع النهائي: ${
+      (total+d).toFixed(2)
+    } د.أ\n`;
+
+  msg +=
+    "\nشكراً لطلبك من AMO 🤍";
+
+  const url =
+    "https://wa.me/"+
+    WHATSAPP+
+    "?text="+
+    encodeURIComponent(msg);
+
+  window.open(
+    url,
+    "_blank"
+  );
+
+  /*
+    تفريغ السلة فقط بعد تأكيد الطلب
+  */
   cart=[];
+
   saveCart();
+
   renderCart();
+
   closeCart();
+
   closeReview();
 
-  document.getElementById("reviewBox").innerHTML=`
+  document.getElementById(
+    "reviewBox"
+  ).innerHTML = `
+
     <div class="success">
-      <div class="success-icon">🎉</div>
-      <h2>تم تجهيز الطلب</h2>
+
+      <div class="success-icon">
+        🎉
+      </div>
+
+      <h2>
+        تم تجهيز الطلب
+      </h2>
+
       <p>
         تم فتح واتساب برسالة الطلب.<br>
         سيتم التواصل معك لتأكيد الطلب والتوصيل.
       </p>
-      <button onclick="closeReview()">حسناً</button>
-    </div>`;
-  document.getElementById("reviewModal").classList.add("show");
+
+      <button onclick="closeReview()">
+        حسناً
+      </button>
+
+    </div>
+  `;
+
+  document.getElementById(
+    "reviewModal"
+  ).classList.add("show");
+
   document.body.classList.add("lock");
 }
 
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape"){
-    closeLightbox();
-    closeProductDetails();
-    closeReview();
+
+/* ==========================================
+   البحث
+   ========================================== */
+
+function openSearch(){
+
+  document.getElementById(
+    "searchModal"
+  ).classList.add("show");
+
+  document.body.classList.add("lock");
+
+  setTimeout(()=>{
+
+    document.getElementById(
+      "searchInput"
+    ).focus();
+
+  },100);
+}
+
+function closeSearch(){
+
+  document.getElementById(
+    "searchModal"
+  ).classList.remove("show");
+
+  document.body.classList.remove("lock");
+}
+
+function searchProducts(){
+
+  const input =
+    document.getElementById(
+      "searchInput"
+    );
+
+  const results =
+    document.getElementById(
+      "searchResults"
+    );
+
+  const query =
+    input.value.trim().toLowerCase();
+
+  if(!query){
+
+    results.innerHTML = `
+      <div class="orders-empty">
+        ابدئي بكتابة اسم أو رقم الموديل
+      </div>
+    `;
+
+    return;
   }
 
-  if(document.getElementById("lightbox").classList.contains("show")){
-    if(e.key==="ArrowLeft") prevLightbox();
-    if(e.key==="ArrowRight") nextLightbox();
-  }
-});
+  const found =
+    products.filter(p=>{
 
-document.getElementById("productModal").addEventListener("click",e=>{
-  if(e.target.id==="productModal") closeProductDetails();
-});
-document.getElementById("reviewModal").addEventListener("click",e=>{
-  if(e.target.id==="reviewModal") closeReview();
-});
+      const text = [
+
+        p.id,
+        p.name,
+        p.size,
+        p.dimensions,
+
+        ...(p.colors || [])
+          .map(c=>c.name)
+
+      ].join(" ").toLowerCase();
+
+      return text.includes(query);
+
+    });
+
+  if(!found.length){
+
+    results.innerHTML = `
+      <div class="orders-empty">
+        😔 لم نجد أي منتج بهذا البحث
+      </div>
+    `;
+
+    return;
+  }
+
+  results.innerHTML =
+    found.map(p=>`
+
+      <div
+        class="search-result"
+        onclick="openSearchProduct('${jsesc(p.id)}')"
+      >
+
+        <img
+          src="${esc(p.image)}"
+          alt="${esc(p.name)}"
+        >
+
+        <div class="search-result-info">
+
+          <div class="search-result-name">
+            ${esc(p.name)}
+          </div>
+
+          <div class="search-result-meta">
+            ${Number(p.price).toFixed(2)}
+            د.أ
+
+            ${p.size
+              ? ` • ${esc(p.size)}`
+              : ""}
+          </div>
+
+          <div class="search-result-meta">
+            ${p.dimensions
+              ? esc(p.dimensions)
+              : ""}
+          </div>
+
+        </div>
+
+      </div>
+
+    `).join("");
+}
+
+function openSearchProduct(id){
+
+  closeSearch();
+
+  openProductDetails(id);
+}
+
+
+/* ==========================================
+   الطلبات السابقة
+   ========================================== */
+
+function openPreviousOrders(){
+
+  renderPreviousOrders();
+
+  document.getElementById(
+    "ordersModal"
+  ).classList.add("show");
+
+  document.body.classList.add("lock");
+}
+
+function closePreviousOrders(){
+
+  document.getElementById(
+    "ordersModal"
+  ).classList.remove("show");
+
+  document.body.classList.remove("lock");
+}
+
+function renderPreviousOrders(){
+
+  const box =
+    document.getElementById(
+      "previousOrders"
+    );
+
+  const orders =
+    loadPreviousOrders();
+
+  if(!orders.length){
+
+    box.innerHTML = `
+      <div class="orders-empty">
+
+        📦 لا توجد طلبات سابقة
+
+        <br>
+
+        <small>
+          الطلبات التي يتم تأكيدها ستظهر هنا.
+        </small>
+
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML =
+    orders.map((order,index)=>{
+
+      const date =
+        new Date(order.date);
+
+      const dateText =
+        date.toLocaleDateString(
+          "ar-JO"
+        )+
+        " - "+
+        date.toLocaleTimeString(
+          "ar-JO",
+          {
+            hour:"2-digit",
+            minute:"2-digit"
+          }
+        );
+
+      return `
+
+        <div class="previous-order">
+
+          <div class="previous-order-head">
+
+            <span>
+              طلب #${orders.length-index}
+            </span>
+
+            <span class="previous-order-date">
+              ${esc(dateText)}
+            </span>
+
+          </div>
+
+          <div class="previous-order-items">
+
+            ${order.items.map(item=>`
+
+              • ${esc(item.name)}
+
+              ${item.colorName
+                ? ` — ${esc(item.colorName)}`
+                : ""}
+
+              ${item.size
+                ? ` — ${esc(item.size)}`
+                : ""}
+
+              × ${item.quantity}
+
+              <br>
+
+            `).join("")}
+
+          </div>
+
+          <div class="previous-order-total">
+
+            المجموع:
+            ${Number(order.total).toFixed(2)}
+            د.أ
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+}
+
+
+/* ==========================================
+   إغلاق النوافذ
+   ========================================== */
+
+document.addEventListener(
+  "keydown",
+  e=>{
+
+    if(e.key==="Escape"){
+
+      closeLightbox();
+      closeProductDetails();
+      closeReview();
+      closeSearch();
+      closePreviousOrders();
+    }
+
+    if(
+      document.getElementById(
+        "lightbox"
+      ).classList.contains("show")
+    ){
+
+      if(e.key==="ArrowLeft")
+        prevLightbox();
+
+      if(e.key==="ArrowRight")
+        nextLightbox();
+    }
+  }
+);
+
+document.getElementById(
+  "productModal"
+).addEventListener(
+  "click",
+  e=>{
+
+    if(
+      e.target.id==="productModal"
+    ){
+      closeProductDetails();
+    }
+  }
+);
+
+document.getElementById(
+  "reviewModal"
+).addEventListener(
+  "click",
+  e=>{
+
+    if(
+      e.target.id==="reviewModal"
+    ){
+      closeReview();
+    }
+  }
+);
+
+document.getElementById(
+  "searchModal"
+).addEventListener(
+  "click",
+  e=>{
+
+    if(
+      e.target.id==="searchModal"
+    ){
+      closeSearch();
+    }
+  }
+);
+
+document.getElementById(
+  "ordersModal"
+).addEventListener(
+  "click",
+  e=>{
+
+    if(
+      e.target.id==="ordersModal"
+    ){
+      closePreviousOrders();
+    }
+  }
+);
 
 loadCart();
 renderCart();
