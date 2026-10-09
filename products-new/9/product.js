@@ -38,8 +38,8 @@ const product = {
   ],
 
   sizes: [
-    "كبير"
+    "وسط"
   ],
 
-  dimensions: "30 سم عرض × 35 سم ارتفاع"
+  dimensions: "20 سم عرض × 30 سم ارتفاع"
 };
