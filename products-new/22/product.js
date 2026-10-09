@@ -3,34 +3,33 @@ const product = {
   name: "شنطة AMO #22",
   price: 10,
 
-  size: "صغير",
-  dimensions: "22 سم عرض × 12 سم ارتفاع",
+  size: "وسط",
+  dimensions: "28 سم عرض × 20 سم ارتفاع",
 
-  image: "https://amo-bags.github.io/products-new/21/file_00000000e448722f961c661fc3084e5b.png",
+  image: "https://amo-bags.github.io/products-new/22/IMG-20260404-WA0083_edit_20911901694989.jpg",
 
   colors: [
     {
-      name: "ذهبي",
-      value: "#D4AF37",
-      image: "https://amo-bags.github.io/products-new/21/file_00000000e448722f961c661fc3084e5b.png"
+      name: "عسلي",
+      value: "#8B5E3C",
+      image: "https://amo-bags.github.io/products-new/22/IMG-20260404-WA0083_edit_20911901694989.jpg"
     },
     {
-      name: "فضي",
-      value: "#C0C0C0",
-      image: "https://amo-bags.github.io/products-new/21/file_00000000db4471f5bd55073a2cd2c9f3.png"
+      name: "أوف وايت",
+      value: "#EDE4D6",
+      image: "https://amo-bags.github.io/products-new/22/IMG-20260404-WA0084_edit_20887015945311.jpg"
     },
     {
-      name: "أسود",
-      value: "#111111",
-      image: "https://amo-bags.github.io/products-new/21/file_0000000008b4720ca50d2b803f3bf956.png"
+      name: "خمري",
+      value: "#6B1F2D",
+      image: "https://amo-bags.github.io/products-new/22/file_00000000c48071fd919260925e610c31.png"
     }
   ],
 
   gallery: [
-    "https://amo-bags.github.io/products-new/21/file_00000000e448722f961c661fc3084e5b.png",
-    "https://amo-bags.github.io/products-new/21/file_00000000db4471f5bd55073a2cd2c9f3.png",
-    "https://amo-bags.github.io/products-new/21/file_0000000008b4720ca50d2b803f3bf956.png",
-    "https://amo-bags.github.io/products-new/21/file_0000000063c4722f960fb33ee87981ea.png",
-    "https://amo-bags.github.io/products-new/21/file_000000009b6c71f590f14d6bd0a31769.png"
+    "https://amo-bags.github.io/products-new/22/IMG-20260404-WA0083_edit_20911901694989.jpg",
+    "https://amo-bags.github.io/products-new/22/IMG-20260404-WA0084_edit_20887015945311.jpg",
+    "https://amo-bags.github.io/products-new/22/file_00000000c48071fd919260925e610c31.png",
+    "https://amo-bags.github.io/products-new/22/file_0000000095e071fd97a43bc0db53886e.png"
   ]
 };
