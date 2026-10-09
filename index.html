@@ -1283,8 +1283,8 @@ function confirmOrder(){
     total_price: (total + d).toFixed(2) + " د.أ"
   };
 
-  // إرسال الإيميل تلقائياً عبر EmailJS
-  emailjs.send("service_hc4panu", "Template_9a1dmfw", emailParams)
+  // تم تصحيح معرف القالب ليصبح بحروف صغيرة متطابقة تماماً مع EmailJS
+  emailjs.send("service_hc4panu", "template_9a1dmfw", emailParams)
     .then(response => {
       console.log("تم إرسال الإيميل بنجاح!", response.status);
     }, error => {
