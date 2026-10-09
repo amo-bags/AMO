@@ -1,35 +1,59 @@
 const product = {
-  id: "12",
-
-  name: "شنطة AMO #12",
-
-  price: 10,
+  id: "28",
+  name: "شنطة AMO #28",
+  price: 5,
 
   size: "وسط",
+  dimensions: "25 سم عرض × 20 سم ارتفاع",
 
-  dimensions: "28 سم عرض × 20 سم ارتفاع",
-
-  image: "https://llvll0.github.io/AMO/products-new/12/1688_image_share_7e3191ba6e843d288bebce788cdfebfe.jpg",
-
+  image: "https://amo-bags.github.io/products-new/28/28.png",
+  
   colors: [
+    {
+      name: "خمري",
+      value: "#7B1F31",
+      image: "https://amo-bags.github.io/products-new/28/280.png"
+    },
+    {
+      name: "أسود",
+      value: "#171717",
+      image: "https://amo-bags.github.io/products-new/28/281.png"
+    },
+    {
+      name: "أبيض",
+      value: "#FFFFFF",
+      image: "https://amo-bags.github.io/products-new/28/283.png"
+    },
+    {
+      name: "بيج",
+      value: "#E8DCC5",
+      image: "https://amo-bags.github.io/products-new/28/284.png"
+    },
+    {
+      name: "كاكي",
+      value: "#B7A58A",
+      image: "https://amo-bags.github.io/products-new/28/285.png"
+    },
+    {
+      name: "بني",
+      value: "#654321",
+      image: "https://amo-bags.github.io/products-new/28/286.png"
+    },
     {
       name: "عسلي",
       value: "#A96852",
-      image: "https://llvll0.github.io/AMO/products-new/12/1688_image_share_7e3191ba6e843d288bebce788cdfebfe.jpg"
-    },
-
-    {
-      name: "بيج",
-      value: "#D8B98F",
-      image: "https://llvll0.github.io/AMO/products-new/12/1688_image_share_b376d985b72a8157cb3b04aa5a9e928a.jpg"
+      image: "https://amo-bags.github.io/products-new/28/287.png"
     }
   ],
 
   gallery: [
-    "https://llvll0.github.io/AMO/products-new/12/1688_image_share_7e3191ba6e843d288bebce788cdfebfe.jpg",
-
-    "https://llvll0.github.io/AMO/products-new/12/1688_image_share_b376d985b72a8157cb3b04aa5a9e928a.jpg",
-
-    "https://llvll0.github.io/AMO/products-new/12/1775318937264.jpg"
+    "https://amo-bags.github.io/products-new/28/28.png",
+    "https://amo-bags.github.io/products-new/28/280.png",
+    "https://amo-bags.github.io/products-new/28/281.png",
+    "https://amo-bags.github.io/products-new/28/283.png",
+    "https://amo-bags.github.io/products-new/28/284.png",
+    "https://amo-bags.github.io/products-new/28/285.png",
+    "https://amo-bags.github.io/products-new/28/286.png",
+    "https://amo-bags.github.io/products-new/28/287.png"
   ]
 };
