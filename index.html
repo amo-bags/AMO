@@ -16,6 +16,14 @@
 <!-- خط عربي كلاسيكي راقي (Tajawal) -->
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
 
+<!-- مكتبة EmailJS لإرسال الإيميلات -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("le9c2FsncVWc456D6");
+   })();
+</script>
+
 <style>
 :root {
   /* ألوان الهوية الكلاسيكية الفاخرة */
@@ -626,6 +634,7 @@ const PRODUCT_FILES = [
 window.AMO_PRODUCTS = window.AMO_PRODUCTS || [];
 
 const WHATSAPP = "962790780914";
+const TARGET_EMAIL = "robertnatasha8@gmail.com";
 const CART_KEY = "amo_cart_v4";
 const ORDERS_KEY = "amo_previous_orders_v1";
 
@@ -1249,6 +1258,38 @@ function confirmOrder(){
   });
   msg += "\n━━━━━━━━━━━━━━\n";
   msg += `💰 مجموع المنتجات: ${total.toFixed(2)} د.أ\n🚚 التوصيل: ${d===0 ? "مجاني" : d.toFixed(2)+" د.أ"}\n💳 المجموع النهائي: ${(total+d).toFixed(2)} د.أ\n\nشكراً لطلبك من AMO 🤍`;
+
+  // تجهيز HTML المنتجات للبريد الإلكتروني مع الصور
+  let itemsHtml = cart.map(x => `
+    <div style="display:flex; align-items:center; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:10px;">
+      <img src="${x.image}" style="width:60px; height:60px; object-fit:cover; border-radius:8px; margin-left:10px;" />
+      <div>
+        <b>${x.name}</b><br>
+        ${x.colorName ? `اللون: ${x.colorName} | ` : ""}
+        ${x.size ? `الحجم: ${x.size} | ` : ""}
+        الكمية: ${x.quantity} | السعر: ${(x.price * x.quantity).toFixed(2)} د.أ
+      </div>
+    </div>
+  `).join("");
+
+  const emailParams = {
+    to_email: TARGET_EMAIL,
+    customer_name: c.name,
+    customer_phone: c.phone,
+    customer_city: c.city,
+    customer_address: c.address,
+    customer_notes: c.notes || "لا توجد ملاحظات",
+    order_details: itemsHtml,
+    total_price: (total + d).toFixed(2) + " د.أ"
+  };
+
+  // إرسال الإيميل تلقائياً عبر EmailJS
+  emailjs.send("service_hc4panu", "Template_9a1dmfw", emailParams)
+    .then(response => {
+      console.log("تم إرسال الإيميل بنجاح!", response.status);
+    }, error => {
+      console.error("فشل إرسال الإيميل:", error);
+    });
 
   const url = "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
   window.open(url,"_blank","noopener");
