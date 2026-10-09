@@ -1,35 +1,34 @@
 const product = {
-  id: "29",
-  name: "شنطة AMO #29",
+  id: "30",
+  name: "شنطة AMO #30",
   price: 10,
 
   size: "وسط",
-  dimensions: "30 سم عرض × 21 سم ارتفاع",
+  dimensions: "30 سم عرض × 20 سم ارتفاع",
 
-  image: "https://amo-bags.github.io/products-new/29/293offwhite.jpg",
+  image: "https://amo-bags.github.io/products-new/30/camil30.png",
   
   colors: [
     {
+      name: "عسلي",
+      value: "#A96852",
+      image: "https://amo-bags.github.io/products-new/30/camil30.png"
+    },
+    {
+      name: "أسود",
+      value: "#171717",
+      image: "https://amo-bags.github.io/products-new/30/balck30.png"
+    },
+    {
       name: "أوفوايت",
       value: "#F5F2EB",
-      image: "https://amo-bags.github.io/products-new/29/293offwhite.jpg"
-    },
-    {
-      name: "بيج",
-      value: "#E8DCC5",
-      image: "https://amo-bags.github.io/products-new/29/291bagi.jpg"
-    },
-    {
-      name: "كاكي",
-      value: "#B7A58A",
-      image: "https://amo-bags.github.io/products-new/29/292kaki.jpg"
+      image: "https://amo-bags.github.io/products-new/30/offwhite30.png"
     }
   ],
 
   gallery: [
-    "https://amo-bags.github.io/products-new/29/293offwhite.jpg",
-    "https://amo-bags.github.io/products-new/29/291bagi.jpg",
-    "https://amo-bags.github.io/products-new/29/292kaki.jpg",
-    "https://amo-bags.github.io/products-new/29/IMG-20260423-WA0023.jpg"
+    "https://amo-bags.github.io/products-new/30/camil30.png",
+    "https://amo-bags.github.io/products-new/30/balck30.png",
+    "https://amo-bags.github.io/products-new/30/offwhite30.png"
   ]
 };
