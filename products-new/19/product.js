@@ -1,23 +1,28 @@
 const product = {
   id: "19",
   name: "شنطة AMO #19",
-  price: 10,
+  price: 15,
 
-  size: "وسط",
-  dimensions: "30 سم عرض × 20 سم ارتفاع",
+  size: "كبير",
+  dimensions: "35 سم عرض × 28 سم ارتفاع",
 
-  image: "https://amo-bags.github.io/products-new/18/1688_image_share_6b579df441fb345de152d1029a4a859c.jpg",
+  image: "https://amo-bags.github.io/products-new/19/IMG-20260404-WA0084_edit_20887015945311.jpg",
 
   colors: [
     {
-      name: "أبيض",
-      value: "#F5F2EB",
-      image: "https://amo-bags.github.io/products-new/18/1688_image_share_6b579df441fb345de152d1029a4a859c.jpg"
+      name: "أوف وايت",
+      value: "#E9E3D8",
+      image: "https://amo-bags.github.io/products-new/19/IMG-20260404-WA0084_edit_20887015945311.jpg"
+    },
+    {
+      name: "بني",
+      value: "#5B3929",
+      image: "https://amo-bags.github.io/products-new/19/IMG-20260404-WA0083_edit_20911901694989.jpg"
     }
   ],
 
   gallery: [
-    "https://amo-bags.github.io/products-new/18/1688_image_share_6b579df441fb345de152d1029a4a859c.jpg",
-    "https://amo-bags.github.io/products-new/18/1772564048566_edit_94508115901343.jpg"
+    "https://amo-bags.github.io/products-new/19/IMG-20260404-WA0083_edit_20911901694989.jpg",
+    "https://amo-bags.github.io/products-new/19/IMG-20260404-WA0084_edit_20887015945311.jpg"
   ]
 };
