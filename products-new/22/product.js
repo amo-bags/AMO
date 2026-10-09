@@ -17,7 +17,7 @@ const product = {
     {
       name: "أوف وايت",
       value: "#EDE4D6",
-      image: "https://amo-bags.github.io/products-new/22/IMG-20260404-WA0084_edit_20887015945311.jpg"
+      image: "https://amo-bags.github.io/products-new/22/file_00000000e04071f890c0b618453967ba_edit_1439932207248779.png"
     },
     {
       name: "خمري",
@@ -28,7 +28,7 @@ const product = {
 
   gallery: [
     "https://amo-bags.github.io/products-new/22/IMG-20260404-WA0083_edit_20911901694989.jpg",
-    "https://amo-bags.github.io/products-new/22/IMG-20260404-WA0084_edit_20887015945311.jpg",
+    "https://amo-bags.github.io/products-new/22/file_00000000e04071f890c0b618453967ba_edit_1439932207248779.png",
     "https://amo-bags.github.io/products-new/22/file_00000000c48071fd919260925e610c31.png",
     "https://amo-bags.github.io/products-new/22/file_0000000095e071fd97a43bc0db53886e.png"
   ]
