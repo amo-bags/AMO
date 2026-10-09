@@ -1,35 +1,25 @@
 const product = {
-id: "22",
-name: "شنطة AMO #22",
+id: "24",
+name: "شنطة AMO #24",
 price: 10,
 
-size: "وسط",
-dimensions: "28 سم عرض × 20 سم ارتفاع",
+size: "صغير",
+dimensions: "22 سم عرض × 12 سم ارتفاع",
 
-image: "https://amo-bags.github.io/products-new/22/IMG-20260404-WA0083_edit_20911901694989.jpg",
+image: "https://amo-bags.github.io/products-new/24/image-24-1.jpg",
 
 colors: [
 {
-name: "عسلي",
-value: "#B8733F",
-image: "https://amo-bags.github.io/products-new/22/file_00000000319471fd82fbd92c4b1d482e.png"
-},
-{
-name: "أوف وايت",
-value: "#EDE4D6",
-image: "https://amo-bags.github.io/products-new/22/file_00000000e04071f890c0b618453967ba_edit_1439932207248779.png"
-},
-{
-name: "خمري",
-value: "#6B1F2D",
-image: "https://amo-bags.github.io/products-new/22/file_00000000c48071fd919260925e610c31.png"
+name: "فضي",
+value: "#C0C0C0",
+image: "https://amo-bags.github.io/products-new/24/image-24-1.jpg"
 }
 ],
 
 gallery: [
-"https://amo-bags.github.io/products-new/22/file_00000000319471fd82fbd92c4b1d482e.png",
-"https://amo-bags.github.io/products-new/22/file_00000000e04071f890c0b618453967ba_edit_1439932207248779.png",
-"https://amo-bags.github.io/products-new/22/file_00000000c48071fd919260925e610c31.png",
-"https://amo-bags.github.io/products-new/22/file_0000000095e071fd97a43bc0db53886e.png"
+"https://amo-bags.github.io/products-new/24/image-24-1.jpg",
+"https://amo-bags.github.io/products-new/24/image-24-2.jpg",
+"https://amo-bags.github.io/products-new/24/image-24-3.jpg",
+"https://amo-bags.github.io/products-new/24/image-24-4.jpg"
 ]
 };
