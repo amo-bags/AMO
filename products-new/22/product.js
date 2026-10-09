@@ -6,12 +6,13 @@ price: 10,
 size: "وسط",
 dimensions: "28 سم عرض × 20 سم ارتفاع",
 
-image: "https://amo-bags.github.io/products-new/22/IMG-20260404-WA0083_edit_20911901694989.jpg",
+// الصورة الرئيسية: اللون العسلي
+image: "https://amo-bags.github.io/products-new/22/file_00000000319471fd82fbd92c4b1d482e.png",
 
 colors: [
 {
 name: "عسلي",
-value: "#B8733F",
+value: "#A9683F",
 image: "https://amo-bags.github.io/products-new/22/file_00000000319471fd82fbd92c4b1d482e.png"
 },
 {
