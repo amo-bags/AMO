@@ -1,6 +1,6 @@
 const product = {
-  id: "20",
-  name: "شنطة AMO #20",
+  id: "21",
+  name: "شنطة AMO #21",
   price: 10,
 
   size: "صغير",
