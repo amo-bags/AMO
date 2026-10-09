@@ -515,6 +515,7 @@ const ORDERS_KEY = "amo_previous_orders_v1";
 
 let products = [];
 let cart = [];
+let pendingOrder = null;
 let lightboxGallery = [];
 let lightboxIndex = 0;
 let detailProductId = null;
@@ -1792,190 +1793,109 @@ function confirmOrder(){
 
   if(!validateCustomer()) return;
 
-  const c =
-    customerData();
+  const c = customerData();
+  const total = productsTotal();
+  const d = delivery();
 
-  const total =
-    productsTotal();
-
-  const d =
-    delivery();
-
-  /*
-    حفظ نسخة من الطلب قبل تفريغ السلة
-  */
-  savePreviousOrder({
-
-    date:
-      new Date().toISOString(),
-
-    customer:{
-
+  // احتفظ بنسخة مؤقتة من الطلب؛ لا تُفرّغ السلة عند مجرد فتح واتساب.
+  pendingOrder = {
+    date: new Date().toISOString(),
+    customer: {
       name:c.name,
       phone:c.phone,
       city:c.city,
       address:c.address,
       notes:c.notes
-
     },
-
-    items:
-      cart.map(x=>({
-
-        name:x.name,
-        price:x.price,
-        quantity:x.quantity,
-        colorName:x.colorName || "",
-        size:x.size || "",
-        image:x.image
-
-      })),
-
+    items: cart.map(x=>({
+      productId:x.productId || null,
+      name:x.name,
+      price:Number(x.price),
+      quantity:Number(x.quantity),
+      colorName:x.colorName || "",
+      size:x.size || "",
+      image:x.image || "",
+      dimensions:x.dimensions || ""
+    })),
     productsTotal:total,
     delivery:d,
     total:total+d
+  };
 
-  });
+  let msg = "🛍️ طلب جديد من AMO\n\n";
+  msg += "👤 الاسم: "+c.name+"\n";
+  msg += "📱 الهاتف: "+c.phone+"\n";
+  msg += "📍 المحافظة: "+c.city+"\n";
+  msg += "🏠 العنوان: "+c.address+"\n";
+  if(c.notes) msg += "📝 الملاحظات: "+c.notes+"\n";
 
-  let msg =
-    "🛍️ طلب جديد من AMO\n\n";
-
-  msg +=
-    "👤 الاسم: "+
-    c.name+
-    "\n";
-
-  msg +=
-    "📱 الهاتف: "+
-    c.phone+
-    "\n";
-
-  msg +=
-    "📍 المحافظة: "+
-    c.city+
-    "\n";
-
-  msg +=
-    "🏠 العنوان: "+
-    c.address+
-    "\n";
-
-  if(c.notes){
-
-    msg +=
-      "📝 الملاحظات: "+
-      c.notes+
-      "\n";
-  }
-
-  msg +=
-    "\n━━━━━━━━━━━━━━\n" +
-    "🛒 تفاصيل الطلب:\n";
-
+  msg += "\n━━━━━━━━━━━━━━\n🛒 تفاصيل الطلب:\n";
   cart.forEach((x,i)=>{
-
-    msg +=
-      `\n${i+1}. ${x.name}\n`;
-
-    if(x.colorName){
-
-      msg +=
-        `🎨 اللون: ${x.colorName}\n`;
-    }
-
-    if(x.size){
-
-      msg +=
-        `📏 الحجم: ${x.size}\n`;
-    }
-
-    msg +=
-      `🔢 الكمية: ${x.quantity}\n`;
-
-    msg +=
-      `💰 سعر القطعة: ${x.price.toFixed(2)} د.أ\n`;
-
-    msg +=
-      `💵 المجموع: ${(x.price*x.quantity).toFixed(2)} د.أ\n`;
+    msg += `\n${i+1}. ${x.name}\n`;
+    if(x.colorName) msg += `🎨 اللون: ${x.colorName}\n`;
+    if(x.size) msg += `📏 الحجم: ${x.size}\n`;
+    msg += `🔢 الكمية: ${x.quantity}\n`;
+    msg += `💰 سعر القطعة: ${Number(x.price).toFixed(2)} د.أ\n`;
+    msg += `💵 المجموع: ${(Number(x.price)*Number(x.quantity)).toFixed(2)} د.أ\n`;
   });
+  msg += "\n━━━━━━━━━━━━━━\n";
+  msg += `💰 مجموع المنتجات: ${total.toFixed(2)} د.أ\n`;
+  msg += `🚚 التوصيل: ${d===0 ? "مجاني" : d.toFixed(2)+" د.أ"}\n`;
+  msg += `💳 المجموع النهائي: ${(total+d).toFixed(2)} د.أ\n`;
+  msg += "\nشكراً لطلبك من AMO 🤍";
 
-  msg +=
-    "\n━━━━━━━━━━━━━━\n";
+  const url = "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
+  window.open(url,"_blank","noopener");
 
-  msg +=
-    `💰 مجموع المنتجات: ${total.toFixed(2)} د.أ\n`;
-
-  msg +=
-    `🚚 التوصيل: ${
-      d===0
-        ? "مجاني"
-        : d.toFixed(2)+" د.أ"
-    }\n`;
-
-  msg +=
-    `💳 المجموع النهائي: ${
-      (total+d).toFixed(2)
-    } د.أ\n`;
-
-  msg +=
-    "\nشكراً لطلبك من AMO 🤍";
-
-  const url =
-    "https://wa.me/"+
-    WHATSAPP+
-    "?text="+
-    encodeURIComponent(msg);
-
-  window.open(
-    url,
-    "_blank"
-  );
-
-  /*
-    تفريغ السلة فقط بعد تأكيد الطلب
-  */
-  cart=[];
-
-  saveCart();
-
-  renderCart();
-
-  closeCart();
-
-  closeReview();
-
-  document.getElementById(
-    "reviewBox"
-  ).innerHTML = `
-
-    <div class="success">
-
-      <div class="success-icon">
-        🎉
-      </div>
-
-      <h2>
-        تم تجهيز الطلب
-      </h2>
-
-      <p>
-        تم فتح واتساب برسالة الطلب.<br>
-        سيتم التواصل معك لتأكيد الطلب والتوصيل.
-      </p>
-
-      <button onclick="closeReview()">
-        حسناً
-      </button>
-
+  // إبقاء السلة كما هي إلى أن يعود المستخدم ويؤكد أنه أرسل الرسالة فعلاً.
+  document.getElementById("reviewBox").innerHTML = `
+    <div class="modal-title">📲 إكمال الطلب عبر واتساب</div>
+    <div class="modal-sub" style="line-height:1.9">
+      فتح واتساب لا يعني أن الطلب أُرسل. أرسلي الرسالة من واتساب أولاً، ثم عودي واضغطي على زر التأكيد أدناه.
+      <br><b>سلتك محفوظة ولن تُفرّغ قبل تأكيدك.</b>
+    </div>
+    <div class="modal-actions">
+      <button class="edit-btn" onclick="cancelWhatsAppConfirmation()">العودة للسلة</button>
+      <button class="send-btn" onclick="finalizeOrder()">✅ أرسلت الطلب عبر واتساب</button>
     </div>
   `;
-
-  document.getElementById(
-    "reviewModal"
-  ).classList.add("show");
-
+  document.getElementById("reviewModal").classList.add("show");
   document.body.classList.add("lock");
 }
+
+function cancelWhatsAppConfirmation(){
+  pendingOrder = null;
+  closeReview();
+  openCart();
+}
+
+function finalizeOrder(){
+  if(!pendingOrder){
+    alert("لا يوجد طلب بانتظار التأكيد.");
+    return;
+  }
+
+  // لا نحفظ الطلب كسابق ولا نفرغ السلة إلا بعد تأكيد المستخدم.
+  savePreviousOrder(pendingOrder);
+  pendingOrder = null;
+  cart = [];
+  saveCart();
+  renderCart();
+  closeReview();
+  closeCart();
+
+  document.getElementById("reviewBox").innerHTML = `
+    <div class="success">
+      <div class="success-icon">🎉</div>
+      <h2>تم تأكيد إرسال الطلب</h2>
+      <p>تم حفظ الطلب ضمن طلباتك السابقة وتفريغ السلة.</p>
+      <button class="send-btn" onclick="closeReview()">حسناً</button>
+    </div>
+  `;
+  document.getElementById("reviewModal").classList.add("show");
+  document.body.classList.add("lock");
+}
+
 
 
 /* ==========================================
@@ -2137,6 +2057,47 @@ function closePreviousOrders(){
   document.body.classList.remove("lock");
 }
 
+function restorePreviousOrder(index){
+  const orders = loadPreviousOrders();
+  const order = orders[index];
+  if(!order || !Array.isArray(order.items) || !order.items.length){
+    alert("تعذر استعادة منتجات هذا الطلب.");
+    return;
+  }
+
+  order.items.forEach((item,itemIndex)=>{
+    const productId = item.productId || null;
+    const colorName = item.colorName || "";
+    const size = item.size || "";
+    const key = productId
+      ? `${productId}|${colorName}|${size}`
+      : `previous-${index}-${itemIndex}|${colorName}|${size}`;
+    const existing = cart.find(x=>x.key===key);
+    const quantity = Math.max(1, Number(item.quantity) || 1);
+
+    if(existing){
+      existing.quantity += quantity;
+    }else{
+      cart.push({
+        key,
+        productId,
+        name:item.name || "منتج AMO",
+        price:Math.max(0, Number(item.price) || 0),
+        image:item.image || "",
+        colorName,
+        size,
+        dimensions:item.dimensions || "",
+        quantity
+      });
+    }
+  });
+
+  saveCart();
+  renderCart();
+  closePreviousOrders();
+  openCart();
+}
+
 function renderPreviousOrders(){
 
   const box =
@@ -2230,6 +2191,10 @@ function renderPreviousOrders(){
             د.أ
 
           </div>
+
+          <button class="send-btn" style="width:100%;margin-top:10px" onclick="restorePreviousOrder(${index})">
+            🔄 استعادة المنتجات إلى السلة
+          </button>
 
         </div>
 
