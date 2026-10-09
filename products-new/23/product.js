@@ -6,8 +6,8 @@ const product = {
   size: "وسط",
   dimensions: "30 سم عرض × 20 سم ارتفاع",
 
-  image: "https://amo-bags.github.io/products-new/23/image-19_197705906995413.jpg",
-
+  image: "https://amo-bags.github.io/products-new/23/image-22.jpg",
+  
   colors: [
     {
       name: "أسود",
