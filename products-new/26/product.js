@@ -7,7 +7,7 @@ const product = {
   size: "كبير",
   dimensions: "33 سم عرض × 25 سم ارتفاع",
 
-  // الصورة الأساسية: الأسود
+  // الصورة الأساسية: أسود
   image: "https://amo-bags.github.io/products-new/26/image-59.jpg",
 
   colors: [
