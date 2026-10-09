@@ -1,4 +1,3 @@
-
 const product = {
   id: "26",
   name: "شنطة AMO #26",
