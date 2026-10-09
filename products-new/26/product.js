@@ -6,25 +6,25 @@ const product = {
   size: "كبير",
   dimensions: "33 سم عرض × 25 سم ارتفاع",
 
-  image: "https://raw.githubusercontent.com/amo-bags/amo-bags.github.io/main/products-new/26/image-59.jpg",
+  image: "https://amo-bags.github.io/products-new/26/image-59.jpg",
 
   colors: [
     {
       name: "أسود",
       value: "#171717",
-      image: "https://raw.githubusercontent.com/amo-bags/amo-bags.github.io/main/products-new/26/image-59.jpg"
+      image: "https://amo-bags.github.io/products-new/26/image-59.jpg"
     },
     {
       name: "بيج",
       value: "#D8C9B7",
-      image: "https://raw.githubusercontent.com/amo-bags/amo-bags.github.io/main/products-new/26/image-53_550389195026500.jpg"
+      image: "https://amo-bags.github.io/products-new/26/image-53_550389195026500.jpg"
     }
   ],
 
   gallery: [
-    "https://raw.githubusercontent.com/amo-bags/amo-bags.github.io/main/products-new/26/image-59.jpg",
-    "https://raw.githubusercontent.com/amo-bags/amo-bags.github.io/main/products-new/26/image-53_550389195026500.jpg",
-    "https://raw.githubusercontent.com/amo-bags/amo-bags.github.io/main/products-new/26/file_0000000004db071f48f74b1ffdd1d67bd.png",
-    "https://raw.githubusercontent.com/amo-bags/amo-bags.github.io/main/products-new/26/file_000000008aac7243acb9efd8f7370e64.png"
+    "https://amo-bags.github.io/products-new/26/image-59.jpg",
+    "https://amo-bags.github.io/products-new/26/image-53_550389195026500.jpg",
+    "https://amo-bags.github.io/products-new/26/file_0000000004db071f48f74b1ffdd1d67bd.png",
+    "https://amo-bags.github.io/products-new/26/file_000000008aac7243acb9efd8f7370e64.png"
   ]
 };
