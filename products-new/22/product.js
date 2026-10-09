@@ -12,7 +12,7 @@ const product = {
     {
       name: "عسلي",
       value: "#8B5E3C",
-      image: file_00000000319471fd82fbd92c4b1d48 
+      image: "https://amo-bags.github.io/products-new/22/file_00000000319471fd82fbd92c4b1d48 
 2e.png
     },
     {
