@@ -1,58 +1,35 @@
 const product = {
-  id: "28",
-  name: "شنطة AMO #28",
-  price: 5,
+  id: "29",
+  name: "شنطة AMO #29",
+  price: 10,
 
   size: "وسط",
-  dimensions: "25 سم عرض × 20 سم ارتفاع",
+  dimensions: "30 سم عرض × 21 سم ارتفاع",
 
-  image: "https://amo-bags.github.io/products-new/28/281.png",
+  image: "https://amo-bags.github.io/products-new/29/1%20اوفوايت.jpg",
   
   colors: [
     {
-      name: "خمري",
-      value: "#7B1F31",
-      image: "https://amo-bags.github.io/products-new/28/281.png"
-    },
-    {
-      name: "أسود",
-      value: "#171717",
-      image: "https://amo-bags.github.io/products-new/28/283.png"
-    },
-    {
-      name: "أبيض",
-      value: "#FFFFFF",
-      image: "https://amo-bags.github.io/products-new/28/285.png"
+      name: "أوفوايت",
+      value: "#F5F2EB",
+      image: "https://amo-bags.github.io/products-new/29/1%20اوفوايت.jpg"
     },
     {
       name: "بيج",
       value: "#E8DCC5",
-      image: "https://amo-bags.github.io/products-new/28/284.png"
+      image: "https://amo-bags.github.io/products-new/29/2%20بيج.jpg"
     },
     {
       name: "كاكي",
       value: "#B7A58A",
-      image: "https://amo-bags.github.io/products-new/28/280.png"
-    },
-    {
-      name: "بني",
-      value: "#654321",
-      image: "https://amo-bags.github.io/products-new/28/286.png"
-    },
-    {
-      name: "عسلي",
-      value: "#A96852",
-      image: "https://amo-bags.github.io/products-new/28/28.png"
+      image: "https://amo-bags.github.io/products-new/29/3%20كاكي.jpg"
     }
   ],
 
   gallery: [
-    "https://amo-bags.github.io/products-new/28/281.png",
-    "https://amo-bags.github.io/products-new/28/283.png",
-    "https://amo-bags.github.io/products-new/28/285.png",
-    "https://amo-bags.github.io/products-new/28/284.png",
-    "https://amo-bags.github.io/products-new/28/280.png",
-    "https://amo-bags.github.io/products-new/28/286.png",
-    "https://amo-bags.github.io/products-new/28/28.png"
+    "https://amo-bags.github.io/products-new/29/1%20اوفوايت.jpg",
+    "https://amo-bags.github.io/products-new/29/2%20بيج.jpg",
+    "https://amo-bags.github.io/products-new/29/3%20كاكي.jpg",
+    "https://amo-bags.github.io/products-new/29/تفاصيل%20داخلية.jpg"
   ]
 };
