@@ -42,7 +42,7 @@ const product = {
     {
       name: "عسلي",
       value: "#A96852",
-      image: "https://amo-bags.github.io/products-new/28/287.png"
+      image: "https://amo-bags.github.io/products-new/28/28.png"
     }
   ],
 
@@ -53,7 +53,6 @@ const product = {
     "https://amo-bags.github.io/products-new/28/284.png",
     "https://amo-bags.github.io/products-new/28/280.png",
     "https://amo-bags.github.io/products-new/28/286.png",
-    "https://amo-bags.github.io/products-new/28/287.png",
     "https://amo-bags.github.io/products-new/28/28.png"
   ]
 };
