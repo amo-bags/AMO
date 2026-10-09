@@ -41,5 +41,5 @@ const product = {
     "وسط"
   ],
 
-  dimensions: "20 سم عرض × 30 سم ارتفاع"
+  dimensions: "30 سم عرض × 20 سم ارتفاع"
 };
