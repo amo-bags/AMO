@@ -1180,7 +1180,7 @@ function reviewOrder(){
   // 1. فتح تطبيق الواتساب برسالة الطلب
   window.open(`https://wa.me/${WHATSAPP}?text=` + encodeURIComponent(msg), '_blank');
   
-  // 2. إرسال الإيميل عبر EmailJS (تم تحديث Template ID من صورتك)
+  // 2. إرسال الإيميل باستخدام Service ID الحقيقي والـ Template ID الخاص بك
   const templateParams = {
     to_email: TARGET_EMAIL,
     customer_name: c.name,
@@ -1192,13 +1192,12 @@ function reviewOrder(){
     total_amount: finalTotal
   };
 
-  // استبدل "ضع_معرف_الخدمة_هنا" بـ Service ID الخاص بك من لوحة تحكم EmailJS
-  emailjs.send("ضع_معرف_الخدمة_هنا", "template_9a1dmfw", templateParams)
+  emailjs.send("service_hc4panu", "template_9a1dmfw", templateParams)
     .then(function(response) {
        console.log("SUCCESS. Email sent to " + TARGET_EMAIL);
     }, function(error) {
        console.log("FAILED...", error);
-       alert("تعذر إرسال الإيميل. تأكد من وضع الـ Service ID الصحيح في الكود.");
+       alert("تعذر إرسال الإيميل، تأكد من مطابقة الحقول في قالب EmailJS.");
     });
 
   const orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || "[]");
