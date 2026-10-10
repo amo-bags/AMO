@@ -6,9 +6,9 @@ const product = {
   dimensions: "31 سم × 21 سم",
   image: "33camil.jpg",
   colors: [
-    { name: "عسلي", colorName: "عسلي", value: "#c5a059", image: "33camil.jpg" },
-    { name: "خمري", colorName: "خمري", value: "#800020", image: "33darkred.jpg" },
-    { name: "كاكي", colorName: "كاكي", value: "#8b864e", image: "33kaki.jpg" }
+    { name: "عسلي", colorName: "عسلي", value: "#C29B61", image: "33camil.jpg" },
+    { name: "خمري", colorName: "خمري", value: "#6E1C24", image: "33darkred.jpg" },
+    { name: "كاكي", colorName: "كاكي", value: "#9A8455", image: "33kaki.jpg" }
   ],
   gallery: [
     "33details.jpg",
@@ -20,4 +20,3 @@ const product = {
 
 window.AMO_PRODUCTS = window.AMO_PRODUCTS || [];
 window.AMO_PRODUCTS.push(product);
-
