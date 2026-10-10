@@ -1173,6 +1173,7 @@ function reviewOrder(){
   const d = delivery();
   const finalTotal = (total+d).toFixed(2);
 
+  // نص الواتساب
   const itemsText = cart.map(x => `• ${x.name}${x.colorName ? ` [اللون: ${x.colorName}]` : ""} (×${x.quantity}) - ${(x.price*x.quantity).toFixed(2)} د.أ`).join("\n");
 
   let msg = `🛍️ طلب جديد من متجر AMO\n\n👤 الاسم: ${c.name}\n📱 الهاتف: ${c.phone}\n📍 المحافظة: ${c.city}\n🏠 العنوان: ${c.address}\n📝 ملاحظات: ${c.notes || 'لا يوجد'}\n\nالمنتجات المطلوبة:\n${itemsText}\n\nمجموع المنتجات: ${total.toFixed(2)} د.أ\nالتوصيل: ${d === 0 ? 'مجاني' : d.toFixed(2) + ' د.أ'}\nالمجموع النهائي: ${finalTotal} د.أ`;
@@ -1180,7 +1181,19 @@ function reviewOrder(){
   // 1. فتح تطبيق الواتساب برسالة الطلب
   window.open(`https://wa.me/${WHATSAPP}?text=` + encodeURIComponent(msg), '_blank');
   
-  // 2. إرسال الإيميل باستخدام Service ID الحقيقي والـ Template ID الخاص بك
+  // 2. جدول HTML للمنتجات يضم الصور والتفاصيل للإيميل
+  const itemsHtml = cart.map(x => `
+    <div style="display: flex; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #eee; padding-bottom: 10px; font-family: Tajawal, Arial, sans-serif;">
+      <img src="${x.image}" alt="${x.name}" style="width: 60px; height: 70px; object-fit: cover; border-radius: 8px; margin-left: 12px; border: 1px solid #ddd;" />
+      <div>
+        <strong style="font-size: 14px; color: #332922;">${x.name}</strong><br>
+        <span style="font-size: 12px; color: #666;">
+          ${x.colorName ? `اللون: ${x.colorName} | ` : ''}الكمية: ${x.quantity} | السعر: ${(x.price * x.quantity).toFixed(2)} د.أ
+        </span>
+      </div>
+    </div>
+  `).join("");
+
   const templateParams = {
     to_email: TARGET_EMAIL,
     customer_name: c.name,
@@ -1188,16 +1201,17 @@ function reviewOrder(){
     customer_city: c.city,
     customer_address: c.address,
     customer_notes: c.notes || 'لا يوجد',
-    order_details: itemsText,
+    order_details_html: itemsHtml,
     total_amount: finalTotal
   };
 
+  // 3. إرسال الإيميل عبر EmailJS
   emailjs.send("service_hc4panu", "template_9a1dmfw", templateParams)
     .then(function(response) {
        console.log("SUCCESS. Email sent to " + TARGET_EMAIL);
     }, function(error) {
        console.log("FAILED...", error);
-       alert("تعذر إرسال الإيميل، تأكد من مطابقة الحقول في قالب EmailJS.");
+       alert("تعذر إرسال الإيميل، تأكد من إعدادات القالب.");
     });
 
   const orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || "[]");
