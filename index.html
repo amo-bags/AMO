@@ -36,6 +36,7 @@
   --hero-bg: #f3efe9;
   --border-color: #e6e2db;
   --facebook-color: #1877f2;
+  --whatsapp-color: #25d366;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -101,6 +102,32 @@ header{
   border:1px solid var(--border-color);background:#fff;color:var(--text-main);
   border-radius:999px;padding:9px 14px;font-weight:700;white-space:nowrap;font-size:13px;
 }
+
+/* زر الواتساب العائم الاحترافي */
+.float-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  background: var(--whatsapp-color);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.45);
+  z-index: 2500;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.float-whatsapp:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+}
+html[dir="ltr"] .float-whatsapp { left: auto; right: 24px; }
+
 .search-input{
   width:100%;border:1px solid var(--border-color);border-radius:12px;padding:12px 16px;
   outline:none;margin-bottom:12px;background:#fff;font-size:14px;
@@ -520,6 +547,11 @@ html[dir="ltr"] .lb-next { right: auto; left: 20px; }
 
 <body>
 
+<!-- زر الواتساب العائم للتواصل السريع -->
+<a href="https://wa.me/962790780914?text=%Dالسلام%20عليكم،%20أرغب%20بالاستفسار%20عن%20المنتجات" target="_blank" rel="noopener" class="float-whatsapp">
+  💬 <span id="waFloatLabel">استفسار واتساب</span>
+</a>
+
 <header>
   <div class="header">
     <a href="#" class="logo">AMO</a>
@@ -657,11 +689,13 @@ html[dir="ltr"] .lb-next { right: auto; left: 20px; }
 
     <div class="color-tags">
       <button class="color-tag-btn" onclick="filterByColorTag('أسود')">⚫ أسود / Black</button>
+      <button class="color-tag-btn" onclick="filterByColorTag('أبيض')">⚪ أبيض / White</button>
       <button class="color-tag-btn" onclick="filterByColorTag('بني')">🤎 بني / Brown</button>
       <button class="color-tag-btn" onclick="filterByColorTag('عسلي')">🐪 عسلي / Camel</button>
       <button class="color-tag-btn" onclick="filterByColorTag('خمري')">🍷 خمري / Dark Red</button>
       <button class="color-tag-btn" onclick="filterByColorTag('أوف وايت')">🤍 أوف وايت / Offwhite</button>
       <button class="color-tag-btn" onclick="filterByColorTag('بيج')">🍦 بيج / Beige</button>
+      <button class="color-tag-btn" onclick="filterByColorTag('كاكي')">🫒 كاكي / Khaki</button>
       <button class="color-tag-btn" onclick="filterByColorTag('')" id="allColorsTag">✨ الكل / All</button>
     </div>
 
@@ -669,12 +703,12 @@ html[dir="ltr"] .lb-next { right: auto; left: 20px; }
       id="searchInput"
       class="search-input"
       type="search"
-      placeholder="مثلاً: 31 أو أسود أو خمري..."
+      placeholder="مثلاً: 31 أو أسود أو black..."
       oninput="searchProducts()"
     >
 
     <div id="searchResults" class="search-results">
-      <div class="orders-empty" id="searchEmptyInitial">ابدئي بكتابة اسم أو رقم الموديل أو اللون</div>
+      <div class="orders-empty" id="searchEmptyInitial">ابدئي بكتابة اسم أو رقم الموديل أو اللون (عربي / إنجليزي)</div>
     </div>
   </div>
 </div>
@@ -703,6 +737,7 @@ const translations = {
   ar: {
     pageTitle: "AMO | شنط نسائية",
     fbText: "فيسبوك",
+    waFloatText: "استفسار واتساب",
     footerFbText: "تابعونا على فيسبوك AMO Bags",
     searchBtn: "🔎 بحث",
     ordersBtn: "📦 طلباتي",
@@ -733,8 +768,8 @@ const translations = {
     reviewOrderBtn: "✅ مراجعة وتأكيد الطلب",
     searchModalTitle: "🔎 البحث عن شنطة",
     searchModalSub: "ابحثي برقم الموديل أو اسم الشنطة أو اللون المطلوب",
-    searchPlaceholder: "مثلاً: 31 أو أسود أو خمري...",
-    searchEmptyInitial: "ابدئي بكتابة اسم أو رقم الموديل أو اللون",
+    searchPlaceholder: "مثلاً: 31 أو أسود أو black...",
+    searchEmptyInitial: "ابدئي بكتابة اسم أو رقم الموديل أو اللون (عربي / إنجليزي)",
     ordersModalTitle: "📦 طلباتي السابقة",
     ordersModalSub: "الطلبات المحفوظة على هذا الجهاز",
     freeDeliveryText: "🎉 حصلتِ على توصيل مجاني!",
@@ -767,6 +802,7 @@ const translations = {
   en: {
     pageTitle: "AMO | Women's Bags",
     fbText: "Facebook",
+    waFloatText: "WhatsApp Chat",
     footerFbText: "Follow us on Facebook AMO Bags",
     searchBtn: "🔎 Search",
     ordersBtn: "📦 My Orders",
@@ -797,8 +833,8 @@ const translations = {
     reviewOrderBtn: "✅ Review & Confirm Order",
     searchModalTitle: "🔎 Search for a Bag",
     searchModalSub: "Search by model number, bag name, or desired color",
-    searchPlaceholder: "e.g., 31, black, or dark red...",
-    searchEmptyInitial: "Start typing model name, number, or color",
+    searchPlaceholder: "e.g., 31, black, or camel...",
+    searchEmptyInitial: "Start typing model name, number, or color (Arabic / English)",
     ordersModalTitle: "📦 Previous Orders",
     ordersModalSub: "Orders saved on this device",
     freeDeliveryText: "🎉 You got free delivery!",
@@ -850,6 +886,7 @@ function t(key) {
 function updateStaticTexts() {
   document.getElementById("pageTitle").textContent = t("pageTitle");
   document.getElementById("fbTextLabel").textContent = t("fbText");
+  document.getElementById("waFloatLabel").textContent = t("waFloatText");
   document.getElementById("footerFbText").textContent = t("footerFbText");
   document.getElementById("navSearchBtn").innerHTML = t("searchBtn");
   document.getElementById("navOrdersBtn").innerHTML = t("ordersBtn");
@@ -926,6 +963,27 @@ function absoluteImage(path, basePath){
     new URL(cleanBase,location.href)
   ).href;
 }
+
+// قاموس لتوحيد البحث بين الأسماء العربية والإنجليزية للألوان
+const colorSynonyms = {
+  "أسود": ["أسود", "اسود", "black", "dark"],
+  "black": ["أسود", "اسود", "black"],
+  "أبيض": ["أبيض", "ابيض", "white", "offwhite", "أوف وايت", "اوف وايت"],
+  "white": ["أبيض", "ابيض", "white"],
+  "أوف وايت": ["أوف وايت", "اوف وايت", "white", "offwhite"],
+  "offwhite": ["أوف وايت", "اوف وايت", "white", "offwhite"],
+  "بني": ["بني", "brown"],
+  "brown": ["بني", "brown"],
+  "عسلي": ["عسلي", "camel", "tan"],
+  "camel": ["عسلي", "camel", "tan"],
+  "خمري": ["خمري", "darkred", "red", "wine"],
+  "dark red": ["خمري", "darkred", "red"],
+  "بيج": ["بيج", "beige", "bagi", "باجي"],
+  "beige": ["بيج", "beige", "bagi", "باجي"],
+  "باجي": ["بيج", "beige", "bagi", "باجي"],
+  "كاكي": ["كاكي", "khaki"],
+  "khaki": ["كاكي", "khaki"]
+};
 
 function normalizeProduct(p,filePath){
   const base = filePath.substring(0,filePath.lastIndexOf("/")+1);
@@ -1599,20 +1657,30 @@ function filterByColorTag(colorName) {
   searchProducts();
 }
 
+// محرك بحث متطور يدعم الكلمات المرادفة والألوان بالعربي والإنجليزي
 function searchProducts(){
   const input = document.getElementById("searchInput");
   const results = document.getElementById("searchResults");
-  const query = input.value.trim().toLowerCase();
+  const rawQuery = input.value.trim().toLowerCase();
 
-  if(!query){ results.innerHTML = `<div class="orders-empty">${t("searchEmptyInitial")}</div>`; return; }
+  if(!rawQuery){ results.innerHTML = `<div class="orders-empty">${t("searchEmptyInitial")}</div>`; return; }
+
+  // توليد قائمة كلمات البحث والترادفات اللونية المحتملة
+  let searchTerms = [rawQuery];
+  for(let key in colorSynonyms) {
+    if(key.includes(rawQuery) || rawQuery.includes(key)) {
+      searchTerms = searchTerms.concat(colorSynonyms[key]);
+    }
+  }
 
   const found = products.filter(p=>{
     const colorNames = (p.colors || []).map(c => (c.name || c.colorName || "").toLowerCase()).join(" ");
     const text = [p.id, p.name, p.size, p.dimensions, colorNames].join(" ").toLowerCase();
-    return text.includes(query);
+    
+    return searchTerms.some(term => text.includes(term));
   });
 
-  if(!found.length){ results.innerHTML = `<div class="orders-empty">😔 ${currentLang==='ar'?'لم نجد أي منتج طابق البحث':'No products found matching'} "${esc(query)}"</div>`; return; }
+  if(!found.length){ results.innerHTML = `<div class="orders-empty">😔 ${currentLang==='ar'?'لم نجد أي منتج طابق البحث':'No products found matching'} "${esc(rawQuery)}"</div>`; return; }
 
   const currencySymbol = currentLang === 'ar' ? 'د.أ' : 'JOD';
   results.innerHTML = found.map(p=>`
@@ -1627,7 +1695,10 @@ function searchProducts(){
   `).join("");
 }
 
-function openSearchProduct(id){ closeSearch(); openProductDetails(id); }
+function openSearchProduct(id){ 
+  closeSearch(); 
+  openProductDetails(id); 
+}
 
 function openPreviousOrders(){
   renderPreviousOrders();
