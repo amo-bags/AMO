@@ -1,5 +1,4 @@
-
-var product = {
+var product38 = {
   id: "38",
   name: "حقيبة AMO رقم 38",
   price: 10,
