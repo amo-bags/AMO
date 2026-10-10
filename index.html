@@ -566,7 +566,7 @@ html[dir="ltr"] .cart.show { left: 0; right: auto; }
     </div>
     <div class="actions">
       <button class="continue" onclick="closeCart()">🛍️ متابعة التسوق</button>
-      <button class="review-btn" onclick="reviewOrder()">✅ مراجعة وتأكيد الطلب</button>
+      <button class="review-btn" onclick="reviewOrder()">✅ تأكيد الطلب وإرساله</button>
     </div>
   </div>
 </aside>
@@ -1164,20 +1164,45 @@ function reviewOrder(){
     name: document.getElementById("customerName").value.trim(),
     phone: document.getElementById("customerPhone").value.trim(),
     city: document.getElementById("customerCity").value,
-    address: document.getElementById("customerAddress").value.trim()
+    address: document.getElementById("customerAddress").value.trim(),
+    notes: document.getElementById("customerNotes").value.trim()
   };
   if(!c.name || !c.phone || !c.city || !c.address){ alert("يرجى تعبئة كافة حقول معلومات التوصيل المطلوبة."); return; }
   
   const total = productsTotal();
   const d = delivery();
-  let msg = `🛍️ طلب جديد من AMO\n\n👤 الاسم: ${c.name}\n📱 الهاتف: ${c.phone}\n📍 المحافظة: ${c.city}\n🏠 العنوان: ${c.address}\n\n`;
-  cart.forEach(x => { msg += `• ${x.name} (×${x.quantity}) - ${(x.price*x.quantity).toFixed(2)} د.أ\n`; });
-  msg += `\nالمجموع النهائي: ${(total+d).toFixed(2)} د.أ`;
+  const finalTotal = (total+d).toFixed(2);
 
+  // تجهيز نص المنتجات والألوان للواتساب والإيميل
+  const itemsText = cart.map(x => `• ${x.name}${x.colorName ? ` [اللون: ${x.colorName}]` : ""} (×${x.quantity}) - ${(x.price*x.quantity).toFixed(2)} د.أ`).join("\n");
+
+  let msg = `🛍️ طلب جديد من متجر AMO\n\n👤 الاسم: ${c.name}\n📱 الهاتف: ${c.phone}\n📍 المحافظة: ${c.city}\n🏠 العنوان: ${c.address}\n📝 ملاحظات: ${c.notes || 'لا يوجد'}\n\nالمنتجات المطلوبة:\n${itemsText}\n\nمجموع المنتجات: ${total.toFixed(2)} د.أ\nالتوصيل: ${d === 0 ? 'مجاني' : d.toFixed(2) + ' د.أ'}\nالمجموع النهائي: ${finalTotal} د.أ`;
+
+  // 1. فتح تطبيق الواتساب بالرسالة
   window.open(`https://wa.me/${WHATSAPP}?text=` + encodeURIComponent(msg), '_blank');
   
+  // 2. إرسال الطلب عبر الإيميل باستخدام EmailJS
+  const templateParams = {
+    to_email: TARGET_EMAIL,
+    customer_name: c.name,
+    customer_phone: c.phone,
+    customer_city: c.city,
+    customer_address: c.address,
+    customer_notes: c.notes || 'لا يوجد',
+    order_details: itemsText,
+    total_amount: finalTotal
+  };
+
+  emailjs.send("service_default", "template_default", templateParams)
+    .then(function(response) {
+       console.log("SUCCESS. Email sent to " + TARGET_EMAIL);
+    }, function(error) {
+       console.log("FAILED...", error);
+    });
+
+  // حفظ الطلب في الطلبات السابقة
   const orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || "[]");
-  orders.unshift({ date: new Date().toISOString(), total: (total+d).toFixed(2), items: cart });
+  orders.unshift({ date: new Date().toISOString(), total: finalTotal, items: cart });
   localStorage.setItem(ORDERS_KEY, JSON.stringify(orders.slice(0,10)));
   
   cart = []; saveCart(); renderCart(); closeCart();
