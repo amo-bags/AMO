@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#332922">
-<title>AMO | شنط نسائية</title>
+<title id="pageTitle">AMO | شنط نسائية</title>
 
 <!-- وسوم معاينة الرابط للواتساب ومواقع التواصل -->
 <meta property="og:type" content="website">
@@ -26,7 +26,6 @@
 
 <style>
 :root {
-  /* ألوان الهوية الكلاسيكية الفاخرة */
   --brand-color: #332922; 
   --brand-hover: #1f1814;
   --accent-gold: #c5a059;
@@ -64,7 +63,7 @@ header{
   display:flex;align-items:center;justify-content:space-between;gap:15px;
 }
 .logo{font-size:28px;font-weight:900;letter-spacing:4px;color:var(--brand-color)}
-.header-actions{display:flex;gap:10px;align-items:center}
+.header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .top-btn{
   border:1px solid var(--border-color);background:#fff;border-radius:999px;
   padding:9px 16px;font-weight:700;transition:all .2s;font-size:13px;
@@ -74,7 +73,7 @@ header{
 .cart-btn{border:0;background:var(--brand-color);color:#fff}
 .cart-count{
   display:inline-flex;align-items:center;justify-content:center;
-  min-width:20px;height:20px;padding:0 5px;margin-right:6px;
+  min-width:20px;height:20px;padding:0 5px;margin:0 4px;
   background:#fff;color:var(--brand-color);border-radius:999px;font-size:11px;font-weight:900;
 }
 
@@ -85,6 +84,31 @@ header{
 .search-input{
   width:100%;border:1px solid var(--border-color);border-radius:12px;padding:12px 16px;
   outline:none;margin-bottom:12px;background:#fff;font-size:14px;
+}
+.color-tags {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+  scrollbar-width: none;
+}
+.color-tags::-webkit-scrollbar { display: none; }
+.color-tag-btn {
+  border: 1px solid var(--border-color);
+  background: #fff;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: all 0.2s;
+  color: var(--text-main);
+}
+.color-tag-btn:hover, .color-tag-btn.active {
+  background: var(--brand-color);
+  color: #fff;
+  border-color: var(--brand-color);
 }
 .search-results{display:grid;gap:10px}
 .search-result{
@@ -126,7 +150,6 @@ header{
   box-shadow:0 4px 12px rgba(51,41,34,.04);
 }
 
-/* شريط الأقسام الكلاسيكي الراقي */
 .categories-wrap {
   position: sticky;
   top: 69px;
@@ -203,6 +226,8 @@ header{
   color: var(--brand-color);
   box-shadow: 0 2px 8px rgba(0,0,0,.05);
 }
+html[dir="ltr"] .image-badge { right: auto; left: 12px; }
+
 .thumbs{
   display:flex;gap:6px;overflow-x:auto;padding:10px;background:#fff;
   scrollbar-width:none;border-bottom:1px solid var(--border-color);
@@ -253,7 +278,10 @@ footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13p
   display:flex;flex-direction:column;overflow:hidden;
   box-shadow:-10px 0 40px rgba(0,0,0,.12);
 }
-.cart.show{right:0}
+html[dir="ltr"] .cart { right: auto; left: -520px; box-shadow: 10px 0 40px rgba(0,0,0,.12); }
+html[dir="rtl"] .cart.show { right: 0; left: auto; }
+html[dir="ltr"] .cart.show { left: 0; right: auto; }
+
 .cart-head{
   flex:0 0 70px;height:70px;padding:15px 20px;
   border-bottom:1px solid var(--border-color);display:flex;align-items:center;
@@ -288,7 +316,7 @@ footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13p
 }
 .qty-row b{min-width:20px;text-align:center;font-size:13px}
 .remove-btn{
-  margin-right:auto;border:0;background:#fff;color:#c93b3b;
+  margin-inline-start:auto;border:0;background:#fff;color:#c93b3b;
   width:auto!important;padding:0 5px;font-size:13px;
 }
 .empty{
@@ -390,7 +418,7 @@ footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13p
 .modal-actions{display:flex;gap:10px;margin-top:18px}
 .edit-btn,.send-btn{flex:1;padding:14px;border-radius:12px;font-weight:700;font-size:14px}
 .edit-btn{border:1px solid var(--border-color);background:#fff;color:var(--text-main)}
-.send-btn{border:0;background:#25d366;color:#fff;font-weight:900} /* لون الواتساب */
+.send-btn{border:0;background:#25d366;color:#fff;font-weight:900}
 .success{text-align:center;padding:25px 10px}
 .success-icon{font-size:55px;margin-bottom:10px}
 .success h2{margin:8px 0;color:var(--brand-color)}
@@ -410,6 +438,8 @@ footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13p
 .lb-close{top:20px;right:20px}
 .lb-prev{left:20px;top:50%;transform:translateY(-50%)}
 .lb-next{right:20px;top:50%;transform:translateY(-50%)}
+html[dir="ltr"] .lb-prev { left: auto; right: 20px; }
+html[dir="ltr"] .lb-next { right: auto; left: 20px; }
 
 @media(max-width:900px){
   .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -454,35 +484,37 @@ footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13p
     <div class="logo">AMO</div>
 
     <div class="header-actions">
-      <button class="extra-btn" onclick="openSearch()">
+      <button class="extra-btn" id="langToggleBtn" onclick="toggleLanguage()">🌐 EN</button>
+
+      <button class="extra-btn" id="navSearchBtn" onclick="openSearch()">
         🔎 بحث
       </button>
 
-      <button class="extra-btn" onclick="openPreviousOrders()">
+      <button class="extra-btn" id="navOrdersBtn" onclick="openPreviousOrders()">
         📦 طلباتي
       </button>
 
       <button class="top-btn cart-btn" onclick="openCart()">
-        🛒 السلة <span class="cart-count">0</span>
+        🛒 <span id="cartTextLabel">السلة</span> <span class="cart-count">0</span>
       </button>
     </div>
   </div>
 </header>
 
 <section class="hero">
-  <h1>اختاري شنطتك بستايلك الخاص</h1>
-  <p>شنط AMO بتصاميم أنيقة تناسب كل إطلالة</p>
-  <span class="hero-note">🚚 التوصيل 2 د.أ — مجاني عند 49 د.أ فأكثر</span>
+  <h1 id="heroTitle">اختاري شنطتك بستايلك الخاص</h1>
+  <p id="heroSub">شنط AMO بتصاميم أنيقة تناسب كل إطلالة</p>
+  <span class="hero-note" id="heroNote">🚚 التوصيل 2 د.أ — مجاني عند 49 د.أ فأكثر</span>
 </section>
 
 <!-- شريط الأقسام (التصنيفات) -->
 <div class="categories-wrap" id="products">
   <div class="categories-bar">
-    <button class="cat-btn active" onclick="changeCategory('all', this)">✨ جميع الموديلات</button>
-    <button class="cat-btn" onclick="changeCategory('5', this)">🛍️ شنط بـ 5 د.أ</button>
-    <button class="cat-btn" onclick="changeCategory('10', this)">🎒 شنط بـ 10 د.أ</button>
-    <button class="cat-btn" onclick="changeCategory('15', this)">👜 شنط بـ 15 د.أ</button>
-    <button class="cat-btn" onclick="changeCategory('wallets', this)">👛 تشكيلة المحافظ</button>
+    <button class="cat-btn active" onclick="changeCategory('all', this)" data-cat="all">✨ جميع الموديلات</button>
+    <button class="cat-btn" onclick="changeCategory('5', this)" data-cat="5">🛍️ شنط بـ 5 د.أ</button>
+    <button class="cat-btn" onclick="changeCategory('10', this)" data-cat="10">🎒 شنط بـ 10 د.أ</button>
+    <button class="cat-btn" onclick="changeCategory('15', this)" data-cat="15">👜 شنط بـ 15 د.أ</button>
+    <button class="cat-btn" onclick="changeCategory('wallets', this)" data-cat="wallets">👛 تشكيلة المحافظ</button>
   </div>
 </div>
 
@@ -490,22 +522,22 @@ footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13p
   <div class="section-head">
     <div>
       <h2 id="sectionTitleDisplay" class="section-title">أحدث الحقائب</h2>
-      <div class="section-sub">اضغطي على الصورة أو «التفاصيل» لرؤية كل الصور</div>
+      <div id="sectionSubDisplay" class="section-sub">اضغطي على الصورة أو «التفاصيل» لرؤية كل الصور</div>
     </div>
   </div>
 
   <div id="productsGrid" class="grid">
-    <p style="grid-column:1/-1;text-align:center;padding:35px">جاري تحميل المنتجات...</p>
+    <p id="loadingText" style="grid-column:1/-1;text-align:center;padding:35px">جاري تحميل المنتجات...</p>
   </div>
 </section>
 
-<footer>AMO © جميع الحقوق محفوظة</footer>
+<footer id="footerText">AMO © جميع الحقوق محفوظة</footer>
 
 <div id="cartOverlay" class="overlay" onclick="closeCart()"></div>
 
 <aside id="cart" class="cart" aria-label="سلة التسوق">
   <div class="cart-head">
-    <h2>🛒 سلة التسوق <span class="cart-count">0</span></h2>
+    <h2 id="cartHeaderTitle">🛒 سلة التسوق <span class="cart-count">0</span></h2>
     <button class="close" onclick="closeCart()" aria-label="إغلاق">×</button>
   </div>
 
@@ -513,18 +545,26 @@ footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13p
     <div id="cartBody"></div>
 
     <div id="customerBox" class="customer-box" style="display:none">
-      <h3>📦 معلومات التوصيل</h3>
+      <h3 id="deliveryInfoTitle">📦 معلومات التوصيل</h3>
       <div id="cartErrorBanner" class="cart-error-banner"></div>
       <div class="form-grid checkout">
         <input id="customerName" type="text" autocomplete="name" placeholder="الاسم الكامل *" oninput="clearCustomerErrors()">
         <input id="customerPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="رقم الهاتف *" oninput="clearCustomerErrors()">
 
         <select id="customerCity" onchange="clearCustomerErrors()">
-          <option value="">اختاري المحافظة *</option>
-          <option>عمّان</option><option>الزرقاء</option><option>إربد</option>
-          <option>البلقاء</option><option>الكرك</option><option>الطفيلة</option>
-          <option>معان</option><option>العقبة</option><option>مادبا</option>
-          <option>جرش</option><option>عجلون</option><option>المفرق</option>
+          <option value="" id="cityOptDefault">اختاري المحافظة *</option>
+          <option>عمّان / Amman</option>
+          <option>الزرقاء / Zarqa</option>
+          <option>إربد / Irbid</option>
+          <option>البلقاء / Balqa</option>
+          <option>الكرك / Karak</option>
+          <option>الطفيلة / Tafilah</option>
+          <option>معان / Ma'an</option>
+          <option>العقبة / Aqaba</option>
+          <option>مادبا / Madba</option>
+          <option>جرش / Jerash</option>
+          <option>عجلون / Ajloun</option>
+          <option>المفرق / Mafraq</option>
         </select>
 
         <textarea id="customerAddress" placeholder="العنوان بالتفصيل *" oninput="clearCustomerErrors()"></textarea>
@@ -535,15 +575,15 @@ footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13p
 
   <div class="cart-footer">
     <div class="summary">
-      <div class="line"><span>مجموع المنتجات</span><strong id="productsTotal">0.00 د.أ</strong></div>
-      <div class="line"><span>التوصيل</span><strong id="deliveryTotal">0.00 د.أ</strong></div>
+      <div class="line"><span id="sumProductsLabel">مجموع المنتجات</span><strong id="productsTotal">0.00 د.أ</strong></div>
+      <div class="line"><span id="sumDeliveryLabel">التوصيل</span><strong id="deliveryTotal">0.00 د.أ</strong></div>
       <div id="deliveryProgress" class="delivery-progress" style="display:none"></div>
-      <div class="line final"><span>المجموع النهائي</span><strong id="finalTotal">0.00 د.أ</strong></div>
+      <div class="line final"><span id="sumFinalLabel">المجموع النهائي</span><strong id="finalTotal">0.00 د.أ</strong></div>
     </div>
 
     <div class="actions">
-      <button class="continue" onclick="closeCart()">🛍️ متابعة التسوق</button>
-      <button class="review-btn" onclick="reviewOrder()">✅ مراجعة وتأكيد الطلب</button>
+      <button class="continue" id="continueShoppingBtn" onclick="closeCart()">🛍️ متابعة التسوق</button>
+      <button class="review-btn" id="reviewOrderBtn" onclick="reviewOrder()">✅ مراجعة وتأكيد الطلب</button>
     </div>
   </div>
 </aside>
@@ -561,19 +601,29 @@ footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13p
   <div class="modal-box">
     <button class="close" onclick="closeSearch()">×</button>
 
-    <div class="modal-title">🔎 البحث عن شنطة</div>
-    <div class="modal-sub">ابحثي برقم الموديل أو اسم الشنطة أو اللون</div>
+    <div class="modal-title" id="searchModalTitle">🔎 البحث عن شنطة</div>
+    <div class="modal-sub" id="searchModalSub">ابحثي برقم الموديل أو اسم الشنطة أو اللون المطلوب</div>
+
+    <div class="color-tags">
+      <button class="color-tag-btn" onclick="filterByColorTag('أسود')">⚫ أسود / Black</button>
+      <button class="color-tag-btn" onclick="filterByColorTag('بني')">🤎 بني / Brown</button>
+      <button class="color-tag-btn" onclick="filterByColorTag('عسلي')">🐪 عسلي / Camel</button>
+      <button class="color-tag-btn" onclick="filterByColorTag('خمري')">🍷 خمري / Dark Red</button>
+      <button class="color-tag-btn" onclick="filterByColorTag('أوف وايت')">🤍 أوف وايت / Offwhite</button>
+      <button class="color-tag-btn" onclick="filterByColorTag('بيج')">🍦 بيج / Beige</button>
+      <button class="color-tag-btn" onclick="filterByColorTag('')" id="allColorsTag">✨ الكل / All</button>
+    </div>
 
     <input
       id="searchInput"
       class="search-input"
       type="search"
-      placeholder="مثلاً: 3 أو AMO #3 أو أسود"
+      placeholder="مثلاً: 31 أو أسود أو خمري..."
       oninput="searchProducts()"
     >
 
     <div id="searchResults" class="search-results">
-      <div class="orders-empty">ابدئي بكتابة اسم أو رقم الموديل</div>
+      <div class="orders-empty" id="searchEmptyInitial">ابدئي بكتابة اسم أو رقم الموديل أو اللون</div>
     </div>
   </div>
 </div>
@@ -583,8 +633,8 @@ footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13p
   <div class="modal-box">
     <button class="close" onclick="closePreviousOrders()">×</button>
 
-    <div class="modal-title">📦 طلباتي السابقة</div>
-    <div class="modal-sub">الطلبات المحفوظة على هذا الجهاز</div>
+    <div class="modal-title" id="ordersModalTitle">📦 طلباتي السابقة</div>
+    <div class="modal-sub" id="ordersModalSub">الطلبات المحفوظة على هذا الجهاز</div>
 
     <div id="previousOrders"></div>
   </div>
@@ -598,48 +648,187 @@ footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13p
 </div>
 
 <script>
-const PRODUCT_FILES = [
-  "products-new/1/product.js",
-  "products-new/2/product.js",
-  "products-new/4/product.js",
-  "products-new/5/product.js",
-  "products-new/6/product.js",
-  "products-new/10/product.js",
-  "products-new/11/product.js",
-  "products-new/12/product.js",
-  "products-new/7/product.js",
-  "products-new/8/product.js",
-  "products-new/9/product.js",
-  "products-new/13/product.js",
-  "products-new/14/product.js",
-  "products-new/15/product.js",
-  "products-new/16/product.js",
-  "products-new/17/product.js",
-  "products-new/18/product.js",
-  "products-new/19/product.js",
-  "products-new/20/product.js",
-  "products-new/21/product.js",
-  "products-new/22/product.js",
-  "products-new/23/product.js",
-  "products-new/24/product.js",
-  "products-new/25/product.js",
-  "products-new/26/product.js",
-  "products-new/27/product.js",
-  "products-new/28/product.js",
-  "products-new/29/product.js",
-  "products-new/30/product.js",
-   "products-new/31/product.js",
-   "products-new/32/product.js",
-   "products-new/33/product.js",
-   "products-new/34/product.js",
-   "products-new/35/product.js",
-   "products-new/36/product.js",
-   "products-new/37/product.js",
-   "products-new/38/product.js",
-   "products-new/39/product.js",
-   "products-new/40/product.js",
-  "products-new/3/product.js"
-];
+const translations = {
+  ar: {
+    pageTitle: "AMO | شنط نسائية",
+    searchBtn: "🔎 بحث",
+    ordersBtn: "📦 طلباتي",
+    cartText: "السلة",
+    heroTitle: "اختاري شنطتك بستايلك الخاص",
+    heroSub: "شنط AMO بتصاميم أنيقة تناسب كل إطلالة",
+    heroNote: "🚚 التوصيل 2 د.أ — مجاني عند 49 د.أ فأكثر",
+    catAll: "✨ جميع الموديلات",
+    cat5: "🛍️ شنط بـ 5 د.أ",
+    cat10: "🎒 شنط بـ 10 د.أ",
+    cat15: "👜 شنط بـ 15 د.أ",
+    catWallets: "👛 تشكيلة المحافظ",
+    sectionTitle: "أحدث الحقائب",
+    sectionSub: "اضغطي على الصورة أو «التفاصيل» لرؤية كل الصور",
+    loadingText: "جاري تحميل المنتجات...",
+    footerText: "AMO © جميع الحقوق محفوظة",
+    cartHeader: "سلة التسوق",
+    deliveryInfoTitle: "📦 معلومات التوصيل",
+    namePlaceholder: "الاسم الكامل *",
+    phonePlaceholder: "رقم الهاتف *",
+    cityDefault: "اختاري المحافظة *",
+    addressPlaceholder: "العنوان بالتفصيل *",
+    notesPlaceholder: "ملاحظات إضافية (اختياري)",
+    sumProducts: "مجموع المنتجات",
+    sumDelivery: "التوصيل",
+    sumFinal: "المجموع النهائي",
+    continueShopping: "🛍️ متابعة التسوق",
+    reviewOrderBtn: "✅ مراجعة وتأكيد الطلب",
+    searchModalTitle: "🔎 البحث عن شنطة",
+    searchModalSub: "ابحثي برقم الموديل أو اسم الشنطة أو اللون المطلوب",
+    searchPlaceholder: "مثلاً: 31 أو أسود أو خمري...",
+    searchEmptyInitial: "ابدئي بكتابة اسم أو رقم الموديل أو اللون",
+    ordersModalTitle: "📦 طلباتي السابقة",
+    ordersModalSub: "الطلبات المحفوظة على هذا الجهاز",
+    freeDeliveryText: "🎉 حصلتِ على توصيل مجاني!",
+    addForFreeText: (rem) => `أضيفي ${rem.toFixed(2)} د.أ لتحصلي على التوصيل المجاني`,
+    badgeDetails: "اضغطي للتفاصيل",
+    detailsBtn: "التفاصيل",
+    addCartBtn: "أضف للسلة 🛒",
+    emptyCartText: "🛍️ السلة فارغة<br><small>اختاري أي شنطة وستظهر هنا.</small>",
+    freeText: "مجاني",
+    colorLabel: "اللون",
+    sizeLabel: "الحجم",
+    priceLabel: "السعر",
+    chooseColor: "اختاري اللون:",
+    chooseSize: "اختاري الحجم:",
+    addDetailCart: "أضف إلى السلة 🛒",
+    reviewTitle: "🧾 مراجعة الطلب",
+    reviewSub: "تأكدي من كل شيء قبل الإرسال عبر واتساب",
+    editOrder: "✏️ تعديل الطلب",
+    confirmWhatsapp: "✅ تأكيد وإرسال عبر واتساب",
+    whatsappConfirmSub: "فتح واتساب لا يعني أن الطلب أُرسل. أرسلي الرسالة من واتساب أولاً، ثم عودي واضغطي على زر التأكيد أدناه.<br><b>سلتك محفوظة ولن تُفرّغ قبل تأكيدك.</b>",
+    sentViaWhatsapp: "✅ أرسلت الطلب عبر واتساب",
+    backToCart: "العودة للسلة",
+    successTitle: "تم تأكيد إرسال الطلب",
+    successSub: "تم حفظ الطلب ضمن طلباتك السابقة وتفريغ السلة.",
+    okBtn: "حسناً",
+    noOrdersText: "📦 لا توجد طلبات سابقة<br><small>الطلبات التي يتم تأكيدها ستظهر هنا.</small>",
+    restoreBtn: "🔄 استعادة المنتجات إلى السلة",
+    noProductsInSection: "لا توجد منتجات في هذا القسم حالياً."
+  },
+  en: {
+    pageTitle: "AMO | Women's Bags",
+    searchBtn: "🔎 Search",
+    ordersBtn: "📦 My Orders",
+    cartText: "Cart",
+    heroTitle: "Choose Your Bag in Your Own Style",
+    heroSub: "AMO bags with elegant designs for every look",
+    heroNote: "🚚 Delivery 2 JOD — Free on orders over 49 JOD",
+    catAll: "✨ All Models",
+    cat5: "🛍️ 5 JOD Bags",
+    cat10: "🎒 10 JOD Bags",
+    cat15: "👜 15 JOD Bags",
+    catWallets: "👛 Wallets",
+    sectionTitle: "Latest Bags",
+    sectionSub: "Click on the image or 'Details' to see all photos",
+    loadingText: "Loading products...",
+    footerText: "AMO © All Rights Reserved",
+    cartHeader: "Shopping Cart",
+    deliveryInfoTitle: "📦 Delivery Information",
+    namePlaceholder: "Full Name *",
+    phonePlaceholder: "Phone Number *",
+    cityDefault: "Select City *",
+    addressPlaceholder: "Detailed Address *",
+    notesPlaceholder: "Additional Notes (Optional)",
+    sumProducts: "Products Total",
+    sumDelivery: "Delivery",
+    sumFinal: "Final Total",
+    continueShopping: "🛍️ Continue Shopping",
+    reviewOrderBtn: "✅ Review & Confirm Order",
+    searchModalTitle: "🔎 Search for a Bag",
+    searchModalSub: "Search by model number, bag name, or desired color",
+    searchPlaceholder: "e.g., 31, black, or dark red...",
+    searchEmptyInitial: "Start typing model name, number, or color",
+    ordersModalTitle: "📦 Previous Orders",
+    ordersModalSub: "Orders saved on this device",
+    freeDeliveryText: "🎉 You got free delivery!",
+    addForFreeText: (rem) => `Add ${rem.toFixed(2)} JOD more to get free delivery`,
+    badgeDetails: "Click for details",
+    detailsBtn: "Details",
+    addCartBtn: "Add to Cart 🛒",
+    emptyCartText: "🛍️ Cart is empty<br><small>Choose any bag and it will appear here.</small>",
+    freeText: "Free",
+    colorLabel: "Color",
+    sizeLabel: "Size",
+    priceLabel: "Price",
+    chooseColor: "Choose Color:",
+    chooseSize: "Choose Size:",
+    addDetailCart: "Add to Cart 🛒",
+    reviewTitle: "🧾 Order Review",
+    reviewSub: "Check everything before sending via WhatsApp",
+    editOrder: "✏️ Edit Order",
+    confirmWhatsapp: "✅ Confirm & Send via WhatsApp",
+    whatsappConfirmSub: "Opening WhatsApp doesn't mean the order was sent. Send the message from WhatsApp first, then come back and click the confirm button below.<br><b>Your cart is saved and won't be cleared until confirmed.</b>",
+    sentViaWhatsapp: "✅ I sent the order via WhatsApp",
+    backToCart: "Back to Cart",
+    successTitle: "Order Confirmed",
+    successSub: "The order has been saved to your previous orders and cart cleared.",
+    okBtn: "OK",
+    noOrdersText: "📦 No previous orders<br><small>Confirmed orders will appear here.</small>",
+    restoreBtn: "🔄 Restore Items to Cart",
+    noProductsInSection: "No products in this category right now."
+  }
+};
+
+let currentLang = 'ar';
+
+function toggleLanguage() {
+  currentLang = (currentLang === 'ar') ? 'en' : 'ar';
+  const htmlRoot = document.getElementById("htmlRoot");
+  htmlRoot.setAttribute("lang", currentLang);
+  htmlRoot.setAttribute("dir", currentLang === 'ar' ? 'rtl' : 'ltr');
+  document.getElementById("langToggleBtn").textContent = currentLang === 'ar' ? "🌐 EN" : "🌐 AR";
+  updateStaticTexts();
+  renderProducts();
+  renderCart();
+}
+
+function t(key) {
+  return translations[currentLang][key] || key;
+}
+
+function updateStaticTexts() {
+  document.getElementById("pageTitle").textContent = t("pageTitle");
+  document.getElementById("navSearchBtn").innerHTML = t("searchBtn");
+  document.getElementById("navOrdersBtn").innerHTML = t("ordersBtn");
+  document.getElementById("cartTextLabel").textContent = t("cartText");
+  document.getElementById("heroTitle").textContent = t("heroTitle");
+  document.getElementById("heroSub").textContent = t("heroSub");
+  document.getElementById("heroNote").textContent = t("heroNote");
+  document.getElementById("sectionTitleDisplay").textContent = currentCategory === 'all' ? t("sectionTitle") : document.getElementById("sectionTitleDisplay").textContent;
+  document.getElementById("sectionSubDisplay").textContent = t("sectionSub");
+  document.getElementById("loadingText").textContent = t("loadingText");
+  document.getElementById("footerText").textContent = t("footerText");
+  document.getElementById("cartHeaderTitle").innerHTML = `🛒 ${t("cartHeader")} <span class="cart-count">0</span>`;
+  document.getElementById("deliveryInfoTitle").textContent = t("deliveryInfoTitle");
+  document.getElementById("customerName").placeholder = t("namePlaceholder");
+  document.getElementById("customerPhone").placeholder = t("phonePlaceholder");
+  document.getElementById("cityDefault").textContent = t("cityDefault");
+  document.getElementById("customerAddress").placeholder = t("addressPlaceholder");
+  document.getElementById("customerNotes").placeholder = t("notesPlaceholder");
+  document.getElementById("sumProductsLabel").textContent = t("sumProducts");
+  document.getElementById("sumDeliveryLabel").textContent = t("sumDelivery");
+  document.getElementById("sumFinalLabel").textContent = t("sumFinal");
+  document.getElementById("continueShoppingBtn").textContent = t("continueShopping");
+  document.getElementById("reviewOrderBtn").textContent = t("reviewOrderBtn");
+  document.getElementById("searchModalTitle").textContent = t("searchModalTitle");
+  document.getElementById("searchModalSub").textContent = t("searchModalSub");
+  document.getElementById("searchInput").placeholder = t("searchPlaceholder");
+  document.getElementById("searchEmptyInitial").textContent = t("searchEmptyInitial");
+  document.getElementById("ordersModalTitle").textContent = t("ordersModalTitle");
+  document.getElementById("ordersModalSub").textContent = t("ordersModalSub");
+}
+
+// توليد تلقائي لملفات المنتجات حتى 500 منتج (بحيث أي رقم جديد مثل 41، 100، 250 يتم اكتشافه وعرضه فوراً)
+const DYNAMIC_PRODUCT_FILES = [];
+for(let i = 1; i <= 500; i++) {
+  DYNAMIC_PRODUCT_FILES.push(`products-new/${i}/product.js`);
+}
 
 window.AMO_PRODUCTS = window.AMO_PRODUCTS || [];
 
@@ -656,7 +845,7 @@ let lightboxIndex = 0;
 let detailProductId = null;
 let detailColorIndex = 0;
 let detailSizeIndex = 0;
-let currentCategory = 'all'; // التصنيف الحالي
+let currentCategory = 'all';
 
 function esc(v){
   return String(v ?? "")
@@ -684,6 +873,7 @@ function absoluteImage(path, basePath){
 
 function normalizeProduct(p,filePath){
   const base = filePath.substring(0,filePath.lastIndexOf("/")+1);
+  if(!p.name) p.name = "حقيبة AMO #" + (p.id || "");
   p.image = absoluteImage(p.image,base);
   if(Array.isArray(p.gallery)){
     p.gallery = p.gallery.map(x=>absoluteImage(x,base));
@@ -691,8 +881,9 @@ function normalizeProduct(p,filePath){
   if(Array.isArray(p.colors)){
     p.colors = p.colors.map(c=>({
       ...c,
-      image:absoluteImage(c.image,base),
-      gallery:Array.isArray(c.gallery) ? c.gallery.map(x=>absoluteImage(x,base)) : null
+      name: c.colorName || c.name || "لون",
+      image: absoluteImage(c.image,base),
+      gallery: Array.isArray(c.gallery) ? c.gallery.map(x=>absoluteImage(x,base)) : null
     }));
   }
   return p;
@@ -712,16 +903,24 @@ function saveCart(){
 async function loadProducts(){
   const grid = document.getElementById("productsGrid");
   try{
-    const loaded = await Promise.all(PRODUCT_FILES.map(async file=>{
+    const loaded = await Promise.all(DYNAMIC_PRODUCT_FILES.map(async file=>{
       try{
         const response = await fetch(file,{cache:"no-store"});
-        if(!response.ok) throw new Error("HTTP "+response.status);
+        if(!response.ok) return null;
         const source = await response.text();
         const before = Array.isArray(window.AMO_PRODUCTS) ? window.AMO_PRODUCTS.length : 0;
         let product = null;
         try{
-          product = new Function(source + "\nreturn (typeof product !== 'undefined' ? product : null);")();
-        }catch(e){ console.error("Product module error:",file,e); }
+          product = new Function(source + "\nreturn (typeof product !== 'undefined' ? product : (typeof product31 !== 'undefined' ? product31 : null));")();
+        }catch(e){
+          try {
+            const match = file.match(/products-new\/(\d+)\//);
+            if(match) {
+              const num = match[1];
+              product = new Function(source + `\nreturn (typeof product${num} !== 'undefined' ? product${num} : null);`)();
+            }
+          }catch(err){}
+        }
         
         if(product && product.id) return normalizeProduct(product,file);
         
@@ -737,6 +936,10 @@ async function loadProducts(){
     }));
 
     products = loaded.filter(Boolean);
+    
+    // ترتيب المنتجات تلقائياً من الأحدث للأقدم (حسب رقم المعرف ID تنازلياً)
+    products.sort((a, b) => Number(b.id) - Number(a.id));
+
     if(!products.length) throw new Error("No products loaded");
 
     renderProducts();
@@ -747,19 +950,17 @@ async function loadProducts(){
   }
 }
 
-// دالة تصفية المنتجات حسب القسم المختار السعر / الاسم
 function getFilteredProducts() {
   if (currentCategory === 'all') return products;
   
   return products.filter(p => {
-    const isWallet = p.name.includes("محفظ") || p.name.includes("محافظ");
+    const isWallet = p.name.includes("محفظ") || p.name.includes("محافظ") || p.name.toLowerCase().includes("wallet");
     const price = Number(p.price);
     
     if (currentCategory === 'wallets') {
       return isWallet;
     }
     
-    // إذا كان القسم للشنط نمنع ظهور المحافظ فيه
     if (!isWallet) {
       if (currentCategory === '5' && price <= 7.5) return true;
       if (currentCategory === '10' && price > 7.5 && price <= 12.5) return true;
@@ -770,25 +971,19 @@ function getFilteredProducts() {
   });
 }
 
-// دالة تغيير القسم عند الضغط على الأزرار
 function changeCategory(cat, btnElement) {
   currentCategory = cat;
-  
-  // تحديث الزر النشط
   document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
   btnElement.classList.add('active');
   
-  // تحديث عنوان القسم
   const titleDisplay = document.getElementById("sectionTitleDisplay");
-  if(cat === 'all') titleDisplay.innerText = "أحدث الحقائب والمحافظ";
-  else if(cat === '5') titleDisplay.innerText = "تشكيلة 5 دنانير";
-  else if(cat === '10') titleDisplay.innerText = "تشكيلة 10 دنانير";
-  else if(cat === '15') titleDisplay.innerText = "تشكيلة 15 دينار فأكثر";
-  else if(cat === 'wallets') titleDisplay.innerText = "تشكيلة المحافظ";
+  if(cat === 'all') titleDisplay.innerText = currentCategory === 'ar' ? "أحدث الحقائب والمحافظ" : t("sectionTitle");
+  else if(cat === '5') titleDisplay.innerText = currentCategory === 'ar' ? "تشكيلة 5 دنانير" : "5 JOD Collection";
+  else if(cat === '10') titleDisplay.innerText = currentCategory === 'ar' ? "تشكيلة 10 دنانير" : "10 JOD Collection";
+  else if(cat === '15') titleDisplay.innerText = currentCategory === 'ar' ? "تشكيلة 15 دينار فأكثر" : "15+ JOD Collection";
+  else if(cat === 'wallets') titleDisplay.innerText = currentCategory === 'ar' ? "تشكيلة المحافظ" : "Wallets Collection";
 
   renderProducts();
-  
-  // تمرير الشاشة للقسم بسلاسة
   document.getElementById('products').scrollIntoView({behavior:'smooth'});
 }
 
@@ -814,7 +1009,7 @@ function renderProducts(){
   const filteredProducts = getFilteredProducts();
 
   if(filteredProducts.length === 0) {
-    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;padding:35px;color:var(--text-muted)">لا توجد منتجات في هذا القسم حالياً.</p>`;
+    grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;padding:35px;color:var(--text-muted)">${t("noProductsInSection")}</p>`;
     return;
   }
 
@@ -827,26 +1022,26 @@ function renderProducts(){
       <article class="card" data-id="${esc(p.id)}">
         <div class="card-image-wrap" onclick="openProductDetails('${jsesc(p.id)}')">
           <img class="card-image" id="main-${esc(p.id)}" src="${esc(first)}" alt="${esc(p.name)}" loading="lazy">
-          <span class="image-badge">اضغطي للتفاصيل</span>
+          <span class="image-badge">${t("badgeDetails")}</span>
         </div>
         <div class="thumbs">
           ${gallery.map((im,i)=>`<img src="${esc(im)}" class="${i===0?'active':''}" loading="lazy" onclick="changeCardImage('${jsesc(p.id)}',${i})" alt="">`).join("")}
         </div>
         <div class="info">
           <div class="name" onclick="openProductDetails('${jsesc(p.id)}')">${esc(p.name)}</div>
-          <div class="price">${Number(p.price).toFixed(2)} د.أ</div>
+          <div class="price">${Number(p.price).toFixed(2)} ${currentLang==='ar'?'د.أ':'JOD'}</div>
           <div class="details">
-            ${p.size ? `الحجم: ${esc(p.size)}<br>` : ""}
-            ${p.dimensions ? `الأبعاد: ${esc(p.dimensions)}` : ""}
+            ${p.size ? `${currentLang==='ar'?'الحجم':'Size'}: ${esc(p.size)}<br>` : ""}
+            ${p.dimensions ? `${currentLang==='ar'?'الأبعاد':'Dimensions'}: ${esc(p.dimensions)}` : ""}
           </div>
           ${colors.length ? `
             <div class="color-row" id="colors-${esc(p.id)}">
-              ${colors.map((c,i)=>`<button class="color-dot ${i===0?'selected':''}" title="${esc(c.name)}" style="background:${esc(c.value||'#ccc')}" onclick="selectCardColor('${jsesc(p.id)}',${i})"></button>`).join("")}
+              ${colors.map((c,i)=>`<button class="color-dot ${i===0?'selected':''}" title="${esc(c.name||c.colorName)}" style="background:${esc(c.value||'#ccc')}" onclick="selectCardColor('${jsesc(p.id)}',${i})"></button>`).join("")}
             </div>
           ` : ""}
           <div class="card-actions">
-            <button class="details-btn" onclick="openProductDetails('${jsesc(p.id)}')">التفاصيل</button>
-            <button class="add-btn" onclick="addCardToCart('${jsesc(p.id)}')">أضف للسلة 🛒</button>
+            <button class="details-btn" onclick="openProductDetails('${jsesc(p.id)}')">${t("detailsBtn")}</button>
+            <button class="add-btn" onclick="addCardToCart('${jsesc(p.id)}')">${t("addCartBtn")}</button>
           </div>
         </div>
       </article>
@@ -940,24 +1135,24 @@ function renderProductDetails(){
     </div>
     <div class="detail-info">
       <div class="detail-name">${esc(p.name)}</div>
-      <div class="detail-price">${Number(p.price).toFixed(2)} د.أ</div>
+      <div class="detail-price">${Number(p.price).toFixed(2)} ${currentLang==='ar'?'د.أ':'JOD'}</div>
       <div class="detail-text">
-        ${p.size ? `الحجم: ${esc(p.size)}<br>` : ""}
-        ${p.dimensions ? `الأبعاد: ${esc(p.dimensions)}` : ""}
+        ${p.size ? `${currentLang==='ar'?'الحجم':'Size'}: ${esc(p.size)}<br>` : ""}
+        ${p.dimensions ? `${currentLang==='ar'?'الأبعاد':'Dimensions'}: ${esc(p.dimensions)}` : ""}
       </div>
       ${colors.length ? `
-        <div class="option-title">اختاري اللون:</div>
+        <div class="option-title">${t("chooseColor")}</div>
         <div class="options" id="detailColors">
-          ${colors.map((c,i)=>`<button class="option ${i===detailColorIndex?'selected':''}" onclick="selectDetailColor(${i})"><span class="swatch" style="background:${esc(c.value||'#ccc')}"></span>${esc(c.name)}</button>`).join("")}
+          ${colors.map((c,i)=>`<button class="option ${i===detailColorIndex?'selected':''}" onclick="selectDetailColor(${i})"><span class="swatch" style="background:${esc(c.value||'#ccc')}"></span>${esc(c.name||c.colorName)}</button>`).join("")}
         </div>
       ` : ""}
       ${sizes.length ? `
-        <div class="option-title">اختاري الحجم:</div>
+        <div class="option-title">${t("chooseSize")}</div>
         <div class="options" id="detailSizes">
           ${sizes.map((s,i)=>`<button class="option ${i===detailSizeIndex?'selected':''}" onclick="selectDetailSize(${i})">${esc(typeof s==="string" ? s : (s.name||""))}</button>`).join("")}
         </div>
       ` : ""}
-      <button class="detail-add" onclick="addDetailToCart()">أضف إلى السلة 🛒</button>
+      <button class="detail-add" onclick="addDetailToCart()">${t("addDetailCart")}</button>
     </div>
   `;
   initDetailSwiping();
@@ -1030,7 +1225,7 @@ function addDetailToCart(){
 }
 
 function addProductLine(p, color, size){
-  const colorName = color?.name || "";
+  const colorName = color?.name || color?.colorName || "";
   const key = `${p.id}|${colorName}|${size}`;
   const existing = cart.find(x=>x.key===key);
   
@@ -1073,7 +1268,7 @@ function renderCart(){
   const customerBox = document.getElementById("customerBox");
   
   if(!cart.length){
-    body.innerHTML = `<div class="empty">🛍️ السلة فارغة<br><small>اختاري أي شنطة وستظهر هنا.</small></div>`;
+    body.innerHTML = `<div class="empty">${t("emptyCartText")}</div>`;
     customerBox.style.display="none";
   }else{
     body.innerHTML = cart.map((x,i)=>`
@@ -1082,9 +1277,9 @@ function renderCart(){
         <div class="cart-item-info">
           <div class="cart-item-name">${esc(x.name)}</div>
           <div class="cart-meta">
-            ${x.colorName ? `اللون: ${esc(x.colorName)}<br>` : ""}
-            ${x.size ? `الحجم: ${esc(x.size)}<br>` : ""}
-            السعر: ${x.price.toFixed(2)} د.أ
+            ${x.colorName ? `${t("colorLabel")}: ${esc(x.colorName)}<br>` : ""}
+            ${x.size ? `${t("sizeLabel")}: ${esc(x.size)}<br>` : ""}
+            ${t("priceLabel")}: ${x.price.toFixed(2)} ${currentLang==='ar'?'د.أ':'JOD'}
           </div>
           <div class="qty-row">
             <button onclick="changeQty(${i},-1)">−</button>
@@ -1101,9 +1296,10 @@ function renderCart(){
   const total = productsTotal();
   const d = delivery();
   const final = total+d;
-  document.getElementById("productsTotal").textContent = total.toFixed(2)+" د.أ";
-  document.getElementById("deliveryTotal").textContent = d===0 ? "مجاني" : d.toFixed(2)+" د.أ";
-  document.getElementById("finalTotal").textContent = final.toFixed(2)+" د.أ";
+  const currencySymbol = currentLang === 'ar' ? 'د.أ' : 'JOD';
+  document.getElementById("productsTotal").textContent = total.toFixed(2) + " " + currencySymbol;
+  document.getElementById("deliveryTotal").textContent = d===0 ? t("freeText") : d.toFixed(2) + " " + currencySymbol;
+  document.getElementById("finalTotal").textContent = final.toFixed(2) + " " + currencySymbol;
 
   const count = cart.reduce((sum,x)=>sum+x.quantity, 0);
   document.querySelectorAll(".cart-count").forEach(el=>{ el.textContent=count; });
@@ -1113,12 +1309,12 @@ function renderCart(){
     progress.style.display="none";
   }else if(total>=49){
     progress.style.display="block";
-    progress.innerHTML = "🎉 حصلتِ على توصيل مجاني! <div class='progress-track'><div class='progress-bar' style='width:100%'></div></div>";
+    progress.innerHTML = `${t("freeDeliveryText")} <div class='progress-track'><div class='progress-bar' style='width:100%'></div></div>`;
   }else{
     const remaining = 49-total;
     const percent = Math.min(100, (total/49)*100);
     progress.style.display="block";
-    progress.innerHTML = `أضيفي ${remaining.toFixed(2)} د.أ لتحصلي على التوصيل المجاني <div class='progress-track'><div class='progress-bar' style='width:${percent}%'></div></div>`;
+    progress.innerHTML = `${t("addForFreeText")(remaining)} <div class='progress-track'><div class='progress-bar' style='width:${percent}%'></div></div>`;
   }
 }
 
@@ -1167,12 +1363,12 @@ function showCustomerError(fieldId, msg){
 }
 
 function validateCustomer(){
-  if(!cart.length){ showCustomerError(null, "⚠️ السلة فارغة. ضيفي شنطة أولاً."); return false; }
+  if(!cart.length){ showCustomerError(null, currentLang==='ar' ? "⚠️ السلة فارغة. ضيفي شنطة أولاً." : "⚠️ Cart is empty. Add a bag first."); return false; }
   const c = customerData();
-  if(!c.name){ showCustomerError('customerName', "⚠️ يرجى كتابة الاسم الكامل."); return false; }
-  if(!c.phone || c.phone.length < 8){ showCustomerError('customerPhone', "⚠️ يرجى كتابة رقم هاتف صحيح."); return false; }
-  if(!c.city){ showCustomerError('customerCity', "⚠️ يرجى اختيار المحافظة."); return false; }
-  if(!c.address){ showCustomerError('customerAddress', "⚠️ يرجى كتابة العنوان بالتفصيل."); return false; }
+  if(!c.name){ showCustomerError('customerName', currentLang==='ar' ? "⚠️ يرجى كتابة الاسم الكامل." : "⚠️ Please enter full name."); return false; }
+  if(!c.phone || c.phone.length < 8){ showCustomerError('customerPhone', currentLang==='ar' ? "⚠️ يرجى كتابة رقم هاتف صحيح." : "⚠️ Please enter valid phone number."); return false; }
+  if(!c.city){ showCustomerError('customerCity', currentLang==='ar' ? "⚠️ يرجى اختيار المحافظة." : "⚠️ Please select city."); return false; }
+  if(!c.address){ showCustomerError('customerAddress', currentLang==='ar' ? "⚠️ يرجى كتابة العنوان بالتفصيل." : "⚠️ Please enter detailed address."); return false; }
   return true;
 }
 
@@ -1181,39 +1377,39 @@ function reviewOrder(){
   const c = customerData();
   const total = productsTotal();
   const d = delivery();
+  const currencySymbol = currentLang === 'ar' ? 'د.أ' : 'JOD';
 
   document.getElementById("reviewBox").innerHTML = `
     <button class="close" onclick="closeReview()">×</button>
-    <div class="modal-title">🧾 مراجعة الطلب</div>
-    <div class="modal-sub">تأكدي من كل شيء قبل الإرسال عبر واتساب</div>
+    <div class="modal-title">${t("reviewTitle")}</div>
+    <div class="modal-sub">${t("reviewSub")}</div>
     ${cart.map(x=>`
       <div class="review-item">
         <img src="${esc(x.image)}" alt="">
         <div class="review-info">
-          <b>${esc(x.name)}</b><br>${x.colorName ? `🎨 اللون: ${esc(x.colorName)}<br>` : ""}
-          ${x.size ? `📏 الحجم: ${esc(x.size)}<br>` : ""}
-          الكمية: ${x.quantity}<br>
-          سعر القطعة: ${x.price.toFixed(2)} د.أ<br>
-          المجموع: ${(x.price*x.quantity).toFixed(2)} د.أ
+          <b>${esc(x.name)}</b><br>${x.colorName ? `🎨 ${t("colorLabel")}: ${esc(x.colorName)}<br>` : ""}
+          ${x.size ? `📏 ${t("sizeLabel")}: ${esc(x.size)}<br>` : ""}
+          ${currentLang==='ar'?'الكمية':'Qty'}: ${x.quantity}<br>
+          ${currentLang==='ar'?'سعر القطعة':'Price'}: ${x.price.toFixed(2)} ${currencySymbol}<br>${currentLang==='ar'?'المجموع':'Total'}: ${(x.price*x.quantity).toFixed(2)}${currencySymbol}
         </div>
       </div>
     `).join("")}
     <div class="review-customer">
-      <b>📦 معلومات التوصيل</b><br>
-      الاسم: ${esc(c.name)}<br>
-      الهاتف: ${esc(c.phone)}<br>
-      المحافظة: ${esc(c.city)}<br>
-      العنوان: ${esc(c.address)}
-      ${c.notes ? `<br>الملاحظات: ${esc(c.notes)}` : ""}
+      <b>📦 ${t("deliveryInfoTitle")}</b><br>
+      ${currentLang==='ar'?'الاسم':'Name'}: ${esc(c.name)}<br>
+      ${currentLang==='ar'?'الهاتف':'Phone'}: ${esc(c.phone)}<br>
+      ${currentLang==='ar'?'المحافظة':'City'}: ${esc(c.city)}<br>
+      ${currentLang==='ar'?'العنوان':'Address'}: ${esc(c.address)}
+      ${c.notes ? `<br>${currentLang==='ar'?'ملاحظات':'Notes'}: ${esc(c.notes)}` : ""}
     </div>
     <div class="modal-total">
-      <div class="line"><span>مجموع المنتجات</span><b>${total.toFixed(2)} د.أ</b></div>
-      <div class="line"><span>التوصيل</span><b>${d===0 ? "مجاني" : d.toFixed(2)+" د.أ"}</b></div>
-      <div class="line final"><span>المجموع النهائي</span><b>${(total+d).toFixed(2)} د.أ</b></div>
+      <div class="line"><span>${t("sumProducts")}</span><b>${total.toFixed(2)} ${currencySymbol}</b></div>
+      <div class="line"><span>${t("sumDelivery")}</span><b>${d===0 ? t("freeText") : d.toFixed(2)+" "+currencySymbol}</b></div>
+      <div class="line final"><span>${t("sumFinal")}</span><b>${(total+d).toFixed(2)} ${currencySymbol}</b></div>
     </div>
     <div class="modal-actions">
-      <button class="edit-btn" onclick="closeReview()">✏️ تعديل الطلب</button>
-      <button class="send-btn" onclick="confirmOrder()">✅ تأكيد وإرسال عبر واتساب</button>
+      <button class="edit-btn" onclick="closeReview()">${t("editOrder")}</button>
+      <button class="send-btn" onclick="confirmOrder()">${t("confirmWhatsapp")}</button>
     </div>
   `;
   document.getElementById("reviewModal").classList.add("show");
@@ -1245,6 +1441,7 @@ function confirmOrder(){
   const c = customerData();
   const total = productsTotal();
   const d = delivery();
+  const currencySymbol = currentLang === 'ar' ? 'د.أ' : 'JOD';
 
   pendingOrder = {
     date: new Date().toISOString(),
@@ -1264,12 +1461,11 @@ function confirmOrder(){
     msg += `\n${i+1}. ${x.name}\n`;
     if(x.colorName) msg += `🎨 اللون: ${x.colorName}\n`;
     if(x.size) msg += `📏 الحجم: ${x.size}\n`;
-    msg += `🔢 الكمية: ${x.quantity}\n💰 سعر القطعة: ${Number(x.price).toFixed(2)} د.أ\n💵 المجموع: ${(Number(x.price)*Number(x.quantity)).toFixed(2)} د.أ\n`;
+    msg += `🔢 الكمية: ${x.quantity}\n💰 سعر القطعة: ${Number(x.price).toFixed(2)} ${currencySymbol}\n💵 المجموع: ${(Number(x.price)*Number(x.quantity)).toFixed(2)} ${currencySymbol}\n`;
   });
   msg += "\n━━━━━━━━━━━━━━\n";
-  msg += `💰 مجموع المنتجات: ${total.toFixed(2)} د.أ\n🚚 التوصيل: ${d===0 ? "مجاني" : d.toFixed(2)+" د.أ"}\n💳 المجموع النهائي: ${(total+d).toFixed(2)} د.أ\n\nشكراً لطلبك من AMO 🤍`;
+  msg += `💰 مجموع المنتجات: ${total.toFixed(2)} ${currencySymbol}\n🚚 التوصيل: ${d===0 ? "مجاني" : d.toFixed(2)+" "+currencySymbol}\n💳 المجموع النهائي: ${(total+d).toFixed(2)} ${currencySymbol}\n\nشكراً لطلبك من AMO 🤍`;
 
-  // تجهيز HTML المنتجات للبريد الإلكتروني مع الصور
   let itemsHtml = cart.map(x => `
     <div style="display:flex; align-items:center; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:10px;">
       <img src="${x.image}" style="width:60px; height:60px; object-fit:cover; border-radius:8px; margin-left:10px;" />
@@ -1277,7 +1473,7 @@ function confirmOrder(){
         <b>${x.name}</b><br>
         ${x.colorName ? `اللون: ${x.colorName} | ` : ""}
         ${x.size ? `الحجم: ${x.size} | ` : ""}
-        الكمية: ${x.quantity} | السعر: ${(x.price * x.quantity).toFixed(2)} د.أ
+        الكمية: ${x.quantity} | السعر: ${(x.price * x.quantity).toFixed(2)} ${currencySymbol}
       </div>
     </div>
   `).join("");
@@ -1290,29 +1486,22 @@ function confirmOrder(){
     customer_address: c.address,
     customer_notes: c.notes || "لا توجد ملاحظات",
     order_details: itemsHtml,
-    total_price: (total + d).toFixed(2) + " د.أ"
+    total_price: (total + d).toFixed(2) + " " + currencySymbol
   };
 
-  // تم تصحيح معرف القالب ليصبح بحروف صغيرة متطابقة تماماً مع EmailJS
-  emailjs.send("service_hc4panu", "template_9a1dmfw", emailParams)
-    .then(response => {
-      console.log("تم إرسال الإيميل بنجاح!", response.status);
-    }, error => {
-      console.error("فشل إرسال الإيميل:", error);
-    });
+  emailjs.send("service_hc4panu", "template_9a1dmfw", emailParams).catch(err => console.error(err));
 
   const url = "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(msg);
   window.open(url,"_blank","noopener");
 
   document.getElementById("reviewBox").innerHTML = `
-    <div class="modal-title">📲 إكمال الطلب عبر واتساب</div>
+    <div class="modal-title">📲 ${currentLang==='ar'?'إكمال الطلب عبر واتساب':'Complete Order via WhatsApp'}</div>
     <div class="modal-sub" style="line-height:1.9">
-      فتح واتساب لا يعني أن الطلب أُرسل. أرسلي الرسالة من واتساب أولاً، ثم عودي واضغطي على زر التأكيد أدناه.
-      <br><b>سلتك محفوظة ولن تُفرّغ قبل تأكيدك.</b>
+      ${t("whatsappConfirmSub")}
     </div>
     <div class="modal-actions">
-      <button class="edit-btn" onclick="cancelWhatsAppConfirmation()">العودة للسلة</button>
-      <button class="send-btn" onclick="finalizeOrder()">✅ أرسلت الطلب عبر واتساب</button>
+      <button class="edit-btn" onclick="cancelWhatsAppConfirmation()">${t("backToCart")}</button>
+      <button class="send-btn" onclick="finalizeOrder()">${t("sentViaWhatsapp")}</button>
     </div>
   `;
 }
@@ -1329,9 +1518,9 @@ function finalizeOrder(){
   document.getElementById("reviewBox").innerHTML = `
     <div class="success">
       <div class="success-icon">🎉</div>
-      <h2>تم تأكيد إرسال الطلب</h2>
-      <p>تم حفظ الطلب ضمن طلباتك السابقة وتفريغ السلة.</p>
-      <button class="send-btn" onclick="closeReview()">حسناً</button>
+      <h2>${t("successTitle")}</h2>
+      <p>${t("successSub")}</p>
+      <button class="send-btn" onclick="closeReview()">${t("okBtn")}</button>
     </div>
   `;
   document.getElementById("reviewModal").classList.add("show");
@@ -1349,27 +1538,36 @@ function closeSearch(){
   document.body.classList.remove("lock");
 }
 
+function filterByColorTag(colorName) {
+  document.querySelectorAll('.color-tag-btn').forEach(btn => btn.classList.remove('active'));
+  const input = document.getElementById("searchInput");
+  input.value = colorName;
+  searchProducts();
+}
+
 function searchProducts(){
   const input = document.getElementById("searchInput");
   const results = document.getElementById("searchResults");
   const query = input.value.trim().toLowerCase();
 
-  if(!query){ results.innerHTML = `<div class="orders-empty">ابدئي بكتابة اسم أو رقم الموديل</div>`; return; }
+  if(!query){ results.innerHTML = `<div class="orders-empty">${t("searchEmptyInitial")}</div>`; return; }
 
   const found = products.filter(p=>{
-    const text = [p.id, p.name, p.size, p.dimensions, ...(p.colors || []).map(c=>c.name)].join(" ").toLowerCase();
+    const colorNames = (p.colors || []).map(c => (c.name || c.colorName || "").toLowerCase()).join(" ");
+    const text = [p.id, p.name, p.size, p.dimensions, colorNames].join(" ").toLowerCase();
     return text.includes(query);
   });
 
-  if(!found.length){ results.innerHTML = `<div class="orders-empty">😔 لم نجد أي منتج بهذا البحث</div>`; return; }
+  if(!found.length){ results.innerHTML = `<div class="orders-empty">😔 ${currentLang==='ar'?'لم نجد أي منتج طابق البحث':'No products found matching'} "${esc(query)}"</div>`; return; }
 
+  const currencySymbol = currentLang === 'ar' ? 'د.أ' : 'JOD';
   results.innerHTML = found.map(p=>`
     <div class="search-result" onclick="openSearchProduct('${jsesc(p.id)}')">
       <img src="${esc(p.image)}" alt="${esc(p.name)}">
       <div class="search-result-info">
         <div class="search-result-name">${esc(p.name)}</div>
-        <div class="search-result-meta">${Number(p.price).toFixed(2)} د.أ ${p.size ? ` • ${esc(p.size)}` : ""}</div>
-        <div class="search-result-meta">${p.dimensions ? esc(p.dimensions) : ""}</div>
+        <div class="search-result-meta">${Number(p.price).toFixed(2)} ${currencySymbol} ${p.size ? ` • ${esc(p.size)}` : ""}</div>
+        <div class="search-result-meta">${(p.colors || []).map(c=>esc(c.name||c.colorName)).join("، ")}</div>
       </div>
     </div>
   `).join("");
@@ -1416,19 +1614,20 @@ function renderPreviousOrders(){
   const box = document.getElementById("previousOrders");
   const orders = loadPreviousOrders();
   if(!orders.length){
-    box.innerHTML = `<div class="orders-empty">📦 لا توجد طلبات سابقة<br><small>الطلبات التي يتم تأكيدها ستظهر هنا.</small></div>`; return;
+    box.innerHTML = `<div class="orders-empty">${t("noOrdersText")}</div>`; return;
   }
+  const currencySymbol = currentLang === 'ar' ? 'د.أ' : 'JOD';
   box.innerHTML = orders.map((order,index)=>{
     const date = new Date(order.date);
-    const dateText = date.toLocaleDateString("ar-JO")+" - "+date.toLocaleTimeString("ar-JO", {hour:"2-digit",minute:"2-digit"});
+    const dateText = date.toLocaleDateString(currentLang==='ar'?"ar-JO":"en-US")+" - "+date.toLocaleTimeString(currentLang==='ar'?"ar-JO":"en-US", {hour:"2-digit",minute:"2-digit"});
     return `
       <div class="previous-order">
-        <div class="previous-order-head"><span>طلب #${orders.length-index}</span><span class="previous-order-date">${esc(dateText)}</span></div>
+        <div class="previous-order-head"><span>${currentLang==='ar'?'طلب':'Order'} #${orders.length-index}</span><span class="previous-order-date">${esc(dateText)}</span></div>
         <div class="previous-order-items">
           ${order.items.map(item=>`• ${esc(item.name)}${item.colorName ? ` — ${esc(item.colorName)}` : ""}${item.size ? ` — ${esc(item.size)}` : ""} × ${item.quantity}<br>`).join("")}
         </div>
-        <div class="previous-order-total">المجموع: ${Number(order.total).toFixed(2)} د.أ</div>
-        <button class="send-btn" style="width:100%;margin-top:10px;background:var(--brand-color)" onclick="restorePreviousOrder(${index})">🔄 استعادة المنتجات إلى السلة</button>
+        <div class="previous-order-total">${currentLang==='ar'?'المجموع':'Total'}: ${Number(order.total).toFixed(2)} ${currencySymbol}</div>
+        <button class="send-btn" style="width:100%;margin-top:10px;background:var(--brand-color)" onclick="restorePreviousOrder(${index})">${t("restoreBtn")}</button>
       </div>
     `;
   }).join("");
@@ -1448,7 +1647,7 @@ if(lbEl){
 document.addEventListener("keydown", e=>{
   if(e.key==="Escape"){ closeLightbox(); closeProductDetails(); closeReview(); closeSearch(); closePreviousOrders(); }
   if(document.getElementById("lightbox").classList.contains("show")){
-    if(e.key==="ArrowLeft") prevLightbox();
+    if(e.key==="ArrowLeft") prevDownloads();
     if(e.key==="ArrowRight") nextLightbox();
   }
 });
