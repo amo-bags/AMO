@@ -35,6 +35,7 @@
   --text-muted: #6b6b6b;
   --hero-bg: #f3efe9;
   --border-color: #e6e2db;
+  --facebook-color: #1877f2;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -49,7 +50,7 @@ body{
 }
 body.lock{overflow:hidden}
 button,input,textarea,select{font:inherit}
-button{cursor:pointer}
+button,a{cursor:pointer}
 img{max-width:100%}
 
 header{
@@ -62,7 +63,7 @@ header{
   max-width:1200px;margin:auto;padding:14px 20px;
   display:flex;align-items:center;justify-content:space-between;gap:15px;
 }
-.logo{font-size:28px;font-weight:900;letter-spacing:4px;color:var(--brand-color)}
+.logo{font-size:28px;font-weight:900;letter-spacing:4px;color:var(--brand-color);text-decoration:none}
 .header-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .top-btn{
   border:1px solid var(--border-color);background:#fff;border-radius:999px;
@@ -75,6 +76,25 @@ header{
   display:inline-flex;align-items:center;justify-content:center;
   min-width:20px;height:20px;padding:0 5px;margin:0 4px;
   background:#fff;color:var(--brand-color);border-radius:999px;font-size:11px;font-weight:900;
+}
+
+.fb-btn {
+  border: 1px solid var(--facebook-color);
+  background: #fff;
+  color: var(--facebook-color);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .2s;
+}
+.fb-btn:hover {
+  background: var(--facebook-color);
+  color: #fff;
 }
 
 .extra-btn{
@@ -262,7 +282,28 @@ html[dir="ltr"] .image-badge { right: auto; left: 12px; }
 .add-btn{border:0;background:var(--brand-color);color:#fff}
 .add-btn:hover{background:var(--brand-hover)}
 
-footer{text-align:center;color:var(--text-muted);padding:40px 15px;font-size:13px;border-top:1px solid var(--border-color);margin-top:40px}
+footer{
+  text-align:center;
+  color:var(--text-muted);
+  padding:40px 15px;
+  font-size:13px;
+  border-top:1px solid var(--border-color);
+  margin-top:40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.footer-fb-link {
+  color: var(--facebook-color);
+  text-decoration: none;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+.footer-fb-link:hover { text-decoration: underline; }
 
 .overlay{
   position:fixed;inset:0;background:rgba(0,0,0,.5);
@@ -448,7 +489,7 @@ html[dir="ltr"] .lb-next { right: auto; left: 20px; }
   .header{padding:12px 16px}
   .logo{font-size:24px;letter-spacing:2px}
   .top-btn{padding:8px 12px;font-size:12px}
-  .extra-btn{padding:8px 10px;font-size:12px}
+  .extra-btn,.fb-btn{padding:8px 10px;font-size:12px}
   .hero{margin:12px 12px 20px;padding:36px 16px}
   .hero h1{font-size:22px}
   
@@ -481,9 +522,14 @@ html[dir="ltr"] .lb-next { right: auto; left: 20px; }
 
 <header>
   <div class="header">
-    <div class="logo">AMO</div>
+    <a href="#" class="logo">AMO</a>
 
     <div class="header-actions">
+      <!-- رابط صفحة الفيسبوك -->
+      <a href="https://www.facebook.com/share/1atoUpuSsz/" target="_blank" rel="noopener" class="fb-btn">
+        🔵 <span id="fbTextLabel">فيسبوك</span>
+      </a>
+
       <button class="extra-btn" id="langToggleBtn" onclick="toggleLanguage()">🌐 EN</button>
 
       <button class="extra-btn" id="navSearchBtn" onclick="openSearch()">
@@ -531,7 +577,12 @@ html[dir="ltr"] .lb-next { right: auto; left: 20px; }
   </div>
 </section>
 
-<footer id="footerText">AMO © جميع الحقوق محفوظة</footer>
+<footer>
+  <a href="https://www.facebook.com/share/1atoUpuSsz/" target="_blank" rel="noopener" class="footer-fb-link">
+    🔵 <span id="footerFbText">تابعونا على فيسبوك AMO Bags</span>
+  </a>
+  <div id="footerText">AMO © جميع الحقوق محفوظة</div>
+</footer>
 
 <div id="cartOverlay" class="overlay" onclick="closeCart()"></div>
 
@@ -651,6 +702,8 @@ html[dir="ltr"] .lb-next { right: auto; left: 20px; }
 const translations = {
   ar: {
     pageTitle: "AMO | شنط نسائية",
+    fbText: "فيسبوك",
+    footerFbText: "تابعونا على فيسبوك AMO Bags",
     searchBtn: "🔎 بحث",
     ordersBtn: "📦 طلباتي",
     cartText: "السلة",
@@ -713,6 +766,8 @@ const translations = {
   },
   en: {
     pageTitle: "AMO | Women's Bags",
+    fbText: "Facebook",
+    footerFbText: "Follow us on Facebook AMO Bags",
     searchBtn: "🔎 Search",
     ordersBtn: "📦 My Orders",
     cartText: "Cart",
@@ -794,6 +849,8 @@ function t(key) {
 
 function updateStaticTexts() {
   document.getElementById("pageTitle").textContent = t("pageTitle");
+  document.getElementById("fbTextLabel").textContent = t("fbText");
+  document.getElementById("footerFbText").textContent = t("footerFbText");
   document.getElementById("navSearchBtn").innerHTML = t("searchBtn");
   document.getElementById("navOrdersBtn").innerHTML = t("ordersBtn");
   document.getElementById("cartTextLabel").textContent = t("cartText");
@@ -824,7 +881,6 @@ function updateStaticTexts() {
   document.getElementById("ordersModalSub").textContent = t("ordersModalSub");
 }
 
-// توليد تلقائي لملفات المنتجات حتى 500 منتج (بحيث أي رقم جديد مثل 41، 100، 250 يتم اكتشافه وعرضه فوراً)
 const DYNAMIC_PRODUCT_FILES = [];
 for(let i = 1; i <= 500; i++) {
   DYNAMIC_PRODUCT_FILES.push(`products-new/${i}/product.js`);
@@ -936,8 +992,6 @@ async function loadProducts(){
     }));
 
     products = loaded.filter(Boolean);
-    
-    // ترتيب المنتجات تلقائياً من الأحدث للأقدم (حسب رقم المعرف ID تنازلياً)
     products.sort((a, b) => Number(b.id) - Number(a.id));
 
     if(!products.length) throw new Error("No products loaded");
@@ -1647,7 +1701,7 @@ if(lbEl){
 document.addEventListener("keydown", e=>{
   if(e.key==="Escape"){ closeLightbox(); closeProductDetails(); closeReview(); closeSearch(); closePreviousOrders(); }
   if(document.getElementById("lightbox").classList.contains("show")){
-    if(e.key==="ArrowLeft") prevDownloads();
+    if(e.key==="ArrowLeft") prevLightbox();
     if(e.key==="ArrowRight") nextLightbox();
   }
 });
