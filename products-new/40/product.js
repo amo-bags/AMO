@@ -10,7 +10,8 @@ const product = {
     "40kaki.png",
     "40white.png",
     "40backside.png",
-    "40side.png"
+    "40side.png",
+    "image-19_197705906995413.jpg"
   ],
   colors: [
     {
@@ -35,4 +36,3 @@ if (typeof window !== 'undefined') {
   window.AMO_PRODUCTS = window.AMO_PRODUCTS || [];
   window.AMO_PRODUCTS.push(product);
 }
-
