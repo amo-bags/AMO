@@ -1,39 +1,28 @@
-const product31 = {
-  id: 31,
-  price: 10, // السعر 10 دنانير
-  currency: "JOD",
+const product = {
+  id: "31",
+  name: "شنطة نسائية - موديل 31",
+  price: 10,
   size: "وسط (عرض 30 سم × ارتفاع 20 سم)",
-  dimensions: {
-    width: "30 cm",
-    height: "20 cm"
-  },
-  images: {
-    details: "products-new/31/31details.png",
-    colors: [
-      {
-        colorName: "بيج / باجي",
-        image: "products-new/31/31bagi.png"
-      },
-      {
-        colorName: "أسود",
-        image: "products-new/31/31black.png"
-      },
-      {
-        colorName: "بني",
-        image: "products-new/31/31brown.png"
-      },
-      {
-        colorName: "عسلي (Camel)",
-        image: "products-new/31/31camil.png"
-      },
-      {
-        colorName: "خمري",
-        image: "products-new/31/31darkred.png"
-      },
-      {
-        colorName: "أوف وايت",
-        image: "products-new/31/31offwhite.png"
-      }
-    ]
-  }
+  dimensions: "30 سم × 20 سم",
+  image: "31camil.png",
+  colors: [
+    { name: "عسلي", colorName: "عسلي", value: "#c5a059", image: "31camil.png" },
+    { name: "أسود", colorName: "أسود", value: "#000000", image: "31black.png" },
+    { name: "خمري", colorName: "خمري", value: "#800020", image: "31darkred.png" },
+    { name: "بني", colorName: "بني", value: "#5c4033", image: "31brown.png" },
+    { name: "بيج / باجي", colorName: "بيج / باجي", value: "#f5f5dc", image: "31bagi.png" },
+    { name: "أوف وايت", colorName: "أوف وايت", value: "#fefefa", image: "31offwhite.png" }
+  ],
+  gallery: [
+    "31details.png",
+    "31camil.png",
+    "31black.png",
+    "31darkred.png",
+    "31brown.png",
+    "31bagi.png",
+    "31offwhite.png"
+  ]
 };
+
+window.AMO_PRODUCTS = window.AMO_PRODUCTS || [];
+window.AMO_PRODUCTS.push(product);
