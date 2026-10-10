@@ -1,9 +1,9 @@
-var product38 = {
+const product = {
   id: "38",
-  name: "حقيبة AMO رقم 38",
+  name: "حقيبة AMO #38",
   price: 10,
   size: "وسط",
-  dimensions: "العرض 35 سم × الارتفاع 17 سم",
+  dimensions: "25 سم عرض × 17 سم ارتفاع",
   image: "38black.png",
   gallery: [
     "38black.png",
@@ -34,8 +34,8 @@ var product38 = {
       image: "38bagi.png"
     },
     {
-      name: "نود / فخاري",
-      value: "#c18c74",
+      name: "نهدي",
+      value: "#663399",
       image: "38nude.png"
     }
   ]
@@ -43,5 +43,5 @@ var product38 = {
 
 if (typeof window !== 'undefined') {
   window.AMO_PRODUCTS = window.AMO_PRODUCTS || [];
-  window.AMO_PRODUCTS.push(product38);
+  window.AMO_PRODUCTS.push(product);
 }
